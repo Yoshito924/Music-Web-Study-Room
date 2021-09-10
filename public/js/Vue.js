@@ -103,48 +103,48 @@ const rightColumn = new Vue({
 
 Vue.component('copyright-text', {
   template: `
-        <div>
-        <!-- Twitterのシェアボタン -->
-        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button"
-          data-show-count="false">Tweet</a>
-  
-        <!-- はてなブックマークへのシェアボタン -->
-        <a href="https://b.hatena.ne.jp/entry/" class="hatena-bookmark-button"
-          data-hatena-bookmark-layout="basic-label-counter" data-hatena-bookmark-lang="ja"
-          title="このエントリーをはてなブックマークに追加"><img
-            src="https://b.st-hatena.com/images/v4/public/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加"
-            width="20" height="20" style="border: none;" /></a>
-  
-        <!-- noteへのシェアボタン -->
-        <a href="https://note.com/intent/social_button" class="note-social-button"
-          data-url="https://readability-checker.khufrudamonotes.com/"></a>
-  
-        <!-- Facebookへのシェアボタン -->
-        <a class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-width="" data-layout="button"
-          data-action="recommend" data-size="small" data-share=""></a>
-  
-        <!-- Facebookへのシェアボタン -->
-        <a id="fb-root"></a>
-  
-        <!-- pocketへのシェアボタン -->
-        <a data-pocket-label="pocket" data-pocket-count="none" class="pocket-btn" data-lang="en"></a>
-  
-        <!-- Lineへのシェアボタン -->
-        <a class="line-it-button" data-lang="ja" data-type="share-a" data-ver="3"
-          data-url="https://o-to.khufrudamonotes.com/" data-color="default" data-size="small" data-count="true"
-          style="display: none;"></a>
-  
-        <p>&copy; 2021- KHUFRUDAMO NOTES (since 2009) </p>
-      </div>
-      `
+      <div>
+      <!-- Twitterのシェアボタン -->
+      <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button"
+        data-show-count="false">Tweet</a>
+
+      <!-- はてなブックマークへのシェアボタン -->
+      <a href="https://b.hatena.ne.jp/entry/" class="hatena-bookmark-button"
+        data-hatena-bookmark-layout="basic-label-counter" data-hatena-bookmark-lang="ja"
+        title="このエントリーをはてなブックマークに追加"><img
+          src="https://b.st-hatena.com/images/v4/public/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加"
+          width="20" height="20" style="border: none;" /></a>
+
+      <!-- noteへのシェアボタン -->
+      <a href="https://note.com/intent/social_button" class="note-social-button"
+        data-url="https://readability-checker.khufrudamonotes.com/"></a>
+
+      <!-- Facebookへのシェアボタン -->
+      <a class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-width="" data-layout="button"
+        data-action="recommend" data-size="small" data-share=""></a>
+
+      <!-- Facebookへのシェアボタン -->
+      <a id="fb-root"></a>
+
+      <!-- pocketへのシェアボタン -->
+      <a data-pocket-label="pocket" data-pocket-count="none" class="pocket-btn" data-lang="en"></a>
+
+      <!-- Lineへのシェアボタン -->
+      <a class="line-it-button" data-lang="ja" data-type="share-a" data-ver="3"
+        data-url="https://o-to.khufrudamonotes.com/" data-color="default" data-size="small" data-count="true"
+        style="display: none;"></a>
+
+      <p>&copy; 2021- KHUFRUDAMO NOTES (since 2009) </p>
+    </div>
+    `
 })
+
 
 Vue.component('footer-template', {
   template: `
-    <div class="float-end">
-      <a href="info.html">このサイトについて</a>
-    </div>
-      `
+  <div class="float-end">
+  <a href="info.html">このアプリについて</a></div>
+    `
 })
 
 //インスタンスを作成する

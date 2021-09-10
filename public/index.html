@@ -30,9 +30,9 @@
     <header-template></header-template>
   </header>
 
-  <main>
-    <div class="lg:flex">
-      <div class="sm:w-1/1 lg:w-8/12">
+  <main class="container mx-auto my-8">
+    <div class="xl:flex">
+      <div class="sm:w-1/1 xl:w-8/12">
         <div>
           <label for="input_bpm" class="box1 col-6 col-xxl-4">
             <output id="input_bpm_value">BPM=120</output>
@@ -114,20 +114,50 @@
             oninput="document.getElementById('latency_value').value=`${this.value}(ms)`" onchange="rhythmStart()" />
         </div>
       </div>
-      <div class="sm:w-1/1 lg:w-4/12 my-1">あんぱん</div>
+
+      <div class="sm:w-1/1 xl:w-1/12">　</div>
+
+      <div class="sm:w-1/1 xl:w-3/12">
+        <!-- カラム右部分 -->
+        <div id="right-column">
+          <right-column></right-column>
+        </div>
+      </div>
     </div>
   </main>
 
   <!-- フッター -->
-  <footer id="footer">
+  <footer id="footer" class="mx-4">
     <footer-template></footer-template>
     <copyright-text></copyright-text>
   </footer>
-  </div>
 
   <!-- JavaScriptを読み込む -->
   <script src="js/Vue.js"></script>
   <script src="js/main.js"></script>
+
+  <!-- シェアボタン用のJavaScript -->
+  <!-- Twitter -->
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  <!-- facebook -->
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v11.0"
+    nonce="s28FkDyH"></script>
+  <!-- note -->
+  <script async src="https://cdn.st-note.com/js/social_button.min.js"></script>
+  <!-- はてなブックマーク -->
+  <script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8"
+    async="async"></script>
+  <!-- Pocket -->
+  <script
+    type="text/javascript">!function (d, i) { if (!d.getElementById(i)) { var j = d.createElement("script"); j.id = i; j.src = "https://widgets.getpocket.com/v1/j/btn.js?v=1"; var w = d.getElementById(i); d.body.appendChild(j); } }(document, "pocket-btn-js");</script>
+  <!-- Line -->
+  <script src="https://www.line-website.com/social-plugins/js/thirdparty/loader.min.js" async="async"
+    defer="defer"></script>
+
+  <!-- JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+    crossorigin="anonymous"></script>
 </body>
 
 </html>
