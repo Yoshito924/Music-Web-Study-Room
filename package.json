@@ -1,11 +1,11 @@
 {
-  "name": "rhythmdozyo",
+  "name": "Music-Web-Study-Room",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "TAILWIND_MODE=watch postcss -i css/styles.css -o css/dist.css --watch",
-    "build": "postcss css/styles.css -o css/dist.css"
+    "dev": "TAILWIND_MODE=watch postcss -i public/css/styles.css -o public/css/dist.css --watch",
+    "build": "postcss public/css/styles.css -o public/css/dist.css"
   },
   "keywords": [],
   "author": "",
