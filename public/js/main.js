@@ -1,0 +1,1066 @@
+'use strict';
+
+//常に正の数の答えを返す剰余演算をする関数 (負の数の剰余演算を処理するため)
+function mod(n, m) {
+    return ((n % m) + m) % m;
+};
+
+// 四捨五入して小数点第3位までを表示する関数 (JavaScriptには元からそういう関数が無いっぽいので)
+function roundToThree(num) {
+    return +(Math.round(num + "e+3") + "e-3");
+};
+
+//2つの整数の最小公倍数を求める関数--------------------------------------
+function lcm(a, b) {
+    let g = (n, m) => m ? g(m, n % m) : n
+    return a * b / g(a, b)
+};
+
+//2つの整数の最大公約数を求める関数--------------------------------------
+function gcd(a, b) {
+    if (b === 0) {
+        return a
+    }
+    return gcd(b, a % b)
+};
+
+const rhythmPattern = [
+    { name: "rhythm0", partition: 4, Numerator: 4, Denominator: 4, rhythm: [1, 1, 1, 1], imagePath: "", difficulty: 0, text: "" },
+    { name: "rhythm1", partition: 2, Numerator: 2, Denominator: 4, rhythm: [0, 0], imagePath: "", difficulty: 0, text: "" },
+    { name: "rhythm2", partition: 2, Numerator: 2, Denominator: 4, rhythm: [0, 1], imagePath: "", difficulty: 0, text: "" },
+    { name: "rhythm3", partition: 2, Numerator: 2, Denominator: 4, rhythm: [1, 0], imagePath: "", difficulty: 0, text: "" },
+
+    //2のまとまり------------------------
+    { name: "rhythm5", partition: 2, Numerator: 2, Denominator: 4, rhythm: [0, 0], imagePath: "", difficulty: 0, text: "" },
+    { name: "rhythm6", partition: 2, Numerator: 2, Denominator: 4, rhythm: [0, 1], imagePath: "", difficulty: 0, text: "" },
+    { name: "rhythm7", partition: 2, Numerator: 2, Denominator: 4, rhythm: [1, 0], imagePath: "", difficulty: 0, text: "" },
+    { name: "rhythm8", partition: 2, Numerator: 2, Denominator: 4, rhythm: [1, 1], imagePath: "", difficulty: 0, text: "" },
+
+    //3のまとまり------------------------
+    { name: "rhythm8", partition: 3, Numerator: 3, Denominator: 4, rhythm: [0, 0, 0], imagePath: "", difficulty: 0, text: "" },
+    { name: "rhythm9", partition: 3, Numerator: 3, Denominator: 4, rhythm: [0, 0, 1], imagePath: "", difficulty: 0, text: "" },
+    { name: "rhythm10", partition: 3, Numerator: 3, Denominator: 4, rhythm: [0, 1, 0], imagePath: "", difficulty: 0, text: "" },
+    { name: "rhythm11", partition: 3, Numerator: 3, Denominator: 4, rhythm: [0, 1, 1], imagePath: "", difficulty: 0, text: "" },
+    { name: "rhythm12", partition: 3, Numerator: 3, Denominator: 4, rhythm: [0, 0, 0], imagePath: "", difficulty: 0, text: "" },
+    { name: "rhythm13", partition: 3, Numerator: 3, Denominator: 4, rhythm: [1, 0, 0], imagePath: "", difficulty: 0, text: "" },
+    { name: "rhythm14", partition: 3, Numerator: 3, Denominator: 4, rhythm: [1, 1, 0], imagePath: "", difficulty: 0, text: "" },
+    { name: "rhythm15", partition: 3, Numerator: 3, Denominator: 4, rhythm: [1, 1, 1], imagePath: "", difficulty: 0, text: "" },
+
+    //4のまとまり------------------------
+    { name: "rhythm16", partition: 4, Numerator: 4, Denominator: 4, rhythm: [0, 0, 0, 0], imagePath: "", difficulty: 0, text: "" },
+    { name: "rhythm17", partition: 4, Numerator: 4, Denominator: 4, rhythm: [0, 0, 0, 1], imagePath: "", difficulty: 0, text: "" },
+    { name: "rhythm18", partition: 4, Numerator: 4, Denominator: 4, rhythm: [0, 0, 1, 0], imagePath: "", difficulty: 0, text: "" },
+    { name: "rhythm19", partition: 4, Numerator: 4, Denominator: 4, rhythm: [0, 0, 1, 1], imagePath: "", difficulty: 0, text: "" },
+
+    { name: "rhythm20", partition: 4, Numerator: 4, Denominator: 4, rhythm: [0, 1, 0, 0], imagePath: "", difficulty: 0, text: "" },
+    { name: "rhythm21", partition: 4, Numerator: 4, Denominator: 4, rhythm: [0, 1, 0, 1], imagePath: "", difficulty: 0, text: "" },
+    { name: "rhythm22", partition: 4, Numerator: 4, Denominator: 4, rhythm: [0, 1, 1, 0], imagePath: "", difficulty: 0, text: "" },
+    { name: "rhythm23", partition: 4, Numerator: 4, Denominator: 4, rhythm: [0, 1, 1, 1], imagePath: "", difficulty: 0, text: "" },
+
+    { name: "rhythm24", partition: 4, Numerator: 4, Denominator: 4, rhythm: [1, 0, 0, 0], imagePath: "", difficulty: 0, text: "" },
+    { name: "rhythm25", partition: 4, Numerator: 4, Denominator: 4, rhythm: [1, 0, 0, 1], imagePath: "", difficulty: 0, text: "" },
+    { name: "rhythm26", partition: 4, Numerator: 4, Denominator: 4, rhythm: [1, 0, 1, 0], imagePath: "", difficulty: 0, text: "" },
+    { name: "rhythm27", partition: 4, Numerator: 4, Denominator: 4, rhythm: [1, 0, 1, 1], imagePath: "", difficulty: 0, text: "" },
+
+    { name: "rhythm28", partition: 4, Numerator: 4, Denominator: 4, rhythm: [1, 1, 0, 0], imagePath: "", difficulty: 0, text: "" },
+    { name: "rhythm29", partition: 4, Numerator: 4, Denominator: 4, rhythm: [1, 1, 0, 1], imagePath: "", difficulty: 0, text: "" },
+    { name: "rhythm30", partition: 4, Numerator: 4, Denominator: 4, rhythm: [1, 1, 1, 0], imagePath: "", difficulty: 0, text: "" },
+    { name: "rhythm31", partition: 4, Numerator: 4, Denominator: 4, rhythm: [1, 1, 1, 1], imagePath: "", difficulty: 0, text: "" },
+
+    //------------------------
+    { name: "rhythm32", partition: 4, Numerator: 4, Denominator: 4, rhythm: [1, 0, 1, 0], imagePath: "", difficulty: 0, text: "" },
+    { name: "rhythm33", partition: 4, Numerator: 4, Denominator: 4, rhythm: [1, 0, 1, 0], imagePath: "", difficulty: 0, text: "" },
+    { name: "rhythm34", partition: 4, Numerator: 4, Denominator: 4, rhythm: [1, 0, 1, 0], imagePath: "", difficulty: 0, text: "" },
+    { name: "rhythm35", partition: 4, Numerator: 4, Denominator: 4, rhythm: [1, 0, 1, 0], imagePath: "", difficulty: 0, text: "" },
+    { name: "rhythm36", partition: 4, Numerator: 4, Denominator: 4, rhythm: [1, 0, 1, 0], imagePath: "", difficulty: 0, text: "" },
+];
+
+//鳴らす音を定義する--------------------------------------
+let voice1 = new Audio('./Audio/female_1.mp3');
+let clave = new Audio('./Audio/clave.wav');
+let conga808 = new Audio('./Audio/conga808.wav');
+let HiHat = new Audio('./Audio/HiHat.wav');
+let clap = new Audio('./Audio/handClap.mp3');
+
+
+const clickSoundArray
+    = [voice1,
+        clave,
+        conga808,
+        HiHat,
+        clap,
+    ];
+
+
+//音符の種類を格納した配列
+const MusicalNoteArray = [
+    ["●", "𝅗𝅥", "♩", "♪", "𝅘𝅥𝅯"],
+    ["〇", "𝄼", "𝄽", "𝄾", "𝄿"],
+];
+
+//--------------------------------------
+let input_bpm; //BPMの値を格納する変数
+let beat;  //1拍の長さを格納する変数
+let startTime = null;  //スタート時刻を格納する変数
+let elapsedTime; //正解の音を鳴らし始めた時刻を格納する変数
+let creationTimeStamp; //リズムを打った時刻を格納する変数
+let timerId; //タイマーID
+let divisionTimerId; //divisionタイマーID
+
+let clickNote; //クリックの細かさ
+let divisionClickNote; //クリックの細かさ
+
+let master_volume; //マスターボリューム
+
+let latency; //レイテンシー(遅延時間)を格納する変数
+let judgementTime; //タイミングを判定するための値
+let safeTime; //OK判定のタイミング
+let result; //表示する音符を格納する変数
+
+//--------------------------------------
+//拍子分子の値を格納する変数
+let TimeSignatureNumerator;
+//拍子分母の値を格納する変数
+let TimeSignatureDenominator;
+//分割する数の値を格納する変数
+let division_number = 0;
+
+//分割する数×拍子分子の値を格納する変数
+let division;
+
+//--------------------------------------
+//クリックのオンオフ状態を格納する関数
+let noteArray;
+//分割クリックのオンオフ状態を格納する関数
+let divisionNoteArray
+
+//クリック情報を格納した配列を作る関数
+function arrayCreate() {
+    //拍子分子の値を取得
+    TimeSignatureNumerator = Number(document.getElementById('TimeSignatureNumerator').value);
+
+    //分割する数の値を取得
+    division_number = Number(document.getElementById('division_number').value);
+    division = division_number * TimeSignatureNumerator;
+
+    //クリックの配列を作成して全て0で満たす。
+    noteArray = Array(TimeSignatureNumerator).fill(0);
+    divisionNoteArray = Array(division).fill(0);
+};
+
+//メトロノームの再生を開始する関数--------------------------------------
+function metronomeStart() {
+
+    //メトロノームの再生を停止する関数
+    metronomeStop();
+
+    //再生中ならreturn
+    if (startTime !== null) {
+        return;
+    };
+
+    //ボリュームを管理するための値を取得
+    master_volume = Number(document.getElementById('master_volume').value) / 10;
+    //ボリュームを調整する
+    clickAccent.volume = master_volume;
+    click.volume = master_volume;
+    HiHat.volume = master_volume;
+
+    //拍子分母の値を取得
+    TimeSignatureDenominator = Number(document.getElementById('TimeSignatureDenominator').value);
+    document.getElementById('Denominator').innerHTML = `${TimeSignatureDenominator}`;
+
+    //拍子分子の値を取得
+    TimeSignatureNumerator = Number(document.getElementById('TimeSignatureNumerator').value);
+    document.getElementById('Numerator').innerHTML = `${TimeSignatureNumerator}`;
+
+    let Num = TimeSignatureNumerator;
+
+    //クリックのテーブルを描画する関数
+    countCreate(Num);
+
+    //分割する数の値を取得
+    division_number = Number(document.getElementById('division_number').value);
+    division = division_number * TimeSignatureNumerator;
+    let divisionNum = division;
+
+    //連符分割クリックのテーブルを描画する関数
+    divisionCreate(divisionNum);
+
+    division = division_number * TimeSignatureNumerator;
+
+    //BPMの値を取得
+    input_bpm = Number(document.getElementById('input_bpm').value);
+
+    //一拍の長さ(ms)を計算
+    beat = 60000 / input_bpm;
+
+    //-------------------------------------------
+    //クリックを刻む分音符の細かさを指定
+    clickNote = beat / ((TimeSignatureDenominator / 4) * division_number);
+
+    //クリックを一定間隔ごとに再生し、再生状態をタイマーIDに代入
+    timerId = setInterval(clickPlayer, clickNote);
+
+    //-------------------------------------------
+    //ボタンを再生中(停止ボタン)に切り替える。
+    document.getElementById("playerButton").innerHTML = "";
+    document.getElementById("playerButton").insertAdjacentHTML('afterbegin',
+        `<button id="metronomeStopBtn" class="bg-red-700 text-white py-2 px-8 rounded"
+            onclick=" metronomeStop()">
+            停止
+        </button>`);
+
+    //再生のスタート時刻を取得し、変数に代入する(ページをロードしてからの現在時間を取得)
+    startTime = performance.now();
+};
+
+//メトロノームの再生を停止する関数--------------------------------------
+function metronomeStop() {
+    //各種パラメーターをリセットする
+    Count = 0;
+    countNum = 0;
+    divisionCountNum = 0;
+
+    //setIntervalを停止する
+    clearInterval(timerId);
+    startTime = null;
+
+    //再生・停止ボタンを一度消す
+    document.getElementById("playerButton").innerHTML = "";
+    //停止ボタンを描画する
+    document.getElementById("playerButton").insertAdjacentHTML('afterbegin',
+        `<button id="metronomeStartBtn" class="bg-blue-700 text-white py-2 px-8 rounded"
+            onclick=" metronomeStart()">
+            再生
+        </button>`);
+};
+
+//クリックの音を再生するためのカウントを格納する変数
+let Count = 0;
+let countNum = 0;
+let divisionCountNum;
+
+//クリックの音を再生する関数--------------------------------------
+function clickPlayer() {
+
+    //メインのクリックに合わせて分割テーブルの色付け
+    if (mod(Math.trunc(countNum), TimeSignatureNumerator) === 0 || countNum > TimeSignatureNumerator) {
+        //カウントをリセット
+        if (mod(countNum, TimeSignatureNumerator) === 0 || countNum > TimeSignatureNumerator) {
+            countNum = 0;
+        };
+        //テーブル（拍頭）の色付け
+        document.getElementById(`click_count${Math.trunc(countNum) + 1}`).classList.add("bg-red-300");
+        document.getElementById(`click_count${TimeSignatureNumerator}`).classList.remove("bg-red-300");
+    } else {
+        //テーブルの色付け
+        document.getElementById(`click_count${Math.trunc(countNum) + 1}`).classList.add("bg-red-300");
+        document.getElementById(`click_count${Math.trunc(countNum)}`).classList.remove("bg-red-300");
+    };
+
+    //クリック（拍頭）を再生する
+    if (mod(Count, division) === 0) {
+        //カウントをリセット
+        Count = 0;
+        divisionCountNum = 1;
+
+        if (noteArray[Math.trunc(countNum)] === 0) {
+            //クリック（拍頭）の音を鳴らす
+            clickAccent.pause();
+            clickAccent.currentTime = 0;
+            clickAccent.play();
+        };
+
+        if (Number(document.getElementById('division_number').value) === 1) {
+            //分割数が1の時は分割クリックを打たない
+        } else if (divisionNoteArray[Math.trunc(Count)] === 0) {
+            //分割クリック（拍頭）の音を鳴らす
+            HiHat.pause();
+            HiHat.currentTime = 0;
+            HiHat.play();
+        };
+        //分割テーブル（拍頭）の色付け
+        document.getElementById(`division_count${divisionCountNum}`).classList.add("bg-blue-300");
+        document.getElementById(`division_count${division}`).classList.remove("bg-blue-300");
+    };
+
+    //クリックを再生する
+    if (mod(Count, division_number) === 0) {
+        if (noteArray[Math.trunc(countNum)] === 0) {
+            //クリックの音を鳴らす
+            conga808.pause();
+            conga808.currentTime = 0;
+            conga808.play();
+        };
+    };
+
+    //分割クリックを再生する
+    if (mod(Count, division) !== 0) {
+        if (Number(document.getElementById('division_number').value) === 1) {
+            //分割数が1の時は分割クリックを打たない
+        } else if (divisionNoteArray[Math.trunc(Count)] === 0) {
+            //分割クリックの音を鳴らす
+            HiHat.pause();
+            HiHat.currentTime = 0;
+            HiHat.play();
+        };
+        //分割テーブルの色付け
+        document.getElementById(`division_count${divisionCountNum}`).classList.add("bg-blue-300");
+        document.getElementById(`division_count${divisionCountNum - 1}`).classList.remove("bg-blue-300");
+    };
+
+    //JavaScriptの割り算の演算結果の誤差をごまかすために、最後に「0.0001」を足す。
+    countNum = countNum + (1 / division_number) + 0.0001;
+    divisionCountNum++
+    Count++
+};
+
+let NoteOrRest = 0;
+let divisionNoteOrRest = 0;
+//音符と休符を切り替える関数
+function noteChange(Num) {
+    if (NoteOrRest === 0) {
+        document.getElementById(`click_count${Num}`).innerHTML = `${Num}<br><font size="6">${restCharacter}</font>`
+        NoteOrRest = 1;
+        noteArray.splice(Num - 1, 1, 1);
+    } else if (NoteOrRest === 1) {
+        document.getElementById(`click_count${Num}`).innerHTML = `${Num}<br><font size="6">${noteCharacter}</font>`
+        NoteOrRest = 0;
+        noteArray.splice(Num - 1, 1, 0);
+    };
+};
+
+//音符と休符を切り替える関数
+function divisionNoteChange(divisionNum) {
+    if (divisionNoteOrRest === 0) {
+        document.getElementById(`division_count${divisionNum}`).innerHTML = `${divisionNum}<br><font size="2">${divisionRestCharacter}</font>`
+        divisionNoteOrRest = 1;
+        divisionNoteArray.splice(divisionNum - 1, 1, 1);
+    } else if (divisionNoteOrRest === 1) {
+        document.getElementById(`division_count${divisionNum}`).innerHTML = `${divisionNum}<br><font size="2">${divisionNoteCharacter}</font>`
+        divisionNoteOrRest = 0;
+        divisionNoteArray.splice(divisionNum - 1, 1, 0);
+    };
+};
+
+//音符の種類を格納する変数
+let noteCharacter = MusicalNoteArray[0][2];
+//休符の種類を格納する変数
+let restCharacter = MusicalNoteArray[1][2];
+
+//クリックのテーブルを描画する関数
+function countCreate(Num) {
+    //行を一旦、空にする
+    document.getElementById("click_count").innerHTML = ""
+
+    TimeSignatureDenominator = Number(document.getElementById('TimeSignatureDenominator').value);
+    //表示する音符と休符の種類を決定する
+    if (TimeSignatureDenominator === 2) {
+        noteCharacter = MusicalNoteArray[0][1];
+        restCharacter = MusicalNoteArray[1][1];
+    } else if (TimeSignatureDenominator === 4) {
+        noteCharacter = MusicalNoteArray[0][2];
+        restCharacter = MusicalNoteArray[1][2];
+    } else if (TimeSignatureDenominator === 8) {
+        noteCharacter = MusicalNoteArray[0][3];
+        restCharacter = MusicalNoteArray[1][3];
+    } else if (TimeSignatureDenominator === 16) {
+        noteCharacter = MusicalNoteArray[0][4];
+        restCharacter = MusicalNoteArray[1][4];
+    } else {
+        noteCharacter = MusicalNoteArray[0][0];
+        restCharacter = MusicalNoteArray[1][0];
+    };
+
+    //カウント数のテーブル要素を作成
+    for (let i = 0; i < noteArray.length; i++) {
+        if (noteArray[Num - 1] === 0) {
+            document.getElementById("click_count").
+                insertAdjacentHTML('afterbegin', `<th id="click_count${Num}" onclick="noteChange(${Num})">${Num}<br><font size="6">${noteCharacter}</font></th>`);
+        } else if (noteArray[Num - 1] === 1) {
+            document.getElementById("click_count").
+                insertAdjacentHTML('afterbegin', `<th id="click_count${Num}" onclick="noteChange(${Num})">${Num}<br><font size="6">${restCharacter}</font></th>`);
+        };
+        Num--
+    };
+};
+
+//音符の種類を格納する変数
+let divisionNoteCharacter = MusicalNoteArray[0][0];
+//休符の種類を格納する変数
+let divisionRestCharacter = MusicalNoteArray[1][0];
+
+//分割クリックのテーブルを描画する関数
+function divisionCreate(divisionNum) {
+    //行を一旦、分割テーブルを空にする
+    document.getElementById("division_count").innerHTML = ""
+
+    //表示する音符と休符の種類を決定する
+    if (divisionNum === 2) {
+        divisionNoteCharacter = MusicalNoteArray[0][1];
+        divisionRestCharacter = MusicalNoteArray[1][1];
+    } else if (divisionNum === 4) {
+        divisionNoteCharacter = MusicalNoteArray[0][2];
+        divisionRestCharacter = MusicalNoteArray[1][2];
+    } else if (divisionNum === 8) {
+        divisionNoteCharacter = MusicalNoteArray[0][3];
+        divisionRestCharacter = MusicalNoteArray[1][3];
+    } else if (divisionNum === 16) {
+        divisionNoteCharacter = MusicalNoteArray[0][4];
+        divisionRestCharacter = MusicalNoteArray[1][4];
+    } else {
+        divisionNoteCharacter = MusicalNoteArray[0][0];
+        divisionRestCharacter = MusicalNoteArray[1][0];
+    };
+
+    //カウント数のテーブル要素を作成
+    for (let i = 0; i < divisionNoteArray.length; i++) {
+        if (divisionNoteArray[divisionNum - 1] === 0) {
+            document.getElementById("division_count").
+                insertAdjacentHTML('afterbegin', `<th id="division_count${divisionNum}" onclick="divisionNoteChange(${divisionNum})">${divisionNum}<br><font size="2">${divisionNoteCharacter}</font></th>`);
+        } else if (divisionNoteArray[divisionNum - 1] === 1) {
+            document.getElementById("division_count").
+                insertAdjacentHTML('afterbegin', `<th id="division_count${divisionNum}" onclick="divisionNoteChange(${divisionNum})">${divisionNum}<br><font size="2">${divisionRestCharacter}</font></th>`);
+        };
+        divisionNum--
+    };
+};
+
+//拍子や分割する数を変える処理をする関数
+function valueChange() {
+    //クリック情報を格納した配列を作る関数
+    arrayCreate();
+    //ボリュームなどを変える場合の処理をする関数
+    variableChange();
+};
+
+//ボリュームなどを変える処理をする関数
+function variableChange() {
+
+    //ボリュームを管理するための値を取得
+    master_volume = Number(document.getElementById('master_volume').value) / 10;
+
+    //ボリュームを調整する
+    clickAccent.volume = master_volume;
+    click.volume = master_volume;
+    HiHat.volume = master_volume;
+
+    //拍子分母の値を取得
+    TimeSignatureDenominator = Number(document.getElementById('TimeSignatureDenominator').value);
+    document.getElementById('Denominator').innerHTML = `${TimeSignatureDenominator}`;
+
+    //拍子分子の値を取得
+    TimeSignatureNumerator = Number(document.getElementById('TimeSignatureNumerator').value);
+    document.getElementById('Numerator').innerHTML = `${TimeSignatureNumerator}`;
+
+    let Num = TimeSignatureNumerator;
+
+    //クリックのテーブルを描画する関数
+    countCreate(Num);
+
+    //分割する数の値を取得
+    division_number = Number(document.getElementById('division_number').value);
+    division = division_number * TimeSignatureNumerator;
+    let divisionNum = division;
+
+    //連符分割クリックのテーブルを描画する関数
+    divisionCreate(divisionNum);
+
+    if (division_number === 1) {
+        document.getElementById(`division_count`).classList.add("invisible");
+        document.getElementById(`division_count_table`).classList.add("invisible");
+    } else {
+        document.getElementById(`division_count`).classList.remove("invisible");
+        document.getElementById(`division_count_table`).classList.remove("invisible");
+    }
+
+    //メトロノームが停止中ならreturn
+    if (startTime === null) {
+        return;
+    };
+    metronomeStart();
+};
+
+
+//----------------ポリリズム・メトロノーム----------------
+//基準とするリズム情報を格納する変数
+let polyrhythm_basis_Value;
+//基準とする音符の種類の情報を格納する変数
+let polyrhythm_basis_note;
+
+//ポリリズムのクリック情報を格納する変数
+let polyrhythm_lcm_NoteArray = [];
+let polyrhythm_1_NoteArray = [];
+let polyrhythm_2_NoteArray = [];
+
+//リズム1の配列の長さを格納する変数
+let polyrhythm_1_Num;
+//リズム2の配列の長さを格納する変数
+let polyrhythm_2_Num;
+//ポリリズムの最小公倍数の長さを格納する変数
+let polyrhythm_lcm_Num;
+
+//リズム1の値を格納する変数
+let polyrhythm_1_Value;
+//リズム2の値を格納する変数
+let polyrhythm_2_Value;
+
+//リズム1と2の最大公約数を求める
+let polyrhythm_gcd;
+//リズム1と2の最小公倍数を求める
+let polyrhythm_lcm;
+
+//ポリリズム・メトロノームのクリック情報を格納した配列を作る関数
+function polyrhythm_arrayCreate() {
+    //ポリリズム1の値を取得する
+    polyrhythm_1_Value = Number(document.getElementById("polyrhythm_1_Value").value);
+    //ポリリズム1の配列を作成する
+    polyrhythm_1_NoteArray = Array(polyrhythm_1_Value).fill(0);
+    polyrhythm_1_Num = polyrhythm_1_NoteArray.length;
+    //ポリリズム2の値を取得する
+    polyrhythm_2_Value = Number(document.getElementById("polyrhythm_2_Value").value);
+    //ポリリズム2の配列を作成する
+    polyrhythm_2_NoteArray = Array(polyrhythm_2_Value).fill(0);
+    polyrhythm_2_Num = polyrhythm_2_NoteArray.length;
+};
+
+let polyrhythm_timerId;
+
+//クリックの音を格納する変数
+let polyrhythm_lead_click;
+let polyrhythm_1_click;
+let polyrhythm_lcm_click;
+let polyrhythm_2_click;
+
+let polyrhythm_lead_click_sound;
+let polyrhythm_1_click_sound;
+let polyrhythm_lcm_click_sound;
+let polyrhythm_2_click_sound;
+
+//クリック音のミュートON/OFFの値を格納する変数
+let OnOff = [0, 1, 1, 1];
+
+//クリック音のミュートON/OFFをするスイッチ
+function metronomeSwitch(Num) {
+    if (OnOff[Num] === 0) {
+        OnOff[Num] = 1;
+        document.getElementById(`OnOff_${Num}`).innerHTML = "volume_up";
+    } else if (OnOff[Num] === 1) {
+        OnOff[Num] = 0;
+        document.getElementById(`OnOff_${Num}`).innerHTML = "volume_off";
+    };
+    //ポリリズム・メトロノームの拍子や分割する数を変える処理をする関数
+    polyrhythm_valueChange();
+};
+
+//メトロノームのヴォリュームと音の種類を管理する関数
+function metronomeSoundAndVolume() {
+    //ボリュームを管理するための値を取得する
+    master_volume = Number(document.getElementById('master_volume').value) / 10;
+
+    polyrhythm_lead_click_sound = Number(document.getElementById('polyrhythm_lead_click_sound').value);
+    polyrhythm_1_click_sound = Number(document.getElementById('polyrhythm_1_click_sound').value);
+    polyrhythm_lcm_click_sound = Number(document.getElementById('polyrhythm_lcm_click_sound').value);
+    polyrhythm_2_click_sound = Number(document.getElementById('polyrhythm_2_click_sound').value);
+
+    //各種類の音のボリュームを調整する
+    polyrhythm_lead_click = clickSoundArray[polyrhythm_lead_click_sound]
+    polyrhythm_lead_click.volume = master_volume * OnOff[0];
+
+    polyrhythm_1_click = clickSoundArray[polyrhythm_1_click_sound]
+    polyrhythm_1_click.volume = master_volume * OnOff[1];
+
+    polyrhythm_lcm_click = clickSoundArray[polyrhythm_lcm_click_sound]
+    polyrhythm_lcm_click.volume = master_volume * OnOff[2];
+
+    polyrhythm_2_click = clickSoundArray[polyrhythm_2_click_sound]
+    polyrhythm_2_click.volume = master_volume * OnOff[3];
+};
+
+
+//ポリリズム・メトロノームの再生を開始する関数--------------------------------------
+function polyrhythm_metronomeStart() {
+
+    //メトロノームの再生を停止する関数
+    polyrhythm_metronomeStop();
+
+    //再生中ならreturn
+    if (startTime !== null) {
+        return;
+    };
+
+    //メトロノームのヴォリュームと音の種類を管理する関数
+    metronomeSoundAndVolume();
+
+    //-------------------------------------------
+    //BPMの値を取得する
+    input_bpm = Number(document.getElementById('input_bpm').value);
+    //一拍の長さ(ms)を計算
+    beat = 60000 / input_bpm;
+
+    //リズム1か最小公倍数か
+    polyrhythm_basis_Value = Number(document.getElementById("polyrhythm_basis_Value").value);
+    //基準となる音符の設定の値を取得する
+    polyrhythm_basis_note = Number(document.getElementById("polyrhythm_basis_note").value);
+
+    //リズム1の値を取得する
+    polyrhythm_1_Value = Number(document.getElementById("polyrhythm_1_Value").value);
+    //リズム2の値を取得する
+    polyrhythm_2_Value = Number(document.getElementById("polyrhythm_2_Value").value);
+
+    //リズム1と2の最大公約数を求める
+    polyrhythm_gcd = gcd(polyrhythm_1_Value, polyrhythm_2_Value);
+    //リズム1と2の最小公倍数を求める
+    polyrhythm_lcm = lcm(polyrhythm_1_Value, polyrhythm_2_Value);
+
+    if (polyrhythm_basis_Value === 0) {
+        clickNote = beat / (polyrhythm_basis_note / 4);
+    } else if (polyrhythm_basis_Value === 1) {
+        //1拍(ms) ÷ (リズム1の値 ÷ 4) × 基準となる音符
+        beat / (polyrhythm_1_Value / 4) * polyrhythm_basis_note;
+        //クリックを刻む分音符の細かさを指定
+        clickNote = (beat * polyrhythm_1_Value) / polyrhythm_lcm / (polyrhythm_basis_note / 4);
+    };
+
+    //最小公倍数を表示する
+    document.getElementById("lcm_number").innerHTML = "【LCM】：";
+    document.getElementById("lcm_number").innerHTML = `【LCM】：${polyrhythm_lcm}`;
+
+    //-------------------------------------------
+    //クリックを一定間隔ごとに再生し、再生状態をタイマーIDに代入
+    polyrhythm_timerId = setInterval(polyrhythm_clickPlayer, clickNote);
+
+    //-------------------------------------------
+    //ボタンを再生中(停止ボタン)に切り替える。
+    document.getElementById("polyrhythm_playerButton").innerHTML = "";
+    document.getElementById("polyrhythm_playerButton").insertAdjacentHTML('afterbegin',
+        `<button id="polyrhythm_metronomeStopBtn" class="bg-red-700 text-white py-2 px-8 rounded"
+            onclick="polyrhythm_metronomeStop()">
+            停止(S)
+        </button>`);
+
+    //再生のスタート時刻を取得し、変数に代入する(ページをロードしてからの現在時間を取得)
+    startTime = performance.now();
+};
+
+//ポリリズム・メトロノームの再生を停止する関数--------------------------------------
+function polyrhythm_metronomeStop() {
+    //各種パラメーターをリセットする
+    p_Count = 0;
+    p1_countNum = 0;
+    p2_countNum = 0;
+    p_lcm_CountNum = 0;
+
+    //setIntervalを停止する
+    clearInterval(polyrhythm_timerId);
+    startTime = null;
+
+    rhythm1Create();
+    rhythm2Create();
+    lcmCreate();
+
+    //再生・停止ボタンを一度消す
+    document.getElementById("polyrhythm_playerButton").innerHTML = "";
+    //停止ボタンを描画する
+    document.getElementById("polyrhythm_playerButton").insertAdjacentHTML('afterbegin',
+        `<button id="polyrhythm_metronomeStartBtn" class="bg-blue-700 text-white py-2 px-8 rounded"
+            onclick="polyrhythm_metronomeStart()">
+            再生(S)
+        </button>`);
+};
+
+//クリックの音を再生するためのカウントを格納する変数
+let p_Count = 0;
+let p1_countNum = 0;
+let p2_countNum = 0;
+let p_lcm_CountNum = 0;
+
+//リズム1か最小公倍数か
+polyrhythm_basis_Value = Number(document.getElementById("polyrhythm_basis_Value").value);
+//基準となる音符の設定の値を取得する
+polyrhythm_basis_note = Number(document.getElementById("polyrhythm_basis_note").value);
+
+//リズム1の値を取得する
+polyrhythm_1_Value = Number(document.getElementById("polyrhythm_1_Value").value);
+//リズム2の値を取得する
+polyrhythm_2_Value = Number(document.getElementById("polyrhythm_2_Value").value);
+
+//リズム1と2の最大公約数を求める
+polyrhythm_gcd = gcd(polyrhythm_1_Value, polyrhythm_2_Value);
+//リズム1と2の最小公倍数を求める
+polyrhythm_lcm = lcm(polyrhythm_1_Value, polyrhythm_2_Value);
+
+//ポリリズム・メトロノームのクリックの音を再生する関数--------------------------------------
+function polyrhythm_clickPlayer() {
+    //メインのクリックに合わせてリズム1のテーブルを色付け
+    if (mod(Math.trunc(p1_countNum), polyrhythm_1_Value) === 0 || p1_countNum > polyrhythm_1_Value) {
+        //カウントをリセット
+        if (mod(p1_countNum, polyrhythm_1_Value) === 0 || p1_countNum > polyrhythm_1_Value) {
+            p1_countNum = 0;
+        };
+        //テーブル（拍頭）の色付け
+        document.getElementById(`polyrhythm_1_count${Math.trunc(p1_countNum) + 1}`).classList.add("bg-red-300");
+        document.getElementById(`polyrhythm_1_count${polyrhythm_1_Value}`).classList.remove("bg-red-300");
+    } else {
+        //テーブルの色付け
+        document.getElementById(`polyrhythm_1_count${Math.trunc(p1_countNum) + 1}`).classList.add("bg-red-300");
+        document.getElementById(`polyrhythm_1_count${Math.trunc(p1_countNum)}`).classList.remove("bg-red-300");
+    };
+
+    //メインのクリックに合わせてリズム2のテーブルを色付け
+    if (mod(Math.trunc(p2_countNum), polyrhythm_2_Value) === 0 || p2_countNum > polyrhythm_2_Value) {
+        //カウントをリセット
+        if (mod(p2_countNum, polyrhythm_2_Value) === 0 || p2_countNum > polyrhythm_2_Value) {
+            p2_countNum = 0;
+        };
+        //テーブル（拍頭）の色付け
+        document.getElementById(`polyrhythm_2_count${Math.trunc(p2_countNum) + 1}`).classList.add("bg-blue-300");
+        document.getElementById(`polyrhythm_2_count${polyrhythm_2_Value}`).classList.remove("bg-blue-300");
+    } else {
+        //テーブルの色付け
+        document.getElementById(`polyrhythm_2_count${Math.trunc(p2_countNum) + 1}`).classList.add("bg-blue-300");
+        document.getElementById(`polyrhythm_2_count${Math.trunc(p2_countNum)}`).classList.remove("bg-blue-300");
+    };
+
+    //クリック（拍頭）を再生する
+    if (mod(p_Count, polyrhythm_lcm) === 0) {
+        //カウントをリセット
+        p_Count = 0;
+        p_lcm_CountNum = 0;
+
+        if (polyrhythm_1_NoteArray[Math.trunc(p1_countNum)] === 0) {
+            //クリック（拍頭）の音を鳴らす
+            polyrhythm_lead_click.pause();
+            polyrhythm_lead_click.currentTime = 0;
+            polyrhythm_lead_click.play();
+        };
+
+        //最小公倍数クリック（拍頭）の音を鳴らす
+        polyrhythm_lcm_click.pause();
+        polyrhythm_lcm_click.currentTime = 0;
+        polyrhythm_lcm_click.play();
+
+        //最小公倍数テーブル（拍頭）の色付け
+        document.getElementById(`polyrhythm_lcm_count${p_lcm_CountNum + 1}`).classList.add("bg-green-300");
+        document.getElementById(`polyrhythm_lcm_count${polyrhythm_lcm}`).classList.remove("bg-green-300");
+    };
+
+    //リズム1のクリックの音を鳴らす
+    if (mod(p_Count, polyrhythm_2_Value / polyrhythm_gcd) === 0) {
+        if (polyrhythm_1_NoteArray[Math.trunc(p1_countNum)] === 0) {
+            polyrhythm_1_click.pause();
+            polyrhythm_1_click.currentTime = 0;
+            polyrhythm_1_click.play();
+        };
+    };
+
+    //リズム2のクリックの音を鳴らす
+    if (mod(p_Count, polyrhythm_1_Value / polyrhythm_gcd) === 0) {
+        if (polyrhythm_2_NoteArray[Math.trunc(p2_countNum)] === 0) {
+            polyrhythm_2_click.pause();
+            polyrhythm_2_click.currentTime = 0;
+            polyrhythm_2_click.play();
+        };
+    };
+
+    //最小公倍数クリックを再生する
+    if (p_Count !== 0) {
+        if (polyrhythm_lcm_NoteArray[Math.trunc(p_lcm_CountNum)] === 0) {
+            //最小公倍数クリックの音を鳴らす
+            polyrhythm_lcm_click.pause();
+            polyrhythm_lcm_click.currentTime = 0;
+            polyrhythm_lcm_click.play();
+        };
+
+        //最小公倍数テーブルの色付け
+        document.getElementById(`polyrhythm_lcm_count${p_lcm_CountNum + 1}`).classList.add("bg-green-300");
+        document.getElementById(`polyrhythm_lcm_count${p_lcm_CountNum}`).classList.remove("bg-green-300");
+    };
+
+    //JavaScriptの割り算の演算結果の誤差をごまかすために、最後に「0.0001」を足す。
+    p1_countNum = p1_countNum + (polyrhythm_gcd / polyrhythm_2_Value) + 0.0001;
+    p2_countNum = p2_countNum + (polyrhythm_gcd / polyrhythm_1_Value) + 0.0001;
+    p_lcm_CountNum++
+    p_Count++
+};
+
+//リズム1の音符の表示を選択して書き込む関数
+function polyrhythmDetermine() {
+    if (polyrhythm_basis_Value === 0) {
+        noteCharacter = MusicalNoteArray[0][0];
+        restCharacter = MusicalNoteArray[1][0];
+        //表示する音符の種類を決定する
+    } else if (polyrhythm_basis_Value === 1) {
+        if (polyrhythm_basis_note === 2) {
+            noteCharacter = MusicalNoteArray[0][1];
+            restCharacter = MusicalNoteArray[1][1];
+        } else if (polyrhythm_basis_note === 4) {
+            noteCharacter = MusicalNoteArray[0][2];
+            restCharacter = MusicalNoteArray[1][2];
+        } else if (polyrhythm_basis_note === 8) {
+            noteCharacter = MusicalNoteArray[0][3];
+            restCharacter = MusicalNoteArray[1][3];
+        } else if (polyrhythm_basis_note === 16) {
+            noteCharacter = MusicalNoteArray[0][4];
+            restCharacter = MusicalNoteArray[1][4];
+        } else {
+            noteCharacter = MusicalNoteArray[0][0];
+            restCharacter = MusicalNoteArray[1][0];
+        };
+    };
+};
+
+let polyrhythm_1_NoteOrRest = 0;
+//リズム1の音符と休符を切り替える関数
+function polyrhythm_1_noteChange(polyrhythm_1_Num) {
+
+    polyrhythm_basis_note = Number(document.getElementById("polyrhythm_basis_note").value);
+    polyrhythm_basis_Value = Number(document.getElementById("polyrhythm_basis_Value").value);
+    //音符の表示を選択して書き込む関数
+    polyrhythmDetermine();
+
+    if (polyrhythm_1_NoteOrRest === 0) {
+        document.getElementById(`polyrhythm_1_count${polyrhythm_1_Num}`).innerHTML = `${polyrhythm_1_Num}<br><font size="6">${restCharacter}</font>`
+        polyrhythm_1_NoteOrRest = 1;
+        polyrhythm_1_NoteArray.splice(polyrhythm_1_Num - 1, 1, 1);
+    } else if (polyrhythm_1_NoteOrRest === 1) {
+        document.getElementById(`polyrhythm_1_count${polyrhythm_1_Num}`).innerHTML = `${polyrhythm_1_Num}<br><font size="6">${noteCharacter}</font>`
+        polyrhythm_1_NoteOrRest = 0;
+        polyrhythm_1_NoteArray.splice(polyrhythm_1_Num - 1, 1, 0);
+    };
+};
+
+//ポリリズム最小公倍数の音符の表示を選択して書き込む関数
+function lcmDetermine() {
+    if (polyrhythm_basis_Value === 1) {
+        divisionNoteCharacter = MusicalNoteArray[0][0];
+        divisionRestCharacter = MusicalNoteArray[1][0];
+        //表示する音符の種類を決定する
+    } else if (polyrhythm_basis_Value === 0) {
+        if (polyrhythm_basis_note === 2) {
+            divisionNoteCharacter = MusicalNoteArray[0][1];
+            divisionRestCharacter = MusicalNoteArray[1][1];
+        } else if (polyrhythm_basis_note === 4) {
+            divisionNoteCharacter = MusicalNoteArray[0][2];
+            divisionRestCharacter = MusicalNoteArray[1][2];
+        } else if (polyrhythm_basis_note === 8) {
+            divisionNoteCharacter = MusicalNoteArray[0][3];
+            divisionRestCharacter = MusicalNoteArray[1][3];
+        } else if (polyrhythm_basis_note === 16) {
+            divisionNoteCharacter = MusicalNoteArray[0][4];
+            divisionRestCharacter = MusicalNoteArray[1][4];
+        } else {
+            divisionNoteCharacter = MusicalNoteArray[0][0];
+            divisionRestCharacter = MusicalNoteArray[1][0];
+        };
+    };
+};
+
+let polyrhythm_lcm_Note_NoteOrRest = 0;
+//ポリリズム最小公倍数の音符と休符を切り替える関数
+function polyrhythm_lcm_NoteChange(polyrhythm_lcm_Note_Num) {
+
+    polyrhythm_basis_note = Number(document.getElementById("polyrhythm_basis_note").value);
+    polyrhythm_basis_Value = Number(document.getElementById("polyrhythm_basis_Value").value);
+
+    //音符の表示を選択して書き込む関数
+    lcmDetermine();
+
+    if (polyrhythm_lcm_Note_NoteOrRest === 0) {
+        document.getElementById(`polyrhythm_lcm_count${polyrhythm_lcm_Note_Num}`).innerHTML = `<font size="2">${polyrhythm_lcm_Note_Num}<br>${divisionRestCharacter}</font>`
+        polyrhythm_lcm_Note_NoteOrRest = 1;
+        polyrhythm_lcm_NoteArray.splice(polyrhythm_lcm_Note_Num - 1, 1, 1);
+    } else if (polyrhythm_lcm_Note_NoteOrRest === 1) {
+        document.getElementById(`polyrhythm_lcm_count${polyrhythm_lcm_Note_Num}`).innerHTML = `<font size="2">${polyrhythm_lcm_Note_Num}<br>${divisionNoteCharacter}</font>`
+        polyrhythm_lcm_Note_NoteOrRest = 0;
+        polyrhythm_lcm_NoteArray.splice(polyrhythm_lcm_Note_Num - 1, 1, 0);
+    };
+};
+
+let polyrhythm_2_NoteOrRest = 0;
+//リズム2の音符と休符を切り替える関数
+function polyrhythm_2_noteChange(polyrhythm_2_Num) {
+
+    polyrhythm_basis_note = Number(document.getElementById("polyrhythm_basis_note").value);
+    polyrhythm_basis_Value = Number(document.getElementById("polyrhythm_basis_Value").value);
+
+    if (polyrhythm_2_NoteOrRest === 0) {
+        document.getElementById(`polyrhythm_2_count${polyrhythm_2_Num}`).innerHTML = `${polyrhythm_2_Num}<br><font size="6">${MusicalNoteArray[1][0]}</font>`
+        polyrhythm_2_NoteOrRest = 1;
+        polyrhythm_2_NoteArray.splice(polyrhythm_2_Num - 1, 1, 1);
+    } else if (polyrhythm_2_NoteOrRest === 1) {
+        document.getElementById(`polyrhythm_2_count${polyrhythm_2_Num}`).innerHTML = `${polyrhythm_2_Num}<br><font size="6">${MusicalNoteArray[0][0]}</font>`
+        polyrhythm_2_NoteOrRest = 0;
+        polyrhythm_2_NoteArray.splice(polyrhythm_2_Num - 1, 1, 0);
+    };
+};
+
+function rhythm1Create() {
+    //リズム1の配列を作成する
+    polyrhythm_1_NoteArray = Array(polyrhythm_1_Value).fill(0);
+    polyrhythm_1_Num = polyrhythm_1_NoteArray.length;
+    //リズム1の行を一旦、空にする
+    document.getElementById("polyrhythm_1_click").innerHTML = "";
+    //リズム1のテーブル要素を作成
+    for (let i = 0; i < polyrhythm_1_NoteArray.length; i++) {
+        if (polyrhythm_1_NoteArray[polyrhythm_1_Num - 1] === 0) {
+            document.getElementById("polyrhythm_1_click").
+                insertAdjacentHTML('afterbegin', `<th id="polyrhythm_1_count${polyrhythm_1_Num}" onclick="polyrhythm_1_noteChange(${polyrhythm_1_Num})">${polyrhythm_1_Num}<br><font size="6">${noteCharacter}</font></th>`);
+        } else if (polyrhythm_1_NoteArray[polyrhythm_1_Num - 1] === 1) {
+            document.getElementById("polyrhythm_1_click").
+                insertAdjacentHTML('afterbegin', `<th id="polyrhythm_1_count${polyrhythm_1_Num}" onclick="polyrhythm_1_noteChange(${polyrhythm_1_Num})">${polyrhythm_1_Num}<br><font size="6">${restCharacter}</font></th>`);
+        };
+        polyrhythm_1_Num--
+    };
+};
+
+function rhythm2Create() {
+    //リズム2の配列を作成する
+    polyrhythm_2_NoteArray = Array(polyrhythm_2_Value).fill(0);
+    polyrhythm_2_Num = polyrhythm_2_NoteArray.length;
+    //リズム2の行を一旦、空にする
+    document.getElementById("polyrhythm_2_click").innerHTML = "";
+    //リズム2のテーブル要素を作成
+    for (let i = 0; i < polyrhythm_2_NoteArray.length; i++) {
+        if (polyrhythm_2_NoteArray[polyrhythm_2_Num - 1] === 0) {
+            document.getElementById("polyrhythm_2_click").
+                insertAdjacentHTML('afterbegin', `<th id="polyrhythm_2_count${polyrhythm_2_Num}" onclick="polyrhythm_2_noteChange(${polyrhythm_2_Num})">${polyrhythm_2_Num}<br><font size="6">${MusicalNoteArray[0][0]}</font></th>`);
+        } else if (polyrhythm_2_NoteArray[polyrhythm_2_Num - 1] === 1) {
+            document.getElementById("polyrhythm_2_click").
+                insertAdjacentHTML('afterbegin', `<th id="polyrhythm_2_count${polyrhythm_2_Num}" onclick="polyrhythm_2_noteChange(${polyrhythm_2_Num})">${polyrhythm_2_Num}<br><font size="6">${MusicalNoteArray[1][0]}</font></th>`);
+        };
+        polyrhythm_2_Num--
+    };
+};
+
+//最小公倍数のテーブルを描画する関数
+function lcmCreate() {
+    //ポリリズムカウント数の行を一旦、空にする
+    document.getElementById("polyrhythm_lcm_click").innerHTML = "";
+    //ポリリズムカウント数の配列を作成する
+    polyrhythm_lcm_NoteArray = Array(polyrhythm_lcm).fill(0);
+    polyrhythm_lcm_Num = polyrhythm_lcm_NoteArray.length;
+    //リズム1と2の値が互いに素、リズム1と2が1ではないときにテーブルを描画する
+    if (polyrhythm_gcd === 1 || polyrhythm_1_Value !== 1 || polyrhythm_2_Value !== 1) {
+        //ポリリズムカウント数のテーブル要素を作成
+        for (let i = 0; i < polyrhythm_lcm_NoteArray.length; i++) {
+            if (polyrhythm_lcm_NoteArray[polyrhythm_lcm_Num - 1] === 0) {
+                document.getElementById("polyrhythm_lcm_click").
+                    insertAdjacentHTML('afterbegin', `<th id="polyrhythm_lcm_count${polyrhythm_lcm_Num}" onclick="polyrhythm_lcm_NoteChange(${polyrhythm_lcm_Num})">${polyrhythm_lcm_Num}<br>${divisionNoteCharacter}</th > `);
+            } else if (polyrhythm_lcm_NoteArray[polyrhythm_lcm_Num - 1] === 1) {
+                document.getElementById("polyrhythm_lcm_click").
+                    insertAdjacentHTML('afterbegin', `<th id = "polyrhythm_lcm_count${polyrhythm_lcm_Num}" onclick = "polyrhythm_lcm_NoteChange(${polyrhythm_lcm_Num})">${polyrhythm_lcm_Num}<br>${divisionRestCharacter}</th > `);
+            };
+            polyrhythm_lcm_Num--
+        };
+    };
+};
+
+//ポリリズムの判定情報を格納する変数
+let polyrhythm_text;
+
+//ポリリズム・メトロノームの表示を切り替える関数
+function polyrhythm_variableChange() {
+    //設定の値を取得する
+    polyrhythm_basis_note = Number(document.getElementById("polyrhythm_basis_note").value);
+    polyrhythm_basis_Value = Number(document.getElementById("polyrhythm_basis_Value").value);
+
+    //リズム1の値を取得する
+    polyrhythm_1_Value = Number(document.getElementById("polyrhythm_1_Value").value);
+    //リズム2の値を取得する
+    polyrhythm_2_Value = Number(document.getElementById("polyrhythm_2_Value").value);
+
+    //音符の表示を選択して書き込む関数
+    polyrhythmDetermine();
+    lcmDetermine();
+
+    rhythm1Create();
+
+    rhythm2Create();
+
+    //リズム1と2の最大公約数を求める
+    polyrhythm_gcd = gcd(polyrhythm_1_Value, polyrhythm_2_Value);
+    //リズム1と2の最小公倍数を求める
+    polyrhythm_lcm = lcm(polyrhythm_1_Value, polyrhythm_2_Value);
+    document.getElementById("polyrhythm_Numerator_Num").innerHTML = polyrhythm_1_Value;
+    document.getElementById("polyrhythm_Denominator_Num").innerHTML = polyrhythm_basis_note;
+
+    if (polyrhythm_1_Value === polyrhythm_2_Value) {
+        //リズム2のテーブルを非表示にする
+        document.getElementById("polyrhythm_2_table").classList.add("invisible");
+        document.getElementById("polyrhythm_2_click").classList.add("invisible");
+        //lcmのテーブルを非表示にする
+        document.getElementById("polyrhythm_lcm_table").classList.add("invisible");
+        document.getElementById("polyrhythm_lcm_click").classList.add("invisible");
+    } else {
+        //リズム2のテーブルを表示する
+        document.getElementById("polyrhythm_2_table").classList.remove("invisible");
+        document.getElementById("polyrhythm_2_click").classList.remove("invisible");
+        //lcmのテーブルを表示する
+        document.getElementById("polyrhythm_lcm_table").classList.remove("invisible");
+        document.getElementById("polyrhythm_lcm_click").classList.remove("invisible");
+    };
+
+
+    //ポリリズムの判定をする。
+    if (polyrhythm_1_Value === polyrhythm_2_Value) {
+        polyrhythm_text = `ポリリズムではありません。（両方のリズムの値が同じ）`;
+    } else if (polyrhythm_gcd !== 1) {
+        polyrhythm_text = `ポリリズムではありません。GCDは${polyrhythm_gcd}です。（互いに素ではない）`;
+    } else if (polyrhythm_1_Value === 1 || polyrhythm_2_Value === 1) {
+        polyrhythm_text = `ポリリズムではありません。（片方のリズムの値が1）`;
+    } else {
+        polyrhythm_text = `ポリリズムです。GCDは${polyrhythm_gcd}です。`;
+        //リズム1の値が、リズム2の値より大きい場合
+        if (polyrhythm_1_Value > 0) {
+            //最小公倍数をリズム1の値で割った答えが2の冪の場合
+            if (polyrhythm_lcm / polyrhythm_1_Value === 2
+                || polyrhythm_lcm / polyrhythm_1_Value === 4
+                || polyrhythm_lcm / polyrhythm_1_Value === 8
+                || polyrhythm_lcm / polyrhythm_1_Value === 16
+                || polyrhythm_lcm / polyrhythm_1_Value === 32
+                || polyrhythm_lcm / polyrhythm_1_Value === 64) {
+                //拍子を書き込む
+                document.getElementById("polyrhythm_Numerator_Num").innerHTML = polyrhythm_lcm;
+                document.getElementById("polyrhythm_Denominator_Num").innerHTML = polyrhythm_basis_note * (polyrhythm_lcm / polyrhythm_1_Value);
+            } else {
+                //拍子の分子はリズム2の値が、リズム1の値より大きく、リズム1と2の最小公倍数をポリリズム1の値で割り切れない場合、リズム1の値になる。
+                document.getElementById("polyrhythm_Numerator_Num").innerHTML = polyrhythm_1_Value;
+            };
+        };
+    };
+
+    //ポリリズムの判定情報を書き込む
+    document.getElementById("gcd_number").innerHTML = "";
+    document.getElementById("gcd_number").innerHTML = polyrhythm_text;
+    //最小公倍数を基準BPMとした場合の拍子記号
+    if (polyrhythm_basis_Value === 0) {
+        document.getElementById("polyrhythm_Numerator_Num").innerHTML = polyrhythm_lcm;
+        document.getElementById("polyrhythm_Denominator_Num").innerHTML = polyrhythm_basis_note;
+    };
+
+    //最小公倍数のテーブルを描画する関数
+    lcmCreate();
+
+    //最小公倍数を表示する
+    document.getElementById("lcm_number").innerHTML = "【LCM】：";
+    document.getElementById("lcm_number").innerHTML = `【LCM】：${polyrhythm_lcm}`;
+
+};
+
+//ポリリズム・メトロノームの拍子や分割する数を変える処理をする関数
+function polyrhythm_valueChange() {
+    //ポリリズム・メトロノームのクリック情報を格納した配列を作る関数
+    polyrhythm_arrayCreate();
+    //ポリリズム・メトロノームのボリュームなどを変える場合の処理をする関数
+    polyrhythm_variableChange();
+    //停止中ならreturn
+    if (startTime === null) {
+        //メトロノームの再生を停止する関数
+        polyrhythm_metronomeStop();
+        return;
+    };
+    //メトロノームの再生を開始する関数
+    polyrhythm_metronomeStart();
+};

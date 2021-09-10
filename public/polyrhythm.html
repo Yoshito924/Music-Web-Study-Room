@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+
+  <title>メトロノーム</title>
+
+  <!--Internet Explorer用の設定-->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <!--viewport設定(レスポンシブデザイン対応)-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Vue を読み込む -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+
+  <!-- CSSを読み込む -->
+  <link href="css/dist.css" rel="stylesheet" />
+  <link href="css/styles.css" rel="stylesheet" />
+
+  <!-- Googleマテリアルアイコンを読み込む -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- headのコンポーネントを読み込む -->
+  <!-- <div id="head">
+      <head-template></head-template>
+    </div> -->
+</head>
+
+<body>
+  <header id="header">
+    <header-template></header-template>
+  </header>
+
+  <main>
+    <div class="container mx-auto my-8">
+      <div class="xl:flex">
+        <div class="sm:w-1/1 xl:w-8/12">
+          <!-- 見出し -->
+          <h1 class="neumorphism p-3">メトロノーム（ポリリズム対応）</h1>
+          <div class="py-1">　</div>
+          <!-- 操作する場所 -->
+          <div class="flex">
+
+            <div class="w-3/24 inline-block align-bottom ">
+              <div class="py-1">　</div>
+              <div class="py-2">　</div>
+              <div id="polyrhythm_Numerator_Num" class="text-center">6</div>
+              <div>―</div>
+              <div id="polyrhythm_Denominator_Num" class="text-center">8</div>
+            </div>
+
+            <div class="w-1/24">　</div>
+
+            <div class="w-20/24">
+              <table id="polyrhythm_1_table">
+                <tr id="polyrhythm_1_click">
+                  <th id="polyrhythm_1_count1" onclick="polyrhythm_1_noteChange(1)">1<br>
+                    <font size="6">♩</font>
+                  </th>
+                  <th id="polyrhythm_1_count2" onclick="polyrhythm_1_noteChange(2)">2<br>
+                    <font size="6">♩</font>
+                  </th>
+                </tr>
+              </table>
+
+              <table id="polyrhythm_lcm_table" class="">
+                <tr id="polyrhythm_lcm_click" class="">
+                  <th id="polyrhythm_lcm_count1" onclick="polyrhythm_lcm_NoteChange(1)">1<br>
+                    ●
+                  </th>
+                  <th id="polyrhythm_lcm_count2" onclick="polyrhythm_lcm_NoteChange(2)">2<br>
+                    ●
+                  </th>
+                  <th id="polyrhythm_lcm_count3" onclick="polyrhythm_lcm_NoteChange(3)">3<br>
+                    ●
+                  </th>
+                  <th id="polyrhythm_lcm_count4" onclick="polyrhythm_lcm_NoteChange(4)">4<br>
+                    ●
+                  </th>
+                  <th id="polyrhythm_lcm_count5" onclick="polyrhythm_lcm_NoteChange(5)">5<br>
+                    ●
+                  </th>
+                  <th id="polyrhythm_lcm_count6" onclick="polyrhythm_lcm_NoteChange(6)">6<br>
+                    ●
+                  </th>
+                </tr>
+              </table>
+
+              <table id="polyrhythm_2_table">
+                <tr id="polyrhythm_2_click">
+                  <th id="polyrhythm_2_count1" onclick="polyrhythm_2_noteChange(1)">1<br>
+                    <font size="6">♩</font>
+                  </th>
+                  <th id="polyrhythm_2_count2" onclick="polyrhythm_2_noteChange(2)">2<br>
+                    <font size="6">♩</font>
+                  </th>
+                  <th id="polyrhythm_2_count3" onclick="polyrhythm_2_noteChange(3)">3<br>
+                    <font size="6">♩</font>
+                  </th>
+                </tr>
+              </table>
+            </div>
+
+          </div>
+          <div class="py-1">　</div>
+
+          <div class="xl:flex">
+            <div class="neumorphism p-3 sm:w-1/1 xl:w-6/12">
+              <div>《メトロノームの設定》</div>
+              <div class="my-2">
+                <label for="polyrhythm_1_Value" id="input-range" class="input-range">
+                  <output id="polyrhythm_1">【リズム1】：3</output>
+                  <input id="polyrhythm_1_Value" type="range" value="3" min="1" max="20" step="1"
+                    oninput="document.getElementById('polyrhythm_1').value=`【リズム1】：${this.value}`"
+                    onchange="polyrhythm_valueChange()" />
+                </label>
+              </div>
+              <div>
+                <a id="lcm_number">【LCM】：6</a>
+              </div>
+              <div class="my-1">
+                <label for="polyrhythm_2_Value" id="input-range" class="input-range">
+                  <output id="polyrhythm_2">【リズム2】：2</output>
+                  <input id="polyrhythm_2_Value" type="range" value="2" min="1" max="20" step="1"
+                    oninput="document.getElementById('polyrhythm_2').value=`【リズム2】：${this.value}`"
+                    onchange="polyrhythm_valueChange()" />
+                </label>
+              </div>
+              <p class="pt-1">　</p>
+
+              <div>
+                <label for="polyrhythm_basis_Value" class="">基準：
+                  <select id="polyrhythm_basis_Value" class="form-select mt-1" onchange="polyrhythm_valueChange()">
+                    <option value="1" selected>リズム1</option>
+                    <option value="0">LCM</option>
+                  </select>
+                </label>
+                <label for="polyrhythm_basis_note" class="">が
+                  <select id="polyrhythm_basis_note" class="form-select mt-1" onchange="polyrhythm_valueChange()">
+                    <option value="2">2分音符</option>
+                    <option value="4" selected>4分音符</option>
+                    <option value="8">8分音符</option>
+                    <option value="16">16分音符</option>
+                  </select>
+                </label>
+              </div>
+
+              <div class="">
+                <label for="input_bpm" id="input-range" class="input-range pt-1">
+                  <output id="input_bpm_value">BPM=120</output>
+                  <input id="input_bpm" type="range" value="120" min="30" max="300" step="1"
+                    oninput="document.getElementById('input_bpm_value').value=`BPM=${this.value}`"
+                    onchange="polyrhythm_valueChange()" />
+                </label>
+              </div>
+              <p class="pt-1">　</p>
+              <div id="polyrhythm_playerButton" class="my-1">
+                <button id="polyrhythm_metronomeStartBtn" class="bg-blue-700 text-white py-2 px-8 rounded"
+                  onclick="polyrhythm_metronomeStart()">
+                  再生(S)
+                </button>
+              </div>
+
+            </div>
+            <!-- 操作部分の中央 -->
+            <div class="sm:w-1/1 xl:w-1/12">　</div>
+            <!-- 操作部分の左 -->
+            <div class="neumorphism p-3 sm:w-1/1 xl:w-5/12">
+              <div>《クリック音の設定》</div>
+              <div>
+                <button onclick="metronomeSwitch(0)">
+                  <span id="OnOff_0" class="material-icons inline-block align-middle bg-gray-200">
+                    volume_off
+                  </span>
+                </button>
+                <input type="hidden" name="polyrhythm_lead_check" value=0>
+                <label for="" class="">【拍の先頭】：
+                  <select id="polyrhythm_lead_click_sound" class="form-select" onchange="polyrhythm_valueChange()">
+                    <option value="0">ヴォイス(1)</option>
+                    <option value="1" selected>クラーベ</option>
+                    <option value="2">808コンガ</option>
+                    <option value="3">ハイハット</option>
+                    <option value="4">クラップ</option>
+                  </select>
+                </label>
+              </div>
+
+              <div>
+                <button onclick="metronomeSwitch(1)">
+                  <span id="OnOff_1" class="material-icons text-red-600 inline-block align-middle bg-gray-200">
+                    volume_up
+                  </span>
+                </button>
+                <label for="" class="">【リズム1】：
+                  <select id="polyrhythm_1_click_sound" class="form-select" onchange="polyrhythm_valueChange()">
+                    <option value="0">ヴォイス(1)</option>
+                    <option value="1">クラーベ</option>
+                    <option value="2" selected>808コンガ</option>
+                    <option value="3">ハイハット</option>
+                    <option value="4">クラップ</option>
+                  </select>
+                </label>
+              </div>
+
+              <div>
+                <button onclick="metronomeSwitch(2)">
+                  <span id="OnOff_2" class="material-icons text-green-600 inline-block align-middle bg-gray-200">
+                    volume_up
+                  </span>
+                </button>
+                <label for="" class="">【LCM】：
+                  <select id="polyrhythm_lcm_click_sound" class="form-select" onchange="polyrhythm_valueChange()">
+                    <option value="0">ヴォイス(1)</option>
+                    <option value="1">クラーベ</option>
+                    <option value="2">808コンガ</option>
+                    <option value="3" selected>ハイハット</option>
+                    <option value="4">クラップ</option>
+                  </select>
+                </label>
+              </div>
+
+              <div>
+                <button onclick="metronomeSwitch(3)">
+                  <span id="OnOff_3" class="material-icons text-blue-600 inline-block align-middle bg-gray-200">
+                    volume_up
+                  </span>
+                </button>
+                <label for="" class="">【リズム2】：
+                  <select id="polyrhythm_2_click_sound" class="form-select" onchange="polyrhythm_valueChange()">
+                    <option value="0">ヴォイス(1)</option>
+                    <option value="1">クラーベ</option>
+                    <option value="2">808コンガ</option>
+                    <option value="3">ハイハット</option>
+                    <option value="4" selected>クラップ</option>
+                  </select>
+                </label>
+              </div>
+
+              <p class="pt-1">　</p>
+
+              <div class="py-2">
+                <span class="material-icons inline-block align-text-bottom">
+                  volume_up
+                </span>
+                <label for="master_volume" id="input-range" class="input-range py-4 ">
+                  <output id="master_volume_value">：5</output>
+                  <input id="master_volume" type="range" value="5" min="0" max="10" step="1"
+                    onchange="polyrhythm_valueChange()"
+                    oninput="document.getElementById('master_volume_value').value=`：${ this.value }`" />
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <p class="pt-3">　</p>
+          <div>
+            <p id="gcd_number"></p>
+          </div>
+          <p class="py-1">　</p>
+          <h1 class="neumorphism p-3">使い方・説明書</h1>
+          <p class="py-2">　</p>
+          <p class="py-1 guideText hidden xl:inline-block">・キーボードの「S」キーでもクリックの再生/停止が行えます。</p>
+          <p class="py-1 guideText">・クリック音の設定から、各クリック音の選択とミュートのON/OFFができます。</p>
+          <p class="py-1 guideText">・音符をタップすると、各クリック音を個別にON/OFFできます。</p>
+          <p class="py-1 guideText">・LCMの値は、2つのリズムの最小公倍数を表しています。</p>
+          <p class="py-2">　</p>
+        </div>
+
+        <div class="sm:w-1/1 xl:w-1/12">　</div>
+
+        <div class="sm:w-1/1 xl:w-3/12">
+          <!-- カラム右部分 -->
+          <div id="right-column">
+            <right-column></right-column>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- フッター -->
+  <footer id="footer">
+    <footer-template></footer-template>
+    <copyright-text></copyright-text>
+  </footer>
+  </div>
+
+  <!--ページのロードが終了したときに実行される関数 -->
+  <script>
+    window.addEventListener('DOMContentLoaded', function () {
+      //ポリリズム・メトロノームのクリック情報を格納した配列を作る関数
+      polyrhythm_arrayCreate();
+      polyrhythm_variableChange();
+    });
+
+    //キー入力のイベントリスナー--------------------------------------
+    window.addEventListener('keydown', event => {
+      //スペースキーでリズムのスタートとストップをする
+      if (event.code === 'KeyS' && startTime !== null) {
+        polyrhythm_metronomeStop();
+      } else if (event.code === 'KeyS') {
+        polyrhythm_metronomeStart();
+      } else {
+        //処理
+      };
+    });
+  </script>
+
+  <!-- JavaScriptを読み込む -->
+  <script src="js/Vue.js"></script>
+  <script src="js/main.js"></script>
+
+  <!-- シェアボタン用のJavaScript -->
+  <!-- Twitter -->
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  <!-- facebook -->
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v11.0"
+    nonce="s28FkDyH"></script>
+  <!-- note -->
+  <script async src="https://cdn.st-note.com/js/social_button.min.js"></script>
+  <!-- はてなブックマーク -->
+  <script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8"
+    async="async"></script>
+  <!-- Pocket -->
+  <script
+    type="text/javascript">!function (d, i) { if (!d.getElementById(i)) { var j = d.createElement("script"); j.id = i; j.src = "https://widgets.getpocket.com/v1/j/btn.js?v=1"; var w = d.getElementById(i); d.body.appendChild(j); } }(document, "pocket-btn-js");</script>
+  <!-- Line -->
+  <script src="https://www.line-website.com/social-plugins/js/thirdparty/loader.min.js" async="async"
+    defer="defer"></script>
+
+  <!-- JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

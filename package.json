@@ -1,0 +1,22 @@
+{
+  "name": "rhythmdozyo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "TAILWIND_MODE=watch postcss -i css/styles.css -o css/dist.css --watch",
+    "build": "postcss css/styles.css -o css/dist.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@tailwindcss/custom-forms": "^0.2.1",
+    "autoprefixer": "^10.3.4",
+    "postcss-cli": "^8.3.1",
+    "tailwindcss": "^2.2.9"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.12.3"
+  }
+}
