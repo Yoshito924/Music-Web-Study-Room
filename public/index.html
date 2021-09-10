@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
 
-  <title>めざせリズムマスター【リズム学習Webアプリ】</title>
+  <title>ホーム-音楽ウェブ自習室</title>
 
   <!--Internet Explorer用の設定-->
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -33,86 +33,11 @@
   <main class="container mx-auto my-8">
     <div class="xl:flex">
       <div class="sm:w-1/1 xl:w-8/12">
-        <div>
-          <label for="input_bpm" class="box1 col-6 col-xxl-4">
-            <output id="input_bpm_value">BPM=120</output>
-            <input id="input_bpm" type="range" value="120" min="30" max="300" step="1"
-              oninput="document.getElementById('input_bpm_value').value=`BPM=${this.value}`" onchange="rhythmStart()" />
-          </label>
-        </div>
-
-        <div class="my-1">
-          <label for="TimeSignatureNumerator" class="box1 col-6 col-xxl-2">拍子の分子
-            <select id="TimeSignatureNumerator" class="form-select my-1" aria-label="Default select example"
-              onchange="metronomeStart()">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4" selected>4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-              <option value="11">11</option>
-              <option value="12">12</option>
-              <option value="13">13</option>
-              <option value="14">14</option>
-              <option value="15">15</option>
-              <option value="16">16</option>
-              <option value="17">17</option>
-              <option value="18">18</option>
-              <option value="19">19</option>
-              <option value="20">20</option>
-            </select>
-          </label>
-        </div>
-
-        <div class="my-1">
-          <label for="TimeSignatureDenominator" class="box1 col-6 col-xxl-2">拍子の分母
-            <select id="TimeSignatureDenominator" class="form-select my-1" aria-label="Default select example"
-              onchange="metronomeStart()">
-              <option value="2">2</option>
-              <option value="4" selected>4</option>
-              <option value="8">8</option>
-              <option value="16">16</option>
-            </select>
-          </label>
-        </div>
-
-        <div>
-          <button id="rhythmPad" class="
-                bg-gray-700
-                font-semibold
-                text-white
-                py-20
-                px-40
-                rounded
-                my-2
-              " onclick="btnOn()">
-            リズムを打つ
-          </button>
-        </div>
-
-        <div class="my-1">
-          <button id="startBtn" class="bg-blue-700 font-semibold text-white py-2 px-4 rounded">
-            スタート
-          </button>
-
-          <button id="stopBtn" class="bg-red-700 font-semibold text-white py-2 px-4 rounded">
-            ストップ
-          </button>
-        </div>
-
-        <div id="result">判定結果</div>
-
-        <div>
-          <div class="my-1">入力誤差を調整する。</div>
-          <output id="latency_value">135(ms)</output>
-          <input id="latency" type="range" value="135" min="0" max="300" step="1"
-            oninput="document.getElementById('latency_value').value=`${this.value}(ms)`" onchange="rhythmStart()" />
-        </div>
+        <h1 class="neumorphism p-3">音楽 ウェブ自習室へようこそ</h1>
+        <p class="py-2">　</p>
+        <p class="py-1 guideText">音楽の勉強に役立つコンテンツを開発しています。</p>
+        <p class="py-2">　</p>
+        <div class="my-1">　</div>
       </div>
 
       <div class="sm:w-1/1 xl:w-1/12">　</div>

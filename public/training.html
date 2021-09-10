@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+
+    <title>めざせリズムマスター【リズム学習Webアプリ】</title>
+
+    <!--Internet Explorer用の設定-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!--viewport設定(レスポンシブデザイン対応)-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Vue を読み込む -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+
+    <!-- CSSを読み込む -->
+    <link href="css/styles.css" rel="stylesheet" />
+    <link href="css/dist.css" rel="stylesheet" />
+
+    <!-- headのコンポーネントを読み込む -->
+    <!-- <div id="head">
+      <head-template></head-template>
+    </div> -->
+</head>
+
+<body>
+    <header id="header">
+        <header-template></header-template>
+    </header>
+
+    <main class="container mx-auto my-8">
+        <div class="xl:flex">
+            <div class="sm:w-1/1 xl:w-8/12">
+                <div>
+                    <label for="input_bpm" class="box1 col-6 col-xxl-4">
+                        <output id="input_bpm_value">BPM=120</output>
+                        <input id="input_bpm" type="range" value="120" min="30" max="300" step="1"
+                            oninput="document.getElementById('input_bpm_value').value=`BPM=${this.value}`"
+                            onchange="rhythmStart()" />
+                    </label>
+                </div>
+
+                <div class="my-1">
+                    <label for="TimeSignatureNumerator" class="box1 col-6 col-xxl-2">拍子の分子
+                        <select id="TimeSignatureNumerator" class="form-select my-1" aria-label="Default select example"
+                            onchange="metronomeStart()">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4" selected>4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                        </select>
+                    </label>
+                </div>
+
+                <div class="my-1">
+                    <label for="TimeSignatureDenominator" class="box1 col-6 col-xxl-2">拍子の分母
+                        <select id="TimeSignatureDenominator" class="form-select my-1"
+                            aria-label="Default select example" onchange="metronomeStart()">
+                            <option value="2">2</option>
+                            <option value="4" selected>4</option>
+                            <option value="8">8</option>
+                            <option value="16">16</option>
+                        </select>
+                    </label>
+                </div>
+
+                <div>
+                    <button id="rhythmPad" class="
+                bg-gray-700
+                font-semibold
+                text-white
+                py-20
+                px-40
+                rounded
+                my-2
+              " onclick="btnOn()">
+                        リズムを打つ
+                    </button>
+                </div>
+
+                <div class="my-1">
+                    <button id="startBtn" class="bg-blue-700 font-semibold text-white py-2 px-4 rounded">
+                        スタート
+                    </button>
+
+                    <button id="stopBtn" class="bg-red-700 font-semibold text-white py-2 px-4 rounded">
+                        ストップ
+                    </button>
+                </div>
+
+                <div id="result">判定結果</div>
+
+                <div>
+                    <div class="my-1">入力誤差を調整する。</div>
+                    <output id="latency_value">135(ms)</output>
+                    <input id="latency" type="range" value="135" min="0" max="300" step="1"
+                        oninput="document.getElementById('latency_value').value=`${this.value}(ms)`"
+                        onchange="rhythmStart()" />
+                </div>
+            </div>
+
+            <div class="sm:w-1/1 xl:w-1/12">　</div>
+
+            <div class="sm:w-1/1 xl:w-3/12">
+                <!-- カラム右部分 -->
+                <div id="right-column">
+                    <right-column></right-column>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- フッター -->
+    <footer id="footer" class="mx-4">
+        <footer-template></footer-template>
+        <copyright-text></copyright-text>
+    </footer>
+
+    <!-- JavaScriptを読み込む -->
+    <script src="js/Vue.js"></script>
+    <script src="js/main.js"></script>
+
+    <!-- シェアボタン用のJavaScript -->
+    <!-- Twitter -->
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <!-- facebook -->
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v11.0"
+        nonce="s28FkDyH"></script>
+    <!-- note -->
+    <script async src="https://cdn.st-note.com/js/social_button.min.js"></script>
+    <!-- はてなブックマーク -->
+    <script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8"
+        async="async"></script>
+    <!-- Pocket -->
+    <script
+        type="text/javascript">!function (d, i) { if (!d.getElementById(i)) { var j = d.createElement("script"); j.id = i; j.src = "https://widgets.getpocket.com/v1/j/btn.js?v=1"; var w = d.getElementById(i); d.body.appendChild(j); } }(document, "pocket-btn-js");</script>
+    <!-- Line -->
+    <script src="https://www.line-website.com/social-plugins/js/thirdparty/loader.min.js" async="async"
+        defer="defer"></script>
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -54,15 +54,6 @@ Vue.component('right-column', {
                 <a class="linka" href="index.html">トップページ</a>
               </li>
               <li class="py-1">
-                <a class="linka" href="metronome.html">基本リズムを学ぶ</a>
-              </li>
-              <li class="py-1">
-                <a class="linka" href="metronome.html">リズムの練習をする</a>
-              </li>
-              <li class="py-1">
-                <a class="linka" href="metronome.html">リズム道場モード</a>
-              </li>
-              <li class="py-1">
                 <a class="linka" href="metronome.html">メトロノーム（変拍子対応）</a>
               </li>
               <li class="py-1">
@@ -71,7 +62,6 @@ Vue.component('right-column', {
             </ul>
 
             <p class="py-2">　</p>
-
             <h1 class="neumorphism py-3">関連ページへのリンク</h1>
             <p class="py-2">　</p>
 
