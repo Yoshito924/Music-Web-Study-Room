@@ -54,9 +54,6 @@ Vue.component('right-column', {
                 <a class="linka" href="index.html">トップページ</a>
               </li>
               <li class="py-1">
-                <a class="linka" href="metronome.html">メトロノーム（変拍子対応）</a>
-              </li>
-              <li class="py-1">
                 <a class="linka" href="polyrhythm.html">メトロノーム（ポリリズム対応）</a>
               </li>
             </ul>
@@ -133,7 +130,7 @@ Vue.component('copyright-text', {
 Vue.component('footer-template', {
   template: `
   <div class="float-end">
-  <a href="info.html">このアプリについて</a></div>
+  <a href="info.html">このウェブサイトについて</a></div>
     `
 })
 

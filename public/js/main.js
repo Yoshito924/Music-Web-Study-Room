@@ -555,7 +555,7 @@ function metronomeSwitch(Num) {
 };
 
 //メトロノームのヴォリュームと音の種類を管理する関数
-function metronomeSoundAndVolume() {
+function polyrhythm_metronomeSoundAndVolume() {
     //ボリュームを管理するための値を取得する
     master_volume = Number(document.getElementById('master_volume').value) / 10;
 
@@ -591,7 +591,7 @@ function polyrhythm_metronomeStart() {
     };
 
     //メトロノームのヴォリュームと音の種類を管理する関数
-    metronomeSoundAndVolume();
+    polyrhythm_metronomeSoundAndVolume();
 
     //-------------------------------------------
     //BPMの値を取得する
