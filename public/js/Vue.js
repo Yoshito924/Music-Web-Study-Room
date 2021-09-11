@@ -1,3 +1,5 @@
+'use strict';
+
 //headのコンポーネントを定義---------------------------------
 
 // Vue.component('head-template', {
@@ -17,16 +19,16 @@
 Vue.component('header-template', {
   template: `
     <div class="logo">
-      <h1>音楽 ウェブ自習室</h1>
+      <h1 class="py-1 px-1"><a href="index.html">音楽ウェブ自習室</a></h1>
     </div>
 
     <div class="pc-menu">
       <nav>
-        <ul>
+        <lu>
           <li><a href="#">Menu</a></li>
           <li><a href="#">Menu</a></li>
           <li><a href="#">Menu</a></li>
-        </ul>
+        </lu>
       </nav>
     </div>
 
@@ -46,27 +48,63 @@ const headerTemplate = new Vue({
 Vue.component('right-column', {
   template: `
           <div>
-            <h1 class="neumorphism p-3">学習アプリ一覧</h1>
+            <h1 class="neumorphism p-3">音楽学習アプリ一覧</h1>
 
             <p class="py-2">　</p>
-            <ul>
-              <li class="py-1">
-                <a class="linka" href="index.html">トップページ</a>
-              </li>
+            <lu>
               <li class="py-1">
                 <a class="linka" href="metronome.html">メトロノーム（変拍子対応）</a>
               </li>
               <li class="py-1">
                 <a class="linka" href="polyrhythm-metronome.html">メトロノーム（ポリリズム対応）</a>
               </li>
-            </ul>
+            </lu>
+
+            <p class="py-2">　</p>
+
+            <h1 class="neumorphism p-3">音楽理論アプリ一覧</h1>
+
+            <p class="py-2">　</p>
+
+            <lu>
+              <li class="py-1">
+                <a class="linka" target="_blank" rel="noopener noreferrer" href="https://o-to.khufrudamonotes.com/o-to-chords">①コードの構成音を調べる</a>
+              </li>
+              <li class="py-1">
+                <a class="linka" target="_blank" rel="noopener noreferrer" href="https://o-to.khufrudamonotes.com/o-to-scale">②スケールの構成音を調べる</a>
+              </li>
+              <li class="py-1">
+                <a class="linka" target="_blank" rel="noopener noreferrer" href="https://o-to.khufrudamonotes.com/o-to-modal-interchange">③コード・ネーム/モードを検索する</a>
+              </li>
+              <li class="py-1">
+                <a class="linka" target="_blank" rel="noopener noreferrer" href="https://o-to.khufrudamonotes.com/o-to-chord-progression">④コード進行まとめ</a>
+              </li>
+              <li class="py-1">
+                <a class="linka" target="_blank" rel="noopener noreferrer" href="https://o-to.khufrudamonotes.com/o-to-diatonic-chords">⑤ダイアトニック・コード一覧表</a>
+              </li>
+              <li class="py-1">
+                <a class="linka" target="_blank" rel="noopener noreferrer" href="https://o-to.khufrudamonotes.com/o-to-modulation">⑥転調の間隔・関係調を調べる</a>
+              </li>
+              <li class="py-1">
+                <a class="linka" target="_blank" rel="noopener noreferrer" href="https://o-to.khufrudamonotes.com/o-to-note-value">⑦音価の計算をする</a>
+              </li>
+              <li class="py-1">
+                <a class="linka" target="_blank" rel="noopener noreferrer" href="https://o-to.khufrudamonotes.com/o-to-metric-modulation">⑧メトリック・モジュレーション</a>
+              </li>
+              <li class="py-1">
+                <a class="linka" target="_blank" rel="noopener noreferrer" href="https://o-to.khufrudamonotes.com/o-to-degree-change">⑨コード進行のテキストを移調する</a>
+              </li>
+              <li class="py-1">
+                <a class="linka" target="_blank" rel="noopener noreferrer" href="https://o-to.khufrudamonotes.com/o-to-fingerboard">⑩弦楽器の指板を可視化する</a>
+              </li>
+            </lu>
 
             <p class="py-2">　</p>
 
             <h1 class="neumorphism py-3">関連ページへのリンク</h1>
             <p class="py-2">　</p>
 
-            <ul>
+            <lu>
               <li class="py-1">
                 <a class="linka" href="https://o-to.khufrudamonotes.com/" target="_blank"
                   rel="noopener noreferrer">O-TO【音楽理論ウェブアプリ】</a>
@@ -79,7 +117,7 @@ Vue.component('right-column', {
                 <a class="linka" href="https://github.com/Yoshito924" target="_blank"
                   rel="noopener noreferrer">GitHub</a>
               </li>
-            </ul>
+            </lu>
           </div>
           `
 })

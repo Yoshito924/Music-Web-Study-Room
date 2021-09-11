@@ -24,56 +24,6 @@ function gcd(a, b) {
     return gcd(b, a % b)
 };
 
-const rhythmPattern = [
-    { name: "rhythm0", partition: 4, Numerator: 4, Denominator: 4, rhythm: [1, 1, 1, 1], imagePath: "", difficulty: 0, text: "" },
-    { name: "rhythm1", partition: 2, Numerator: 2, Denominator: 4, rhythm: [0, 0], imagePath: "", difficulty: 0, text: "" },
-    { name: "rhythm2", partition: 2, Numerator: 2, Denominator: 4, rhythm: [0, 1], imagePath: "", difficulty: 0, text: "" },
-    { name: "rhythm3", partition: 2, Numerator: 2, Denominator: 4, rhythm: [1, 0], imagePath: "", difficulty: 0, text: "" },
-
-    //2のまとまり------------------------
-    { name: "rhythm5", partition: 2, Numerator: 2, Denominator: 4, rhythm: [0, 0], imagePath: "", difficulty: 0, text: "" },
-    { name: "rhythm6", partition: 2, Numerator: 2, Denominator: 4, rhythm: [0, 1], imagePath: "", difficulty: 0, text: "" },
-    { name: "rhythm7", partition: 2, Numerator: 2, Denominator: 4, rhythm: [1, 0], imagePath: "", difficulty: 0, text: "" },
-    { name: "rhythm8", partition: 2, Numerator: 2, Denominator: 4, rhythm: [1, 1], imagePath: "", difficulty: 0, text: "" },
-
-    //3のまとまり------------------------
-    { name: "rhythm8", partition: 3, Numerator: 3, Denominator: 4, rhythm: [0, 0, 0], imagePath: "", difficulty: 0, text: "" },
-    { name: "rhythm9", partition: 3, Numerator: 3, Denominator: 4, rhythm: [0, 0, 1], imagePath: "", difficulty: 0, text: "" },
-    { name: "rhythm10", partition: 3, Numerator: 3, Denominator: 4, rhythm: [0, 1, 0], imagePath: "", difficulty: 0, text: "" },
-    { name: "rhythm11", partition: 3, Numerator: 3, Denominator: 4, rhythm: [0, 1, 1], imagePath: "", difficulty: 0, text: "" },
-    { name: "rhythm12", partition: 3, Numerator: 3, Denominator: 4, rhythm: [0, 0, 0], imagePath: "", difficulty: 0, text: "" },
-    { name: "rhythm13", partition: 3, Numerator: 3, Denominator: 4, rhythm: [1, 0, 0], imagePath: "", difficulty: 0, text: "" },
-    { name: "rhythm14", partition: 3, Numerator: 3, Denominator: 4, rhythm: [1, 1, 0], imagePath: "", difficulty: 0, text: "" },
-    { name: "rhythm15", partition: 3, Numerator: 3, Denominator: 4, rhythm: [1, 1, 1], imagePath: "", difficulty: 0, text: "" },
-
-    //4のまとまり------------------------
-    { name: "rhythm16", partition: 4, Numerator: 4, Denominator: 4, rhythm: [0, 0, 0, 0], imagePath: "", difficulty: 0, text: "" },
-    { name: "rhythm17", partition: 4, Numerator: 4, Denominator: 4, rhythm: [0, 0, 0, 1], imagePath: "", difficulty: 0, text: "" },
-    { name: "rhythm18", partition: 4, Numerator: 4, Denominator: 4, rhythm: [0, 0, 1, 0], imagePath: "", difficulty: 0, text: "" },
-    { name: "rhythm19", partition: 4, Numerator: 4, Denominator: 4, rhythm: [0, 0, 1, 1], imagePath: "", difficulty: 0, text: "" },
-
-    { name: "rhythm20", partition: 4, Numerator: 4, Denominator: 4, rhythm: [0, 1, 0, 0], imagePath: "", difficulty: 0, text: "" },
-    { name: "rhythm21", partition: 4, Numerator: 4, Denominator: 4, rhythm: [0, 1, 0, 1], imagePath: "", difficulty: 0, text: "" },
-    { name: "rhythm22", partition: 4, Numerator: 4, Denominator: 4, rhythm: [0, 1, 1, 0], imagePath: "", difficulty: 0, text: "" },
-    { name: "rhythm23", partition: 4, Numerator: 4, Denominator: 4, rhythm: [0, 1, 1, 1], imagePath: "", difficulty: 0, text: "" },
-
-    { name: "rhythm24", partition: 4, Numerator: 4, Denominator: 4, rhythm: [1, 0, 0, 0], imagePath: "", difficulty: 0, text: "" },
-    { name: "rhythm25", partition: 4, Numerator: 4, Denominator: 4, rhythm: [1, 0, 0, 1], imagePath: "", difficulty: 0, text: "" },
-    { name: "rhythm26", partition: 4, Numerator: 4, Denominator: 4, rhythm: [1, 0, 1, 0], imagePath: "", difficulty: 0, text: "" },
-    { name: "rhythm27", partition: 4, Numerator: 4, Denominator: 4, rhythm: [1, 0, 1, 1], imagePath: "", difficulty: 0, text: "" },
-
-    { name: "rhythm28", partition: 4, Numerator: 4, Denominator: 4, rhythm: [1, 1, 0, 0], imagePath: "", difficulty: 0, text: "" },
-    { name: "rhythm29", partition: 4, Numerator: 4, Denominator: 4, rhythm: [1, 1, 0, 1], imagePath: "", difficulty: 0, text: "" },
-    { name: "rhythm30", partition: 4, Numerator: 4, Denominator: 4, rhythm: [1, 1, 1, 0], imagePath: "", difficulty: 0, text: "" },
-    { name: "rhythm31", partition: 4, Numerator: 4, Denominator: 4, rhythm: [1, 1, 1, 1], imagePath: "", difficulty: 0, text: "" },
-
-    //------------------------
-    { name: "rhythm32", partition: 4, Numerator: 4, Denominator: 4, rhythm: [1, 0, 1, 0], imagePath: "", difficulty: 0, text: "" },
-    { name: "rhythm33", partition: 4, Numerator: 4, Denominator: 4, rhythm: [1, 0, 1, 0], imagePath: "", difficulty: 0, text: "" },
-    { name: "rhythm34", partition: 4, Numerator: 4, Denominator: 4, rhythm: [1, 0, 1, 0], imagePath: "", difficulty: 0, text: "" },
-    { name: "rhythm35", partition: 4, Numerator: 4, Denominator: 4, rhythm: [1, 0, 1, 0], imagePath: "", difficulty: 0, text: "" },
-    { name: "rhythm36", partition: 4, Numerator: 4, Denominator: 4, rhythm: [1, 0, 1, 0], imagePath: "", difficulty: 0, text: "" },
-];
 
 //鳴らす音を定義する--------------------------------------
 let voice1 = new Audio('./Audio/female_1.mp3');
@@ -82,7 +32,6 @@ let conga808 = new Audio('./Audio/conga808.wav');
 let HiHat = new Audio('./Audio/HiHat.wav');
 let clap = new Audio('./Audio/handClap.mp3');
 
-
 const clickSoundArray
     = [voice1,
         clave,
@@ -90,7 +39,6 @@ const clickSoundArray
         HiHat,
         clap,
     ];
-
 
 //音符の種類を格納した配列
 const MusicalNoteArray = [
