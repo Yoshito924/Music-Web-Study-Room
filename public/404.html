@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
 
-<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">
+<head>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-138258869-1"></script>
   <script>
@@ -19,21 +19,21 @@
   <meta charset="utf-8" />
 
   <!--サイト情報-->
-  <meta property="og:title" content="読みやすさチェッカー【文章校正ウェブアプリ】" />
+  <meta property="og:title" content="404 not found|音楽ウェブ自習室" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://o-to.khufrudamonotes.com" />
   <meta property="og:image" content="image/o-to site title.png" />
-  <meta property="og:site_name" content="読みやすさチェッカー【文章校正ウェブアプリ】" />
-  <meta name="og:description" content='"読みやすさチェッカー"は、文章中の読みにくい表現にハイライトをつけてくれる文章校正ツールです。採点機能もあります。' />
+  <meta property="og:site_name" content="音楽ウェブ自習室" />
+  <meta name="og:description" content='"申し訳ございません。お探しのページは見つかりませんでした。' />
   <meta property="og:locale" content="ja_JP" />
   <meta property="og:image:width" content="328" />
   <meta property="og:image:height" content="183" />
 
   <!--ページタイトル-->
-  <title>読みやすさチェッカー【文章校正ウェブアプリ】</title>
+  <title>404 not found|音楽ウェブ自習室</title>
 
   <!--ページの概要-->
-  <meta name="keyword" content="文章校正,文章,読みやすさ,読みやすさチェッカー" />
+  <meta name="keyword" content="音楽,音楽ウェブ自習室,404 not found" />
 
   <!--Internet Explorer用の設定-->
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -44,7 +44,7 @@
   <!--OGPタグ/twitterカード-->
   <meta name="twitter:card" content="Summary Card" />
   <meta name="twitter:site" content="@khufrudamonotes" />
-  <meta name="”twitter:title”" content="読みやすさチェッカー【文章校正ウェブアプリ】" />
+  <meta name="”twitter:title”" content="404 not found|音楽ウェブ自習室" />
   <meta name="”twitter:description”" content="”“" />
   <meta name="”twitter:image”" content="./img/title_img.png" />
 
@@ -95,58 +95,60 @@
   <link rel="icon" type="image/png" sizes="32x32" href="./img/icon/icon-32x32.png" />
   <link rel="manifest" href="./img/icon/manifest.json" />
 
-  <!-- AdSense コード -->
-  <!-- <script data-ad-client="ca-pub-1796975428667007" async
-    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> -->
+  <!-- Vue を読み込む -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
 
-  <!-- headのコンポーネントを読み込む -->
-  <div id="head">
-    <head-template></head-template>
-  </div>
+  <!-- CSSを読み込む -->
+  <link href="css/styles.css" rel="stylesheet" />
+  <link href="css/dist.css" rel="stylesheet" />
 
-  <!--bootstrap を読み込む-->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous" />
-  <link href="style.css" rel="stylesheet" />
 </head>
 
 <body>
-  <div class="container mx-auto mt-8">
-    <!-- ヘッダーのコンポーネントを読み込む -->
-    <header id="header">
-      <header-template></header-template>
-    </header>
+  <!-- ヘッダーのコンポーネントを読み込む -->
+  <header id="header">
+    <header-template></header-template>
+  </header>
 
+  <div class="container mx-auto mt-8">
     <!-- メイン -->
     <main>
-      <!-- 見出しのコンポーネントを読み込む -->
-      <div id="display">
-        <title-display></title-display>
-      </div>
+      <div class="lg:flex">
 
-      <div class="row">
-        <div>
-          申し訳ございません。<br />お探しのページは見つかりませんでした。
+        <div class="sm:w-1/1 xl:w-8/12">
+          <h1 class="neumorphism p-3">404 not found</h1>
+          <div class="py-8">
+            <div>
+              申し訳ございません。お探しのページは見つかりませんでした。
+            </div>
+            <div>
+              <a class="linka" href="index.html" rel="noopener noreferrer">音楽ウェブ自習室へ戻る</a>
+            </div>
+          </div>
         </div>
-      </div>
 
-      <!-- 例文ボタン -->
-      <div id="ExampleTextButton">
-        <a class="c-button pb-2 m-1" href="index.html" rel="noopener noreferrer">読みやすさチェッカーに戻る</a>
+        <div class="sm:w-1/1 xl:w-1/12">　</div>
+
+        <div class="sm:w-1/1 xl:w-3/12">
+          <!-- カラム右部分 -->
+          <div id="right-column">
+            <right-column></right-column>
+          </div>
+        </div>
+
       </div>
     </main>
 
     <!-- フッターのコンポーネントを読み込む -->
     <footer id="footer">
-      <right-column></right-column>
       <footer-template></footer-template>
       <copyright-text></copyright-text>
     </footer>
   </div>
 
   <!-- JavaScriptを読み込む-->
-  <script src="Vue.js"></script>
-  <script src="index.js"></script>
+  <script src="js/Vue.js"></script>
+  <script src="js/index.js"></script>
 
   <!-- シェアボタン用のJavaScript -->
   <!-- Twitter -->
@@ -160,17 +162,8 @@
   <script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8"
     async="async"></script>
   <!-- Pocket -->
-  <script type="text/javascript">
-    !(function (d, i) {
-      if (!d.getElementById(i)) {
-        var j = d.createElement("script");
-        j.id = i;
-        j.src = "https://widgets.getpocket.com/v1/j/btn.js?v=1";
-        var w = d.getElementById(i);
-        d.body.appendChild(j);
-      }
-    })(document, "pocket-btn-js");
-  </script>
+  <script
+    type="text/javascript">!function (d, i) { if (!d.getElementById(i)) { var j = d.createElement("script"); j.id = i; j.src = "https://widgets.getpocket.com/v1/j/btn.js?v=1"; var w = d.getElementById(i); d.body.appendChild(j); } }(document, "pocket-btn-js");</script>
   <!-- Line -->
   <script src="https://www.line-website.com/social-plugins/js/thirdparty/loader.min.js" async="async"
     defer="defer"></script>

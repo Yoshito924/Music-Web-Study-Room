@@ -90,47 +90,57 @@ const rightColumn = new Vue({
 
 Vue.component('copyright-text', {
   template: `
-      <div>
-      <!-- Twitterのシェアボタン -->
-      <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button"
-        data-show-count="false">Tweet</a>
+      <div class="flex pt-2">
+        <div class="px-3">
+          <p>&copy; 2021- KHUFRUDAMO NOTES (since 2009) </p>
+        </div>
+        <div class="px-1">
+          <!-- Twitterのシェアボタン -->
+          <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button"
+            data-show-count="false">Tweet</a>
+        </div>
+        <div class="px-1">
+          <!-- はてなブックマークへのシェアボタン -->
+          <a href="https://b.hatena.ne.jp/entry/" class="hatena-bookmark-button"
+            data-hatena-bookmark-layout="basic-label-counter" data-hatena-bookmark-lang="ja"
+            title="このエントリーをはてなブックマークに追加"><img
+              src="https://b.st-hatena.com/images/v4/public/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加"
+              width="20" height="20" style="border: none;" /></a>
+        </div>
+        <div class="px-1">
+          <!-- noteへのシェアボタン -->
+          <a href="https://note.com/intent/social_button" class="note-social-button"
+            data-url="https://readability-checker.khufrudamonotes.com/"></a>
+        </div>
+        <div class="px-1">
+          <!-- Facebookへのシェアボタン -->
+          <a class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-width=""
+            data-layout="button" data-action="recommend" data-size="small" data-share=""></a>
+        </div>
+        <div class="px-1">
+          <!-- Facebookへのシェアボタン -->
+          <a id="fb-root"></a>
+        </div>
+        <div class="px-1">
+          <!-- pocketへのシェアボタン -->
+          <a data-pocket-label="pocket" data-pocket-count="none" class="pocket-btn" data-lang="en"></a>
+        </div>
+        <div class="px-1">
+          <!-- Lineへのシェアボタン -->
+          <a class="line-it-button" data-lang="ja" data-type="share-a" data-ver="3"
+            data-url="https://o-to.khufrudamonotes.com/" data-color="default" data-size="small" data-count="true"
+            style="display: none;"></a>
+        </div>
+      </div>
 
-      <!-- はてなブックマークへのシェアボタン -->
-      <a href="https://b.hatena.ne.jp/entry/" class="hatena-bookmark-button"
-        data-hatena-bookmark-layout="basic-label-counter" data-hatena-bookmark-lang="ja"
-        title="このエントリーをはてなブックマークに追加"><img
-          src="https://b.st-hatena.com/images/v4/public/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加"
-          width="20" height="20" style="border: none;" /></a>
-
-      <!-- noteへのシェアボタン -->
-      <a href="https://note.com/intent/social_button" class="note-social-button"
-        data-url="https://readability-checker.khufrudamonotes.com/"></a>
-
-      <!-- Facebookへのシェアボタン -->
-      <a class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-width="" data-layout="button"
-        data-action="recommend" data-size="small" data-share=""></a>
-
-      <!-- Facebookへのシェアボタン -->
-      <a id="fb-root"></a>
-
-      <!-- pocketへのシェアボタン -->
-      <a data-pocket-label="pocket" data-pocket-count="none" class="pocket-btn" data-lang="en"></a>
-
-      <!-- Lineへのシェアボタン -->
-      <a class="line-it-button" data-lang="ja" data-type="share-a" data-ver="3"
-        data-url="https://o-to.khufrudamonotes.com/" data-color="default" data-size="small" data-count="true"
-        style="display: none;"></a>
-
-      <p>&copy; 2021- KHUFRUDAMO NOTES (since 2009) </p>
-    </div>
     `
 })
 
-
 Vue.component('footer-template', {
   template: `
-  <div class="float-end">
-  <a href="info.html">このウェブサイトについて</a></div>
+  <div class="pt-5 text-right">
+    <a class="linka" href="info.html">このウェブサイトについて</a>
+  </div>
     `
 })
 
@@ -144,10 +154,9 @@ const footer = new Vue({
 
 Vue.component('title-display', {
   template: `
-      <div class="position-relative overflow-hidden p-3 p-md-4 m-md-3 text-center bg-light">
+      <div class="position-relative overflow-hidden p-3 p-md-4 m-md-3 text-center bg-gray-200">
         <div class="col-md-8 p-lg-2 mx-auto mt-5 mb-1">
-          <h1 class="display-5 fw-normal">読みやすさチェッカー</h1>
-          <p class="lead fw-normal">あなたの文章は何点！？</p>
+          <h1 class="display-5 fw-normal">音楽ウェブ自習室</h1>
         </div>
         <div class="product-device shadow-sm d-none d-md-block"></div>
         <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>

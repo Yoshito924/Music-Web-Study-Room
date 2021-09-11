@@ -30,32 +30,34 @@
     <header-template></header-template>
   </header>
 
-  <main class="container mx-auto my-8">
-    <div class="xl:flex">
-      <div class="sm:w-1/1 xl:w-8/12">
-        <h1 class="neumorphism p-3">音楽 ウェブ自習室へようこそ</h1>
-        <p class="py-2">　</p>
-        <p class="py-1 guideText">音楽の勉強に役立つコンテンツを開発しています。</p>
-        <p class="py-2">　</p>
-        <div class="my-1">　</div>
-      </div>
+  <div class="container mx-auto">
+    <main class="py-8">
+      <div class="xl:flex">
+        <div class="sm:w-1/1 xl:w-8/12">
+          <h1 class="neumorphism p-3">音楽 ウェブ自習室へようこそ</h1>
+          <p class="py-2">　</p>
+          <p class="py-1 guideText">音楽の勉強に役立つコンテンツを開発しています。</p>
+          <p class="py-2">　</p>
+          <div class="my-1">　</div>
+        </div>
 
-      <div class="sm:w-1/1 xl:w-1/12">　</div>
+        <div class="sm:w-1/1 xl:w-1/12">　</div>
 
-      <div class="sm:w-1/1 xl:w-3/12">
-        <!-- カラム右部分 -->
-        <div id="right-column">
-          <right-column></right-column>
+        <div class="sm:w-1/1 xl:w-3/12">
+          <!-- カラム右部分 -->
+          <div id="right-column">
+            <right-column></right-column>
+          </div>
         </div>
       </div>
-    </div>
-  </main>
+    </main>
 
-  <!-- フッター -->
-  <footer id="footer" class="mx-4">
-    <footer-template></footer-template>
-    <copyright-text></copyright-text>
-  </footer>
+    <!-- フッター -->
+    <footer id="footer" class="mx-4">
+      <footer-template></footer-template>
+      <copyright-text></copyright-text>
+    </footer>
+  </div>
 
   <!-- JavaScriptを読み込む -->
   <script src="js/Vue.js"></script>

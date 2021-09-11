@@ -2,7 +2,7 @@
   "name": "Music-Web-Study-Room",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "tailwind.config.js",
   "scripts": {
     "dev": "TAILWIND_MODE=watch postcss -i public/css/styles.css -o public/css/dist.css --watch",
     "build": "postcss public/css/styles.css -o public/css/dist.css"
