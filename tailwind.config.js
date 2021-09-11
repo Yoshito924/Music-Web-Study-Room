@@ -1,5 +1,5 @@
 module.exports = {
-  // mode: "jit",
+  mode: "jit",
   purge: [
     './public/*.html',
     './public/**/*.{js,jsx,ts,tsx,vue}',
