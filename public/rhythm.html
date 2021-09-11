@@ -1,64 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>リズム道場</title>
 
-    <!--Internet Explorer用の設定-->
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>リズム道場</title>
 
-    <!--viewport設定(レスポンシブデザイン対応)-->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <!-- Vue を読み込む -->
-    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
-    <!-- CSSを読み込む -->
-    <link href="css/style.css" rel="stylesheet" />
-  </head>
+  <!--Internet Explorer用の設定-->
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-  <body>
-    <header>
-      <header-template></header-template>
-    </header>
-    <main>
-      <div id="container" class="text-center sm:text-left">
-        <div>
-          <button onmousedown="setPlay()">再生</button>
-        </div>
+  <!--viewport設定(レスポンシブデザイン対応)-->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Vue を読み込む -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  <!-- CSSを読み込む -->
+  <link href="css/style.css" rel="stylesheet" />
+</head>
 
-        <div>
-          <label for="input_bpm" class="box1 col-6 col-xxl-4"
-            >BPM
-            <input
-              id="input_bpm"
-              type="number"
-              class="form-control my-1 mb-3"
-              pattern="^[0-9]+$"
-              maxlength="3"
-              value="120"
-              placeholder="BPM"
-              aria-label="BPM"
-            />
-          </label>
-        </div>
+<body>
+  <header>
+    <header-template></header-template>
+  </header>
+  <main>
+    <div id="container" class="text-center sm:text-left">
 
-        <div id="canvas-container">
-          <canvas id="canvas"> Canvas not supported. </canvas>
-        </div>
+      <div>
+        あああああああ
       </div>
-    </main>
 
-    <footer>
-      <footer-template></footer-template>
-    </footer>
+    </div>
+  </main>
 
-    <!-- JavaScriptを読み込む -->
-    <script src="js/Rhythm.js"></script>
-    <script src="js/Vue.js"></script>
-    <!--ページのロードが終了したときに実行される関数 -->
-    <script>
-      window.addEventListener("DOMContentLoaded", function () {});
-    </script>
-  </body>
+  <footer>
+    <footer-template></footer-template>
+  </footer>
+
+  <!-- JavaScriptを読み込む -->
+  <script src="js/Rhythm.js"></script>
+  <script src="js/Vue.js"></script>
+  <!--ページのロードが終了したときに実行される関数 -->
+  <script>
+    window.addEventListener("DOMContentLoaded", function () { });
+  </script>
+</body>
+
 </html>
