@@ -24,7 +24,6 @@ function gcd(a, b) {
     return gcd(b, a % b)
 };
 
-
 //鳴らす音を定義する--------------------------------------
 let voice1 = new Audio('./Audio/female_1.mp3');
 let clave1 = new Audio('./Audio/clave.wav');
