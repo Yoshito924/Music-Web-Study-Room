@@ -168,13 +168,13 @@
             <div class="neumorphism p-3 sm:w-1/1 xl:w-5/12">
               <div class="pb-4">《クリック音の設定》</div>
               <div class="pt-1">
-                <button onclick="metronomeSwitch(0)">
+                <button onclick="polyrhythm_metronomeSwitch(0)">
                   <span id="OnOff_0" class="material-icons inline-block align-middle bg-gray-200">
                     volume_off
                   </span>
                 </button>
                 <input type="hidden" name="polyrhythm_lead_check" value=0>
-                <label for="" class="">【拍の先頭】：
+                <label for="" class="">【小節の先頭】：
                   <select id="polyrhythm_lead_click_sound" class="form-select" onchange="polyrhythm_valueChange()">
                     <option value="0">ヴォイス(1)</option>
                     <option value="1" selected>クラーベ</option>
@@ -186,7 +186,7 @@
               </div>
 
               <div class="pt-1">
-                <button onclick="metronomeSwitch(1)">
+                <button onclick="polyrhythm_metronomeSwitch(1)">
                   <span id="OnOff_1" class="material-icons text-red-600 inline-block align-middle bg-gray-200">
                     volume_up
                   </span>
@@ -203,7 +203,7 @@
               </div>
 
               <div class="pt-1">
-                <button onclick="metronomeSwitch(2)">
+                <button onclick="polyrhythm_metronomeSwitch(2)">
                   <span id="OnOff_2" class="material-icons text-green-600 inline-block align-middle bg-gray-200">
                     volume_up
                   </span>
@@ -220,7 +220,7 @@
               </div>
 
               <div class="pt-1">
-                <button onclick="metronomeSwitch(3)">
+                <button onclick="polyrhythm_metronomeSwitch(3)">
                   <span id="OnOff_3" class="material-icons text-blue-600 inline-block align-middle bg-gray-200">
                     volume_up
                   </span>
@@ -263,6 +263,7 @@
           <p class="py-1 guideText">・クリック音の設定から、各クリック音の選択とミュートのON/OFFができます。</p>
           <p class="py-1 guideText">・音符をタップすると、各クリック音を個別にON/OFFできます。</p>
           <p class="py-1 guideText">・LCMの値は、2つのリズムの最小公倍数を表しています。</p>
+          <p class="py-1 guideText">・使用する端末によっては、クリックが正しく再生されない場合があります。</p>
           <p class="py-2">　</p>
         </div>
 

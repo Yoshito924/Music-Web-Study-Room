@@ -87,11 +87,11 @@
               <div class="pb-4">《メトロノームの設定》</div>
 
               <div class="my-2">
-                <label for="polyrhythm_1_Value" id="input-range" class="input-range">
-                  <output id="TimeSignatureNumerator">【拍子の分子】：3</output>
-                  <input id="polyrhythm_1_Value" type="range" value="3" min="1" max="20" step="1"
-                    oninput="document.getElementById('polyrhythm_1').value=`【拍子の分子】：${this.value}`"
-                    onchange="polyrhythm_valueChange()" />
+                <label for="Value" id="input-range" class="input-range">
+                  <output id="TimeSignatureNumerator_value">【拍子の分子】：4</output>
+                  <input id="TimeSignatureNumerator" type="range" value="4" min="1" max="20" step="1"
+                    oninput="document.getElementById('TimeSignatureNumerator_value').value=`【拍子の分子】：${this.value}`"
+                    onchange="valueChange()" />
                 </label>
               </div>
 
@@ -111,10 +111,10 @@
 
               <div class="">
                 <label for="division_number" id="input-range" class="input-range">
-                  <output id="polyrhythm_2">【分割する数】：2</output>
-                  <input id="division_number" type="range" value="2" min="1" max="20" step="1"
-                    oninput="document.getElementById('polyrhythm_2').value=`【分割する数】：${this.value}`"
-                    onchange="polyrhythm_valueChange()" />
+                  <output id="divisionOut">【分割する数】：1</output>
+                  <input id="division_number" type="range" value="1" min="1" max="20" step="1"
+                    oninput="document.getElementById('divisionOut').value=`【分割する数】：${this.value}`"
+                    onchange="valueChange()" />
                 </label>
               </div>
 
@@ -125,14 +125,14 @@
                   <output id="input_bpm_value">BPM=120</output>
                   <input id="input_bpm" type="range" value="120" min="30" max="300" step="1"
                     oninput="document.getElementById('input_bpm_value').value=`BPM=${this.value}`"
-                    onchange="polyrhythm_valueChange()" />
+                    onchange="valueChange()" />
                 </label>
               </div>
 
               <p class="pt-1">　</p>
 
-              <div id="metronomeStartBtn" class="">
-                <button id="polyrhythm_metronomeStartBtn" class="bg-blue-700 text-white py-2 px-8 rounded"
+              <div id="playerButton" class="">
+                <button id="metronomeStartBtn" class="bg-blue-700 text-white py-2 px-8 rounded"
                   onclick="metronomeStart()">
                   再生(S)
                 </button>
@@ -148,13 +148,13 @@
               <div class="pb-4">《クリック音の設定》</div>
               <div class="pt-1">
                 <button onclick="metronomeSwitch(0)">
-                  <span id="OnOff_0" class="material-icons inline-block align-middle bg-gray-200">
-                    volume_off
+                  <span id="SoundOnOff_0" class="material-icons inline-block align-middle bg-gray-200">
+                    volume_up
                   </span>
                 </button>
-                <input type="hidden" name="polyrhythm_lead_check" value=0>
-                <label for="" class="">【拍の先頭】：
-                  <select id="polyrhythm_lead_click_sound" class="form-select" onchange="polyrhythm_valueChange()">
+                <input type="hidden" name="lead_check" value=0>
+                <label for="" class="">【小節の先頭】：
+                  <select id="click_lead_sound" class="form-select" onchange="valueChange()">
                     <option value="0">ヴォイス(1)</option>
                     <option value="1" selected>クラーベ</option>
                     <option value="2">808コンガ</option>
@@ -166,12 +166,12 @@
 
               <div class="pt-1">
                 <button onclick="metronomeSwitch(1)">
-                  <span id="OnOff_1" class="material-icons text-red-600 inline-block align-middle bg-gray-200">
+                  <span id="SoundOnOff_1" class="material-icons text-red-600 inline-block align-middle bg-gray-200">
                     volume_up
                   </span>
                 </button>
                 <label for="" class="">【メイン・クリック】：
-                  <select id="polyrhythm_1_click_sound" class="form-select" onchange="polyrhythm_valueChange()">
+                  <select id="click_1_sound" class="form-select" onchange="valueChange()">
                     <option value="0">ヴォイス(1)</option>
                     <option value="1">クラーベ</option>
                     <option value="2" selected>808コンガ</option>
@@ -183,12 +183,12 @@
 
               <div class="pt-1">
                 <button onclick="metronomeSwitch(2)">
-                  <span id="OnOff_2" class="material-icons text-green-600 inline-block align-middle bg-gray-200">
-                    volume_up
+                  <span id="SoundOnOff_2" class="material-icons text-green-600 inline-block align-middle bg-gray-200">
+                    volume_off
                   </span>
                 </button>
                 <label for="" class="">【サブ・クリック】：
-                  <select id="polyrhythm_lcm_click_sound" class="form-select" onchange="polyrhythm_valueChange()">
+                  <select id="click_2_sound" class="form-select" onchange="valueChange()">
                     <option value="0">ヴォイス(1)</option>
                     <option value="1">クラーベ</option>
                     <option value="2">808コンガ</option>
@@ -207,8 +207,7 @@
                 </span>
                 <label for="master_volume" id="input-range" class="input-range py-4 ">
                   <output id="master_volume_value">：5</output>
-                  <input id="master_volume" type="range" value="5" min="0" max="10" step="1"
-                    onchange="polyrhythm_valueChange()"
+                  <input id="master_volume" type="range" value="5" min="0" max="10" step="1" onchange="valueChange()"
                     oninput="document.getElementById('master_volume_value').value=`：${ this.value }`" />
                 </label>
               </div>
@@ -217,11 +216,12 @@
 
 
           <p class="py-1">　</p>
-          <h1 class="neumorphism p-3">このアプリについて</h1>
+          <h1 class="neumorphism p-3">使い方・説明書</h1>
           <p class="py-2">　</p>
-          <p class="py-1 guideText hidden xl:inline-block">キーボードの「C」キーでも再生/停止できます。</p>
-          <p class="py-1 guideText">ドロップダウンリストから、任意の「拍子」と「基準となる音符を分割する数」を設定してください。</p>
-          <p class="py-1 guideText">音符をタップすると、クリック音を個別にオン/オフできます。</p>
+          <p class="py-1 guideText hidden xl:inline-block">・キーボードの「S」キーでも再生/停止できます。</p>
+          <p class="py-1 guideText">・ドロップダウンリストから、任意の「拍子」と「基準となる音符を分割する数」を設定してください。</p>
+          <p class="py-1 guideText">・音符をタップすると、クリック音を個別にオン/オフできます。</p>
+          <p class="py-1 guideText">・使用する端末によっては、クリックが正しく再生されない場合があります。</p>
           <p class="py-2">　</p>
         </div>
 
@@ -255,9 +255,9 @@
     //キー入力のイベントリスナー--------------------------------------
     window.addEventListener('keydown', event => {
       //スペースキーでリズムのスタートとストップをする
-      if (event.code === 'KeyC' && startTime !== null) {
+      if (event.code === 'KeyS' && startTime !== null) {
         metronomeStop();
-      } else if (event.code === 'KeyC') {
+      } else if (event.code === 'KeyS') {
         metronomeStart();
       } else {
         //処理
