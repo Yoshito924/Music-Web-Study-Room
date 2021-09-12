@@ -120,8 +120,8 @@
 
   <div class="container mx-auto my-8">
     <main>
-      <div class="xl:flex mx-2">
-        <div class="sm:w-1/1 xl:w-8/12">
+      <div id="main_block" class="xl:flex mx-2">
+        <div id="left_block" class="sm:w-1/1 xl:w-8/12">
           <!-- 見出し -->
           <h1 class="neumorphism p-3">メトロノーム（ポリリズム対応）</h1>
           <div class="py-1">　</div>
@@ -241,12 +241,24 @@
                     onchange="polyrhythm_valueChange()" />
                 </label>
               </div>
+
               <p class="pt-1">　</p>
-              <div id="polyrhythm_playerButton" class="my-1">
-                <button id="polyrhythm_metronomeStartBtn" class="bg-blue-700 text-white py-2 px-8 rounded"
-                  onclick="polyrhythm_metronomeStart()">
-                  再生(S)
-                </button>
+
+              <div class="flex">
+                <div id="polyrhythm_playerButton" class="">
+                  <button id="polyrhythm_metronomeStartBtn" class="bg-blue-700 text-white py-2 px-8 rounded"
+                    onclick="polyrhythm_metronomeStart()">
+                    <span class="material-icons align-text-bottom">
+                      play_arrow
+                    </span>
+                  </button>
+                </div>
+
+                <div id="windowButton" class="hidden xl:inline-block px-3">
+                  <button id="windowBtn" class="bg-green-600 text-white py-2 px-8 rounded" onclick="windowControl()">
+                    拡大表示
+                  </button>
+                </div>
               </div>
 
             </div>
@@ -352,14 +364,15 @@
           <p class="py-1 guideText">・クリック音の設定から、各クリック音の選択とミュートのON/OFFができます。</p>
           <p class="py-1 guideText">・音符をタップすると、各クリック音を個別にON/OFFできます。</p>
           <p class="py-1 guideText">・LCMの値は、2つのリズムの最小公倍数を表しています。</p>
-          <p class="py-1 guideText">・使用する端末によっては、クリックが正しく再生されない可能性があります。</p>
+          <p class="py-1 guideText hidden xl:inline-block">・キーボードの「F」キーでもメトロノームの拡大/縮小が行えます。</p>
+          <p class="py-1 guideText">・使用する端末によっては、クリックが正しく表示・再生されない可能性があります。</p>
           <p class="py-2">　</p>
           <p class="py-2"><a class="linka" href="metronome.html">「変拍子に対応したメトロノーム」はこちら</a></p>
         </div>
 
-        <div class="sm:w-1/1 xl:w-1/12">　</div>
+        <div id="center_block" class="sm:w-1/1 xl:w-1/12">　</div>
 
-        <div class="sm:w-1/1 xl:w-3/12">
+        <div id="right_block" class="sm:w-1/1 xl:w-3/12">
           <!-- カラム右部分 -->
           <div id="right-column">
             <right-column></right-column>
@@ -392,6 +405,14 @@
         polyrhythm_metronomeStop();
       } else if (event.code === 'KeyS') {
         polyrhythm_metronomeStart();
+      } else {
+        //処理
+      };
+      //Fキーで画面表示を変更する
+      if (event.code === 'KeyF' && startTime !== null) {
+        windowControl();
+      } else if (event.code === 'KeyF') {
+        windowControl();
       } else {
         //処理
       };

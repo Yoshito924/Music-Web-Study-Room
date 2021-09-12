@@ -121,9 +121,9 @@
   <div class="container mx-auto mt-8">
     <main>
 
-      <div class="xl:flex  mx-2">
+      <div id="main_block" class="xl:flex  mx-2">
 
-        <div class="sm:w-1/1 xl:w-8/12">
+        <div id="left_block" class="sm:w-1/1 xl:w-8/12">
           <!-- 見出し -->
           <h1 class="neumorphism p-3">メトロノーム（変拍子対応）</h1>
           <div class="py-1">　</div>
@@ -219,11 +219,21 @@
 
               <p class="pt-1">　</p>
 
-              <div id="playerButton" class="">
-                <button id="metronomeStartBtn" class="bg-blue-700 text-white py-2 px-8 rounded"
-                  onclick="metronomeStart()">
-                  再生(S)
-                </button>
+              <div class="flex">
+                <div id="playerButton" class="">
+                  <button id="metronomeStartBtn" class="bg-blue-700 text-white py-2 px-8 rounded"
+                    onclick="metronomeStart()">
+                    <span class="material-icons align-text-bottom">
+                      play_arrow
+                    </span>
+                  </button>
+                </div>
+
+                <div id="windowButton" class="hidden xl:inline-block px-3">
+                  <button id="windowBtn" class="bg-green-600 text-white py-2 px-8 rounded" onclick="windowControl()">
+                    拡大表示
+                  </button>
+                </div>
               </div>
 
             </div>
@@ -310,14 +320,15 @@
           <p class="py-1 guideText hidden xl:inline-block">・キーボードの「S」キーでも再生/停止できます。</p>
           <p class="py-1 guideText">・クリック音の設定から、各クリック音の選択とミュートのON/OFFができます。</p>
           <p class="py-1 guideText">・音符をタップすると、クリック音を個別にオン/オフできます。</p>
-          <p class="py-1 guideText">・使用する端末によっては、クリックが正しく再生されない可能性があります。</p>
+          <p class="py-1 guideText hidden xl:inline-block">・キーボードの「F」キーでもメトロノームの拡大/縮小が行えます。</p>
+          <p class="py-1 guideText">・使用する端末によっては、クリックが正しく表示・再生されない可能性があります。</p>
           <p class="py-2">　</p>
           <p class="py-2"><a class="linka" href="polyrhythm-metronome.html">「ポリリズムに対応したメトロノーム」はこちら</a></p>
         </div>
 
-        <div class="sm:w-1/1 xl:w-1/12">　</div>
+        <div id="center_block" class="sm:w-1/1 xl:w-1/12">　</div>
 
-        <div class="sm:w-1/1 xl:w-3/12">
+        <div id="right_block" class="sm:w-1/1 xl:w-3/12">
           <!-- カラム右部分 -->
           <div id="right-column">
             <right-column></right-column>
@@ -344,11 +355,19 @@
 
     //キー入力のイベントリスナー--------------------------------------
     window.addEventListener('keydown', event => {
-      //スペースキーでリズムのスタートとストップをする
+      //Sキーでリズムのスタートとストップをする
       if (event.code === 'KeyS' && startTime !== null) {
         metronomeStop();
       } else if (event.code === 'KeyS') {
         metronomeStart();
+      } else {
+        //処理
+      };
+      //Fキーで画面表示を変更する
+      if (event.code === 'KeyF' && startTime !== null) {
+        windowControl();
+      } else if (event.code === 'KeyF') {
+        windowControl();
       } else {
         //処理
       };

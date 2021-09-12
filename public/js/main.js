@@ -123,6 +123,45 @@ let division_number = 0;
 //分割する数×拍子分子の値を格納する変数
 let division;
 
+
+//画面の表示を切り替える関数
+let windowStatus = 0;
+function windowControl() {
+
+    if (windowStatus === 0) {
+        //拡大ウィンドウへ変更
+        document.getElementById("main_block").classList.remove("xl:flex");
+        document.getElementById("left_block").classList.remove("xl:w-8/12");
+        document.getElementById("right_block").classList.remove("xl:w-3/12");
+        document.getElementById("left_block").classList.add("xl:w-1/1");
+        document.getElementById("right_block").classList.add("xl:w-1/1");
+
+        document.getElementById("windowButton").innerHTML = "";
+        document.getElementById("windowButton").insertAdjacentHTML('afterbegin',
+            `<button id="metronomeStopBtn" class="bg-green-700 text-white py-2 px-8 rounded"
+            onclick=" windowControl()">
+                縮小表示
+        </button>`);
+        windowStatus = 1;
+    } else if (windowStatus === 1) {
+        //通常ウィンドウへ戻す
+        document.getElementById("main_block").classList.add("xl:flex");
+        document.getElementById("left_block").classList.add("xl:w-8/12");
+        document.getElementById("right_block").classList.add("xl:w-3/12");
+        document.getElementById("left_block").classList.remove("xl:w-1/1");
+        document.getElementById("right_block").classList.remove("xl:w-1/1");
+        //ボタンを切り替える。
+        document.getElementById("windowButton").innerHTML = "";
+        document.getElementById("windowButton").insertAdjacentHTML('afterbegin',
+            `<button id="metronomeStopBtn" class="bg-green-600 text-white py-2 px-8 rounded"
+            onclick=" windowControl()">
+                拡大表示
+        </button>`);
+        windowStatus = 0;
+    };
+};
+
+
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //クリックのオンオフ状態を格納する関数
 let noteArray;
@@ -199,7 +238,9 @@ function metronomeStart() {
     document.getElementById("playerButton").insertAdjacentHTML('afterbegin',
         `<button id="metronomeStopBtn" class="bg-red-700 text-white py-2 px-8 rounded"
             onclick=" metronomeStop()">
-            停止(S)
+            <span class="material-icons align-text-bottom">
+                pause
+            </span>
         </button>`);
 
     //再生のスタート時刻を取得し、変数に代入する(ページをロードしてからの現在時間を取得)
@@ -223,7 +264,9 @@ function metronomeStop() {
     document.getElementById("playerButton").insertAdjacentHTML('afterbegin',
         `<button id="metronomeStartBtn" class="bg-blue-700 text-white py-2 px-8 rounded"
             onclick=" metronomeStart()">
-            再生(S)
+            <span class="material-icons align-text-bottom">
+                play_arrow
+            </span>
         </button>`);
 };
 
@@ -622,7 +665,9 @@ function polyrhythm_metronomeStart() {
     document.getElementById("polyrhythm_playerButton").insertAdjacentHTML('afterbegin',
         `<button id="polyrhythm_metronomeStopBtn" class="bg-red-700 text-white py-2 px-8 rounded"
             onclick="polyrhythm_metronomeStop()">
-            停止(S)
+                <span class="material-icons align-text-bottom">
+                    pause
+                </span>
         </button>`);
     //再生のスタート時刻を取得し、変数に代入する(ページをロードしてからの現在時間を取得)
     startTime = performance.now();
@@ -648,9 +693,12 @@ function polyrhythm_metronomeStop() {
     document.getElementById("polyrhythm_playerButton").insertAdjacentHTML('afterbegin',
         `<button id="polyrhythm_metronomeStartBtn" class="bg-blue-700 text-white py-2 px-8 rounded"
             onclick="polyrhythm_metronomeStart()">
-            再生(S)
+                <span class="material-icons align-text-bottom">
+                    play_arrow
+                </span>
         </button>`);
 };
+
 
 //クリックの音を再生するためのカウントを格納する変数
 let p_Count = 0;
