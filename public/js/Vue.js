@@ -106,16 +106,16 @@ Vue.component('right-column', {
 
             <lu>
               <li class="py-1">
-                <a class="linka" href="https://o-to.khufrudamonotes.com/" target="_blank"
-                  rel="noopener noreferrer">O-TO【音楽理論ウェブアプリ】</a>
-              </li>
-              <li class="py-1">
                 <a class="linka" href="https://yoshito.khufrudamonotes.com/" target="_blank"
-                  rel="noopener noreferrer">開発者の自己紹介</a>
+                  rel="noopener noreferrer">自己紹介</a>
               </li>
               <li class="py-1">
                 <a class="linka" href="https://github.com/Yoshito924" target="_blank"
                   rel="noopener noreferrer">GitHub</a>
+              </li>
+              <li class="py-1">
+                <a class="linka" href="https://khufrudamonotes.com/contact-english" target="_blank"
+                  rel="noopener noreferrer">フィードバックはこちらからお願いします。</a>
               </li>
             </lu>
           </div>
@@ -210,21 +210,3 @@ const titleDisplay = new Vue({
   el: '#display'
 })
 
-// let chordColor = new Vue({
-//     el: "app",
-//     data: {
-//         check: "list-group-item col-xl text-center",
-//         check: "list-group-item list-group-item-danger col-xl text-center"
-//     },
-//     methods: {
-
-//     }
-
-// })
-
-// new Vue({
-//     el: '#tabBox',
-//     data: {
-//         isActive: '1',
-//     }
-// })
