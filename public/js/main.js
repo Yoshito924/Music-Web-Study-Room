@@ -373,7 +373,6 @@ function clickPlayer() {
             click_2.currentTime = 0;
             click_2.play();
         };
-
         //クリック（拍頭）の音を鳴らす
         click_lead.currentTime = 0;
         click_lead.play();
