@@ -26,28 +26,48 @@ function gcd(a, b) {
 
 //鳴らす音を定義する--------------------------------------
 let voice1 = new Audio('./Audio/female_1.mp3');
-let clave1 = new Audio('./Audio/clave.wav');
-let conga8081 = new Audio('./Audio/conga808.wav');
-let HiHat1 = new Audio('./Audio/HiHat.wav');
+let clave1 = new Audio('./Audio/clave.mp3');
+let conga8081 = new Audio('./Audio/conga808.mp3');
+let HiHat1 = new Audio('./Audio/HiHat.mp3');
 let clap1 = new Audio('./Audio/handClap.mp3');
+let cowbell1 = new Audio('./Audio/cowbell_mid.mp3');
+let kick1 = new Audio('./Audio/Abletunes FBD Taster - Bassdrum 01.mp3');
+let digital1 = new Audio('./Audio/edm-perc-15.mp3');
+let click1 = new Audio('./Audio/edm-perc-26.mp3');
+let PowerVoice1 = new Audio('./Audio/naiki_voice_1.mp3');
 
 let voice2 = new Audio('./Audio/female_1.mp3');
-let clave2 = new Audio('./Audio/clave.wav');
-let conga8082 = new Audio('./Audio/conga808.wav');
-let HiHat2 = new Audio('./Audio/HiHat.wav');
+let clave2 = new Audio('./Audio/clave.mp3');
+let conga8082 = new Audio('./Audio/conga808.mp3');
+let HiHat2 = new Audio('./Audio/HiHat.mp3');
 let clap2 = new Audio('./Audio/handClap.mp3');
+let cowbell2 = new Audio('./Audio/cowbell_mid.mp3');
+let kick2 = new Audio('./Audio/Abletunes FBD Taster - Bassdrum 01.mp3');
+let digital2 = new Audio('./Audio/edm-perc-15.mp3');
+let click2 = new Audio('./Audio/edm-perc-26.mp3');
+let PowerVoice2 = new Audio('./Audio/naiki_voice_1.mp3');
 
 let voiceLead = new Audio('./Audio/female_1.mp3');
-let claveLead = new Audio('./Audio/clave.wav');
-let conga808Lead = new Audio('./Audio/conga808.wav');
-let HiHatLead = new Audio('./Audio/HiHat.wav');
+let claveLead = new Audio('./Audio/clave.mp3');
+let conga808Lead = new Audio('./Audio/conga808.mp3');
+let HiHatLead = new Audio('./Audio/HiHat.mp3');
 let clapLead = new Audio('./Audio/handClap.mp3');
+let cowbellLead = new Audio('./Audio/cowbell_mid.mp3');
+let kickLead = new Audio('./Audio/Abletunes FBD Taster - Bassdrum 01.mp3');
+let digitalLead = new Audio('./Audio/edm-perc-15.mp3');
+let clickLead = new Audio('./Audio/edm-perc-26.mp3');
+let PowerVoiceLead = new Audio('./Audio/naiki_voice_1.mp3');
 
 let voiceLCM = new Audio('./Audio/female_1.mp3');
-let claveLCM = new Audio('./Audio/clave.wav');
-let conga808LCM = new Audio('./Audio/conga808.wav');
-let HiHatLCM = new Audio('./Audio/HiHat.wav');
+let claveLCM = new Audio('./Audio/clave.mp3');
+let conga808LCM = new Audio('./Audio/conga808.mp3');
+let HiHatLCM = new Audio('./Audio/HiHat.mp3');
 let clapLCM = new Audio('./Audio/handClap.mp3');
+let cowbellLCM = new Audio('./Audio/cowbell_mid.mp3');
+let kickLCM = new Audio('./Audio/Abletunes FBD Taster - Bassdrum 01.mp3');
+let digitalLCM = new Audio('./Audio/edm-perc-15.mp3');
+let clickLCM = new Audio('./Audio/edm-perc-26.mp3');
+let PowerVoiceLCM = new Audio('./Audio/naiki_voice_1.mp3');
 
 const clickSoundArray1
     = [voice1,
@@ -55,6 +75,11 @@ const clickSoundArray1
         conga8081,
         HiHat1,
         clap1,
+        cowbell1,
+        kick1,
+        digital1,
+        click1,
+        PowerVoice1,
     ];
 
 const clickSoundArray2
@@ -63,6 +88,11 @@ const clickSoundArray2
         conga8082,
         HiHat2,
         clap2,
+        cowbell2,
+        kick2,
+        digital2,
+        click2,
+        PowerVoice2,
     ];
 
 const clickSoundArrayLead
@@ -71,6 +101,11 @@ const clickSoundArrayLead
         conga808Lead,
         HiHatLead,
         clapLead,
+        cowbellLead,
+        kickLead,
+        digitalLead,
+        clickLead,
+        PowerVoiceLead,
     ];
 
 const clickSoundArrayLCM
@@ -79,6 +114,11 @@ const clickSoundArrayLCM
         conga808LCM,
         HiHatLCM,
         clapLCM,
+        cowbellLCM,
+        kickLCM,
+        digitalLCM,
+        clickLCM,
+        PowerVoiceLCM,
     ];
 
 //音符の種類を格納した配列
@@ -91,7 +131,7 @@ const MusicalNoteArray = [
 let SoundOnOff = [1, 1, 0];
 
 //ポリリズム・メトロノームのクリック音のミュートON/OFFの値を格納する変数
-let OnOff = [0, 1, 1, 1];
+let OnOff = [1, 1, 1, 1];
 
 //--------------------------------------
 let input_bpm; //BPMの値を格納する変数
@@ -324,14 +364,20 @@ function clickPlayer() {
         divisionCountNum = 1;
         if (noteArray[Math.trunc(countNum)] === 0) {
             //クリック（拍頭）の音を鳴らす
-            click_lead.pause();
-            click_lead.currentTime = 0;
-            click_lead.play();
+            click_1.currentTime = 0;
+            click_1.play();
         };
-        //分割クリック（拍頭）の音を鳴らす
-        click_2.pause();
-        click_2.currentTime = 0;
-        click_2.play();
+
+        if (divisionNoteArray[Math.trunc(countNum)] === 0) {
+            //分割クリック（拍頭）の音を鳴らす
+            click_2.currentTime = 0;
+            click_2.play();
+        };
+
+        //クリック（拍頭）の音を鳴らす
+        click_lead.currentTime = 0;
+        click_lead.play();
+
         //分割テーブル（拍頭）の色付け
         document.getElementById(`division_count${divisionCountNum}`).classList.add("bg-green-300");
         document.getElementById(`division_count${division}`).classList.remove("bg-green-300");
@@ -340,17 +386,17 @@ function clickPlayer() {
     if (mod(Count, division_number) === 0) {
         if (noteArray[Math.trunc(countNum)] === 0) {
             //クリックの音を鳴らす
-            click_1.pause();
             click_1.currentTime = 0;
             click_1.play();
         };
     };
     //分割クリックを再生する
     if (mod(Count, division) !== 0) {
-        //分割クリックの音を鳴らす
-        click_2.pause();
-        click_2.currentTime = 0;
-        click_2.play();
+        if (divisionNoteArray[Math.trunc(countNum)] === 0) {
+            //分割クリックの音を鳴らす
+            click_2.currentTime = 0;
+            click_2.play();
+        };
         //分割テーブルの色付け
         document.getElementById(`division_count${divisionCountNum}`).classList.add("bg-green-300");
         document.getElementById(`division_count${divisionCountNum - 1}`).classList.remove("bg-green-300");
@@ -756,16 +802,29 @@ function polyrhythm_clickPlayer() {
     if (mod(p_Count, polyrhythm_lcm) === 0) {
         //カウントをリセット
         p_Count = 0;
+
+        //クリック（拍頭）の音を鳴らす
+        polyrhythm_lead_click.currentTime = 0;
+        polyrhythm_lead_click.play();
+
         if (polyrhythm_1_NoteArray[Math.trunc(p1_countNum)] === 0) {
-            //クリック（拍頭）の音を鳴らす
-            polyrhythm_lead_click.pause();
-            polyrhythm_lead_click.currentTime = 0;
-            polyrhythm_lead_click.play();
+            //リズム2のクリックク（拍頭）の音を鳴らす
+            polyrhythm_1_click.currentTime = 0;
+            polyrhythm_1_click.play();
         };
-        //最小公倍数クリック（拍頭）の音を鳴らす
-        polyrhythm_lcm_click.pause();
-        polyrhythm_lcm_click.currentTime = 0;
-        polyrhythm_lcm_click.play();
+
+        if (polyrhythm_lcm_NoteArray[Math.trunc(p_Count)] === 0) {
+            //最小公倍数クリック（拍頭）の音を鳴らす
+            polyrhythm_lcm_click.currentTime = 0;
+            polyrhythm_lcm_click.play();
+        };
+
+        if (polyrhythm_2_NoteArray[Math.trunc(p2_countNum)] === 0) {
+            //リズム2のクリックク（拍頭）の音を鳴らす
+            polyrhythm_2_click.currentTime = 0;
+            polyrhythm_2_click.play();
+        };
+
         //最小公倍数テーブル（拍頭）の色付け
         document.getElementById(`polyrhythm_lcm_count${p_Count + 1}`).classList.add("bg-green-300");
         document.getElementById(`polyrhythm_lcm_count${polyrhythm_lcm}`).classList.remove("bg-green-300");
@@ -773,7 +832,6 @@ function polyrhythm_clickPlayer() {
     //リズム1のクリックの音を鳴らす
     if (mod(p_Count, polyrhythm_2_Value / polyrhythm_gcd) === 0) {
         if (polyrhythm_1_NoteArray[Math.trunc(p1_countNum)] === 0) {
-            polyrhythm_1_click.pause();
             polyrhythm_1_click.currentTime = 0;
             polyrhythm_1_click.play();
         };
@@ -781,7 +839,6 @@ function polyrhythm_clickPlayer() {
     //リズム2のクリックの音を鳴らす
     if (mod(p_Count, polyrhythm_1_Value / polyrhythm_gcd) === 0) {
         if (polyrhythm_2_NoteArray[Math.trunc(p2_countNum)] === 0) {
-            polyrhythm_2_click.pause();
             polyrhythm_2_click.currentTime = 0;
             polyrhythm_2_click.play();
         };
@@ -790,7 +847,6 @@ function polyrhythm_clickPlayer() {
     if (p_Count !== 0) {
         if (polyrhythm_lcm_NoteArray[Math.trunc(p_Count)] === 0) {
             //最小公倍数クリックの音を鳴らす
-            polyrhythm_lcm_click.pause();
             polyrhythm_lcm_click.currentTime = 0;
             polyrhythm_lcm_click.play();
         };
@@ -883,11 +939,11 @@ function polyrhythm_lcm_NoteChange(polyrhythm_lcm_Note_Num) {
     //ポリリズム最小公倍数の音符の表示を選択して書き込む関数
     lcmDetermine();
     if (polyrhythm_lcm_Note_NoteOrRest === 0) {
-        document.getElementById(`polyrhythm_lcm_count${polyrhythm_lcm_Note_Num}`).innerHTML = `<font size="2">${polyrhythm_lcm_Note_Num}<br>${divisionRestCharacter}</font>`
+        document.getElementById(`polyrhythm_lcm_count${polyrhythm_lcm_Note_Num}`).innerHTML = `${polyrhythm_lcm_Note_Num}<br>${divisionRestCharacter}`
         polyrhythm_lcm_Note_NoteOrRest = 1;
         polyrhythm_lcm_NoteArray.splice(polyrhythm_lcm_Note_Num - 1, 1, 1);
     } else if (polyrhythm_lcm_Note_NoteOrRest === 1) {
-        document.getElementById(`polyrhythm_lcm_count${polyrhythm_lcm_Note_Num}`).innerHTML = `<font size="2">${polyrhythm_lcm_Note_Num}<br>${divisionNoteCharacter}</font>`
+        document.getElementById(`polyrhythm_lcm_count${polyrhythm_lcm_Note_Num}`).innerHTML = `${polyrhythm_lcm_Note_Num}<br>${divisionNoteCharacter}`
         polyrhythm_lcm_Note_NoteOrRest = 0;
         polyrhythm_lcm_NoteArray.splice(polyrhythm_lcm_Note_Num - 1, 1, 0);
     };
