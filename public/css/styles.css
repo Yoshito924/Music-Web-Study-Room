@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Kosugi+Maru&family=Yusei+Magic&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kiwi+Maru&family=Yusei+Magic&display=swap");
 
 .box {
   display: inline-block;
@@ -6,7 +6,7 @@
 }
 
 body {
-  font-family: "Kosugi Maru", sans-serif;
+  font-family: "Kiwi Maru", serif;
 }
 
 header {
@@ -16,6 +16,11 @@ header {
 h1 {
   font-family: "Yusei Magic", sans-serif;
   font-size: clamp(0.8rem, 0.8rem + 1.3vw, 1.3rem);
+}
+
+h4 {
+  font-size: clamp(0.7rem, 0.7rem + 1.1vw, 1.1rem);
+  font-weight: bold;
 }
 
 li {
@@ -41,6 +46,10 @@ td {
 }
 
 p {
+  font-size: clamp(0.6rem, 0.6rem + 1vw, 1rem);
+}
+
+a {
   font-size: clamp(0.6rem, 0.6rem + 1vw, 1rem);
 }
 
