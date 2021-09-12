@@ -101,9 +101,35 @@ Vue.component('right-column', {
 
             <p class="py-2">　</p>
 
-            <h1 class="neumorphism py-3">関連ページへのリンク</h1>
+
+
+            <h1 class="neumorphism py-3">音楽関係の資料データ</h1>
             <p class="py-2">　</p>
 
+            <lu>
+              <li class="py-1">
+                <a class="linka" href="https://gum.co/musictheory-mindmap" target="_blank" rel="noopener noreferrer">五度圏(png)</span></a>
+              </li>
+              <li class="py-1">
+                <a class="linka" href="https://gum.co/musictheory-mindmap" target="_blank" rel="noopener noreferrer">音楽理論マインドマップ(png)</span></a>
+              </li>
+              <li class="py-1">
+                <a class="linka" href="https://gum.co/musictheory-mindmap" target="_blank" rel="noopener noreferrer">開放弦を使わないギターコード表(pdf)</span></a>
+              </li>
+              <li class="py-1">
+                <a class="linka" href="https://gum.co/musictheory-mindmap" target="_blank" rel="noopener noreferrer">開放弦を使ったギターコード表(pdf)</span></a>
+              </li>
+              <li class="py-1">
+                <a class="linka" href="https://gum.co/musictheory-mindmap" target="_blank" rel="noopener noreferrer">Finale 自作スクリプト集(XML)</span></a>
+              </li>
+              <li class="py-1">
+                <a class="linka" href="https://gum.co/musictheory-mindmap" target="_blank" rel="noopener noreferrer">イコライザーの使い方 フローチャート(png)</span></a>
+              </li>
+            </lu>
+
+
+            <h1 class="neumorphism py-3">関連ページへのリンク</h1>
+            <p class="py-2">　</p>
             <lu>
               <li class="py-1">
                 <a class="linka" href="https://yoshito.khufrudamonotes.com/" target="_blank"
