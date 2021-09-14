@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-138258869-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+
+        gtag("config", "UA-138258869-1");
+    </script>
+
+    <!-- Vue を読み込む -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+
+    <!--文字エンコーディングの指定-->
+    <meta charset="utf-8">
+
+    <!--ページタイトル-->
+    <title>リズム・トレーニング-音楽ウェブ自習室</title>
+
+    <!--サイト情報-->
+    <meta property="og:site_name" content="音楽ウェブ自習室" />
+    <meta property="og:title" content="リズム・トレーニング（教材）-音楽ウェブ自習室" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://mwsr.khufrudamonotes.com/rhythm-training" />
+    <meta property="og:locale" content="ja_JP" />
+
+    <!-- 画像情報 -->
+    <meta property="og:image" content="image/o-to site title.png" />
+    <meta property="og:image:width" content="328" />
+    <meta property="og:image:height" content="183" />
+
+    <!--ページの概要-->
+    <meta name="description" content="リズム学習の教材用アプリです。基礎的なリズムの仕組みを、音と視覚で理解できます。" />
+    <meta name="og:description" content="リズム学習の教材用アプリです。基礎的なリズムの仕組みを、音と視覚で理解できます。" />
+    <meta name="keyword" content="音楽理論,音楽,アプリ,ウェブアプリ,Webアプリ,リズム,教材" />
+
+    <!--Internet Explorer用の設定-->
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <!--viewport設定(レスポンシブデザイン対応)-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!--OGPタグ/twitterカード-->
+    <meta name="twitter:card" content="Summary Card" />
+    <meta name="twitter:site" content="@khufrudamonotes" />
+    <meta name="twitter:title" content="リズム・トレーニング（教材）-音楽ウェブ自習室" />
+    <meta name="twitter:description" content="リズム学習の教材用アプリです。基礎的なリズムの仕組みを、音と視覚で理解できます。" />
+    <meta name="twitter:image" content="image/o-to site title.png" />
+
+    <!--サイトアイコンの指定-->
+    <meta name="msapplication-square70x70logo" content="image/icon/site-tile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="image/icon/site-tile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="image/icon/site-tile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="image/icon/site-tile-310x310.png" />
+    <meta name="msapplication-TileColor" content="#0078d7" />
+
+    <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="image/icon/favicon.ico" />
+    <link rel="icon" type="image/vnd.microsoft.icon" href="image/icon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="57x57" href="image/icon/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="image/icon/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="image/icon/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="image/icon/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="image/icon/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="image/icon/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="image/icon/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="image/icon/apple-touch-icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="image/icon/apple-touch-icon-180x180.png" />
+    <link rel="icon" type="image/png" sizes="36x36" href="image/icon/android-chrome-36x36.png" />
+    <link rel="icon" type="image/png" sizes="48x48" href="image/icon/android-chrome-48x48.png" />
+    <link rel="icon" type="image/png" sizes="72x72" href="image/icon/android-chrome-72x72.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="image/icon/android-chrome-96x96.png" />
+    <link rel="icon" type="image/png" sizes="128x128" href="image/icon/android-chrome-128x128.png" />
+    <link rel="icon" type="image/png" sizes="144x144" href="image/icon/android-chrome-144x144.png" />
+    <link rel="icon" type="image/png" sizes="152x152" href="image/icon/android-chrome-152x152.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="image/icon/android-chrome-192x192.png" />
+    <link rel="icon" type="image/png" sizes="256x256" href="image/icon/android-chrome-256x256.png" />
+    <link rel="icon" type="image/png" sizes="384x384" href="image/icon/android-chrome-384x384.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="image/icon/android-chrome-512x512.png" />
+    <link rel="icon" type="image/png" sizes="36x36" href="image/icon/icon-36x36.png" />
+    <link rel="icon" type="image/png" sizes="48x48" href="image/icon/icon-48x48.png" />
+    <link rel="icon" type="image/png" sizes="72x72" href="image/icon/icon-72x72.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="image/icon/icon-96x96.png" />
+    <link rel="icon" type="image/png" sizes="128x128" href="image/icon/icon-128x128.png" />
+    <link rel="icon" type="image/png" sizes="144x144" href="image/icon/icon-144x144.png" />
+    <link rel="icon" type="image/png" sizes="152x152" href="image/icon/icon-152x152.png" />
+    <link rel="icon" type="image/png" sizes="160x160" href="image/icon/icon-160x160.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="image/icon/icon-192x192.png" />
+    <link rel="icon" type="image/png" sizes="196x196" href="image/icon/icon-196x196.png" />
+    <link rel="icon" type="image/png" sizes="256x256" href="image/icon/icon-256x256.png" />
+    <link rel="icon" type="image/png" sizes="384x384" href="image/icon/icon-384x384.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="image/icon/icon-512x512.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="image/icon/icon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="24x24" href="image/icon/icon-24x24.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="image/icon/icon-32x32.png" />
+    <link rel="manifest" href="image/icon/manifest.json" />
+
+    <!-- AdSense コード -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1796975428667007"
+        crossorigin="anonymous"></script>
+
+    <!-- CSSを読み込む -->
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet" />
+    <!-- <link href="css/dist.css" rel="stylesheet" /> -->
+
+    <!-- Googleマテリアルアイコンを読み込む -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+    <header id="header">
+        <header-template></header-template>
+    </header>
+
+    <div class="container mx-auto mt-8">
+        <main>
+
+            <div id="main_block" class="xl:flex  mx-2">
+
+                <div id="left_block" class="sm:w-1/1 xl:w-8/12">
+                    <!-- 見出し -->
+                    <h1 class="neumorphism p-3">リズム・トレーニング（教材）</h1>
+                    <div class="py-1">　</div>
+                    <!-- 操作する場所 -->
+                    <div class="flex">
+
+                        <div class="w-3/24 inline-block align-bottom ">
+                            <div id="Numerator" class="text-center">4</div>
+                            <div>―</div>
+                            <div id="Denominator" class="text-center">4</div>
+                        </div>
+
+                        <div class="w-1/24">　</div>
+
+                        <div class="w-20/24">
+
+                            <table>
+                                <tr id="rhythm_count">
+                                    <th id="rhythm_count1" onclick="rhythmNoteChange(1)">1<br>
+                                        <font size="6">♩</font>
+                                    </th>
+                                    <th id="rhythm_count2" onclick="rhythmNoteChange(2)">2<br>
+                                        <font size="6">♩</font>
+                                    </th>
+                                    <th id="rhythm_count3" onclick="rhythmNoteChange(3)">3<br>
+                                        <font size="6">♩</font>
+                                    </th>
+                                    <th id="rhythm_count4" onclick="rhythmNoteChange(4)">4<br>
+                                        <font size="6">♩</font>
+                                    </th>
+                                </tr>
+                            </table>
+
+                            <table id="click_table" class="py-1">
+                                <tr id="click" class="">
+                                    <th id="click1">1<br>
+                                        <font size="6">♩</font>
+                                    </th>
+                                    <th id="click2">2<br>
+                                        <font size="6">♩</font>
+                                    </th>
+                                    <th id="click3">3<br>
+                                        <font size="6">♩</font>
+                                    </th>
+                                    <th id="click4">4<br>
+                                        <font size="6">♩</font>
+                                    </th>
+                                </tr>
+                            </table>
+
+                        </div>
+                    </div>
+
+                    <div class="py-1">　</div>
+
+                    <!-- <div>
+                        <div id="rhythmPad"
+                            class=" bg-gray-700 font-semibold text-center text-yellow-200 text-2xl rounded mx-2"
+                            onclick="btnOn()">
+                            <br />
+                            リズムを打つ
+                        </div>
+                    </div>
+                    <div class="py-1">　</div>
+                    <div id="result">判定結果</div>
+                    <div class="py-1">　</div> -->
+
+                    <div class="xl:flex">
+
+                        <div class="neumorphism p-3 sm:w-1/1 xl:w-6/12">
+                            <div class="pb-4">《リズムの設定》</div>
+                            <div class="my-2">
+                                <label for="Value" id="input-range" class="input-range">
+                                    <output id="TimeSignature_value">【拍子】：4/4</output>
+                                    <input id="TimeSignature" type="range" value="4" min="2" max="7" step="1"
+                                        oninput="document.getElementById('TimeSignature_value').value=`【拍子】：${this.value}/4`"
+                                        onchange="rhythmChange()" />
+                                </label>
+                            </div>
+
+                            <div class="my-1">
+                                <label for="NoteCharacter" class="box1 col-6 col-xxl-2">【音符の種類】：
+                                    <select id="NoteCharacter" class="form-select my-1"
+                                        aria-label="Default select example" onchange="rhythmChange()">
+                                        <option value="4" selected>4分音符</option>
+                                        <option value="8">8分音符</option>
+                                        <option value="12">1拍3連符</option>
+                                        <option value="16">16分音符</option>
+                                    </select>
+                                </label>
+                            </div>
+
+                            <p class="pt-1">　</p>
+
+                            <div class="">
+                                <label for="input_bpm" id="input-range" class="input-range pt-2">
+                                    <output id="input_bpm_value">BPM=120</output>
+                                    <input id="input_bpm" type="range" value="120" min="30" max="300" step="1"
+                                        oninput="document.getElementById('input_bpm_value').value=`BPM=${this.value}`"
+                                        onchange="soundChange()" />
+                                </label>
+                            </div>
+
+                            <div class="py-2">
+                                <button id="clickVisualBtn" class="bg-gray-600 text-white py-2 px-8 rounded"
+                                    onclick="clickVisualControl()">
+                                    クリックを表示/非表示
+                                </button>
+                            </div>
+
+                            <div class="flex pt-1">
+                                <div id="playerButton" class="">
+                                    <button id="rhythmStartBtn" class="bg-blue-700 text-white py-2 px-8 rounded"
+                                        onclick="rhythmStart()">
+                                        <span class="material-icons align-text-bottom">
+                                            play_arrow
+                                        </span>
+                                    </button>
+                                </div>
+
+                                <div id="windowButton" class="hidden xl:inline-block px-3">
+                                    <button id="windowBtn" class="bg-green-600 text-white py-2 px-8 rounded"
+                                        onclick="windowControl()">
+                                        拡大表示
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- 操作部分の中央 -->
+                        <div class="sm:w-1/1 xl:w-1/12">　</div>
+
+                        <!-- 操作部分の左 -->
+                        <div class="neumorphism p-3 sm:w-1/1 xl:w-5/12">
+                            <div class="pb-4">《音の設定》</div>
+                            <div class="pt-1">
+                                <button onclick="rhythmSwitch(0)">
+                                    <span id="SoundOnOff_0"
+                                        class="material-icons inline-block align-middle bg-gray-200">
+                                        volume_up
+                                    </span>
+                                </button>
+
+                                <input type="hidden" name="head" value=0>
+                                <label for="" class="">【小節の先頭】：
+                                    <select id="head_sound" class="form-select" onchange="soundChange()">
+                                        <option value="0">ヴォイス(1)</option>
+                                        <option value="1" selected>クラーベ</option>
+                                        <option value="2">808コンガ</option>
+                                        <option value="3">ハイハット</option>
+                                        <option value="4">クラップ</option>
+                                        <option value="5">カウベル</option>
+                                        <option value="6">キック</option>
+                                        <option value="7">デジタル</option>
+                                        <option value="8">クリック</option>
+                                        <option value="9">力強い声</option>
+                                    </select>
+                                </label>
+                            </div>
+
+                            <div class="pt-1">
+                                <button onclick="rhythmSwitch(1)">
+                                    <span id="SoundOnOff_1"
+                                        class="material-icons text-red-600 inline-block align-middle bg-gray-200">
+                                        volume_up
+                                    </span>
+                                </button>
+
+                                <label for="" class="">【正解リズム】：
+                                    <select id="rhythm_sound" class="form-select" onchange="soundChange()">
+                                        <option value="0">ヴォイス(1)</option>
+                                        <option value="1">クラーベ</option>
+                                        <option value="2">808コンガ</option>
+                                        <option value="3">ハイハット</option>
+                                        <option value="4" selected>クラップ</option>
+                                        <option value="5">カウベル</option>
+                                        <option value="6">キック</option>
+                                        <option value="7">デジタル</option>
+                                        <option value="8">クリック</option>
+                                        <option value="9">力強い声</option>
+                                    </select>
+                                </label>
+                            </div>
+
+                            <div class="pt-1">
+                                <button onclick="rhythmSwitch(2)">
+                                    <span id="SoundOnOff_2"
+                                        class="material-icons text-green-600 inline-block align-middle bg-gray-200">
+                                        volume_off
+                                    </span>
+                                </button>
+
+                                <label for="" class="">【4分音符クリック】：
+                                    <select id="click_sound" class="form-select" onchange="soundChange()">
+                                        <option value="0">ヴォイス(1)</option>
+                                        <option value="1">クラーベ</option>
+                                        <option value="2" selected>808コンガ</option>
+                                        <option value="3">ハイハット</option>
+                                        <option value="4">クラップ</option>
+                                        <option value="5">カウベル</option>
+                                        <option value="6">キック</option>
+                                        <option value="7">デジタル</option>
+                                        <option value="8">クリック</option>
+                                        <option value="9">力強い声</option>
+                                    </select>
+                                </label>
+                            </div>
+
+                            <p class="pt-1">　</p>
+
+                            <div class="">
+                                <span class="material-icons inline-block align-text-bottom">
+                                    volume_up
+                                </span>
+                                <label for="master_volume" id="input-range" class="input-range py-4 ">
+                                    <output id="master_volume_value">：5</output>
+                                    <input id="master_volume" type="range" value="5" min="0" max="10" step="1"
+                                        onchange="soundChange()"
+                                        oninput="document.getElementById('master_volume_value').value=`：${ this.value }`" />
+                                </label>
+                            </div>
+
+                            <p class="pt-1">　</p>
+
+                            <!-- <div>
+                                <div class="py-1">《入力誤差の設定》</div>
+                                <output id="latency_value">135(ms)</output>
+                                <input id="latency" type="range" value="135" min="0" max="300" step="1"
+                                    oninput="document.getElementById('latency_value').value=`${this.value}(ms)`"
+                                    onchange="rhythmStart()" />
+                                <p class="pt-1">　</p>
+                            </div> -->
+
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="py-1">　</p>
+                        <h1 class="neumorphism p-3">説明・使い方</h1>
+                        <p class="py-2">　</p>
+                        <p class="py-1 guideText">・リズム学習の教材用アプリです。</p>
+                        <p class="py-1 guideText">・基礎的なリズムの仕組みを、音と視覚で理解できます。</p>
+                        <p class="py-1 guideText hidden xl:inline-block">・キーボードの「S」キーでも再生/停止できます。</p>
+                        <p class="py-1 guideText">・《音の設定》から、音色の選択とミュートのON/OFFができます。</p>
+                        <p class="py-1 guideText">・音符をタップすると、音色を個別にオン/オフできます。</p>
+                        <p class="py-1 guideText hidden xl:inline-block">・キーボードの「F」キーでも拡大/縮小が行えます。</p>
+                        <p class="py-1 guideText ">・ブラウザ側で全画面表示＋ズームすれば、譜面の部分だけを表示可能です。</p>
+                        <p class="py-1 guideText">・使用する端末によっては、リズムが正しく表示・再生されない可能性があります。</p>
+                    </div>
+
+                </div>
+
+                <div id="center_block" class="sm:w-1/1 xl:w-1/12">
+                    　
+                </div>
+
+                <div id="right_block" class="sm:w-1/1 xl:w-3/12">
+                    <!-- カラム右部分 -->
+                    <div id="right-column">
+                        <right-column></right-column>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+
+        <!-- フッター -->
+        <footer id="footer" class="mx-4">
+            <footer-template></footer-template>
+            <copyright-text></copyright-text>
+        </footer>
+
+    </div>
+
+    <!--ページのロードが終了したときに実行される関数 -->
+    <script>
+        window.addEventListener('DOMContentLoaded', function () {
+            rhythmChange();
+        });
+
+        //キー入力のイベントリスナー--------------------------------------
+        window.addEventListener('keydown', event => {
+            //スペースキーでリズムのスタートとストップをする
+            if (event.code === 'KeyS' && startTime !== null) {
+                rhythmStop();
+            } else if (event.code === 'KeyS') {
+                rhythmStart();
+            } else {
+                //処理
+            };
+            //Fキーで画面表示を変更する
+            if (event.code === 'KeyF' && startTime !== null) {
+                windowControl();
+            } else if (event.code === 'KeyF') {
+                windowControl();
+            } else {
+                //処理
+            };
+        });
+    </script>
+
+    <!-- JavaScriptを読み込む -->
+    <script src="js/Vue.js"></script>
+    <script src="js/Rhythm-Training.js"></script>
+    <script src="js/main.js"></script>
+
+    <!-- シェアボタン用のJavaScript -->
+    <!-- Twitter -->
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <!-- facebook -->
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v11.0"
+        nonce="s28FkDyH"></script>
+    <!-- note -->
+    <script async src="https://cdn.st-note.com/js/social_button.min.js"></script>
+    <!-- はてなブックマーク -->
+    <script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8"
+        async="async"></script>
+    <!-- Pocket -->
+    <script
+        type="text/javascript">!function (d, i) { if (!d.getElementById(i)) { var j = d.createElement("script"); j.id = i; j.src = "https://widgets.getpocket.com/v1/j/btn.js?v=1"; var w = d.getElementById(i); d.body.appendChild(j); } }(document, "pocket-btn-js");</script>
+    <!-- Line -->
+    <script src="https://www.line-website.com/social-plugins/js/thirdparty/loader.min.js" async="async"
+        defer="defer"></script>
+
+</body>
+
+</html>

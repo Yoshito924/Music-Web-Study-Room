@@ -53,6 +53,9 @@ Vue.component('right-column', {
             <p class="py-2">　</p>
             <lu>
               <li class="py-1">
+                <a class="linka" href="rhythm-training.html">リズム・トレーニング（教材）</a>
+              </li>
+              <li class="py-1">
                 <a class="linka" href="metronome.html">メトロノーム（変拍子対応）</a>
               </li>
               <li class="py-1">

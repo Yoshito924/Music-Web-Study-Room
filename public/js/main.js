@@ -129,7 +129,6 @@ const MusicalNoteArray = [
 
 //クリック音のミュートON/OFFの値を格納する変数
 let SoundOnOff = [1, 1, 0];
-
 //ポリリズム・メトロノームのクリック音のミュートON/OFFの値を格納する変数
 let OnOff = [1, 1, 1, 1];
 
@@ -137,22 +136,12 @@ let OnOff = [1, 1, 1, 1];
 let input_bpm; //BPMの値を格納する変数
 let beat;  //1拍の長さを格納する変数
 let startTime = null;  //スタート時刻を格納する変数
-let elapsedTime; //正解の音を鳴らし始めた時刻を格納する変数
-let creationTimeStamp; //リズムを打った時刻を格納する変数
 let timerId; //タイマーID
-let divisionTimerId; //divisionタイマーID
 
 let clickNote; //クリックの細かさ
 let divisionClickNote; //クリックの細かさ
-
 let master_volume; //マスターボリューム
 
-let latency; //レイテンシー(遅延時間)を格納する変数
-let judgementTime; //タイミングを判定するための値
-let safeTime; //OK判定のタイミング
-let result; //表示する音符を格納する変数
-
-//--------------------------------------
 //拍子分子の値を格納する変数
 let TimeSignatureNumerator;
 //拍子分母の値を格納する変数
@@ -163,7 +152,7 @@ let division_number = 0;
 //分割する数×拍子分子の値を格納する変数
 let division;
 
-
+//--------------------------------------
 //画面の表示を切り替える関数
 let windowStatus = 0;
 function windowControl() {
@@ -200,7 +189,6 @@ function windowControl() {
         windowStatus = 0;
     };
 };
-
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //クリックのオンオフ状態を格納する関数

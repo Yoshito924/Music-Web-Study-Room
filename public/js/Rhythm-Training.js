@@ -52,56 +52,361 @@ const rhythmPattern = [
 ];
 
 
-//キー入力の判定を行う関数--------------------------------------
-function btnOn() {
+//リズムの情報を格納した配列
+let rhythmNoteArray = [];
+//クリックの情報を格納した配列
+let clickArray = [];
 
-    //難易度の設定を取得する
-    safeTime = (beat / 96) * 10;
+//音符の種類を格納した配列
+let rhythmNoteCharacter;
+let rhythmRestCharacter;
 
-    //レイテンシーの設定を取得する
-    latency = Number(document.getElementById('latency').value);
-
-    //リズムを叩いた時刻を取得
-    creationTimeStamp = performance.now();
-
-    //タイミングを判定するための値
-    judgementTime = mod((creationTimeStamp - latency - startTime), beat);
-
-    //タイミングを判定する
-    if (judgementTime <= safeTime) {
-        //OK範囲内でハシっていた場合
-        result = `OK！ +${roundToThree(judgementTime)}ms `;
-    } else if (mod(judgementTime + safeTime, beat) <= safeTime) {
-        //OK範囲内でモタっていた場合
-        result = `OK！ ${roundToThree(judgementTime - beat)}ms`;
-
-    } else if (judgementTime <= safeTime + ((beat / 96) * 48)) {
-        //BAD範囲内でハシっていた場合
-        result = `BAD！ +${roundToThree(judgementTime)}ms `;
-    } else if (mod(judgementTime + (safeTime + ((beat / 96) * 48)), beat) <= safeTime) {
-        //BAD範囲内でモタっていた場合
-        result = `BAD！${roundToThree(judgementTime - beat)}ms`;
-    } else {
-        //かなりBAD
-        result = `BAD！`;
-    };
-
-    if (startTime !== null) {
-        //結果を表示する
-        document.getElementById('result').innerHTML = result;
+//クリックテーブルの表示/非表示
+let clickVisualStatus = 1;
+function clickVisualControl() {
+    if (clickVisualStatus === 0) {
+        //クリックを非表示
+        document.getElementById("click").classList.remove("invisible");
+        document.getElementById("click_table").classList.remove("invisible");
+        clickVisualStatus = 1;
+    } else if (clickVisualStatus === 1) {
+        //クリックを表示
+        document.getElementById("click").classList.add("invisible");
+        document.getElementById("click_table").classList.add("invisible");
+        clickVisualStatus = 0;
     };
 };
 
-//キー入力のイベントリスナー--------------------------------------
-window.addEventListener('keydown', event => {
-    //スペースキーでリズムのスタートとストップをする
-    if (event.code === 'Space' && startTime !== null) {
-        rhythmStop();
-    } else if (event.code === 'Space') {
-        metronomeStart();
+//値を切り替えたときの処理をする関数
+function rhythmChange() {
+    //拍子を取得する
+    let Numerator_value = Number(document.getElementById('TimeSignature').value);
+    document.getElementById('Numerator').innerHTML = Numerator_value;
+    //クリックの配列を作成して全て0で満たす。
+    clickArray = Array(Numerator_value).fill(0);
+    //テーブルを作成する
+    clickCreate(Numerator_value);
+    //音符の種類を取得する
+    let NoteCharacter = Number(document.getElementById('NoteCharacter').value);
+    let noteCount = (NoteCharacter / 4) * Numerator_value;
+    //リズムの配列を作成して全て0で満たす。
+    rhythmNoteArray = Array(noteCount).fill(0);
+    //テーブルを作成する
+    rhythmCreate(noteCount, NoteCharacter);
+    rhythmStop();
+};
+
+let saisei;
+//値を切り替えたときの処理をする関数
+function soundChange() {
+
+    //再生中なら
+    if (startTime !== null) {
+        saisei = true;
     } else {
-        btnOn();
+        saisei = false;
+    }
+    //拍子を取得する
+    let Numerator_value = Number(document.getElementById('TimeSignature').value);
+    document.getElementById('Numerator').innerHTML = Numerator_value;
+    //テーブルを作成する
+    clickCreate(Numerator_value);
+
+    //音符の種類を取得する
+    let NoteCharacter = Number(document.getElementById('NoteCharacter').value);
+    let noteCount = (NoteCharacter / 4) * Numerator_value;
+    //テーブルを作成する
+    rhythmCreate(noteCount, NoteCharacter);
+
+    rhythmSoundAndVolume();
+    rhythmStop();
+    if (saisei === true) {
+        rhythmStart();
     };
-    //リズムパッドにフォーカスする
-    document.getElementById('rhythmPad').focus();
-});
+};
+
+
+//リズムの音符と休符を切り替える関数
+function rhythmNoteChange(Num) {
+    if (NoteOrRest === 0) {
+        document.getElementById(`rhythm_count${Num}`).innerHTML = `${Num}<br><font size="6">${rhythmRestCharacter}</font>`
+        NoteOrRest = 1;
+        rhythmNoteArray.splice(Num - 1, 1, 1);
+    } else if (NoteOrRest === 1) {
+        document.getElementById(`rhythm_count${Num}`).innerHTML = `${Num}<br><font size="6">${rhythmNoteCharacter}</font>`
+        NoteOrRest = 0;
+        rhythmNoteArray.splice(Num - 1, 1, 0);
+    };
+};
+
+//音のミュートON/OFFをするスイッチ
+function rhythmSwitch(Num) {
+    if (SoundOnOff[Num] === 0) {
+        SoundOnOff[Num] = 1;
+        document.getElementById(`SoundOnOff_${Num}`).innerHTML = "volume_up";
+    } else if (SoundOnOff[Num] === 1) {
+        SoundOnOff[Num] = 0;
+        document.getElementById(`SoundOnOff_${Num}`).innerHTML = "volume_off";
+    };
+    soundChange();
+};
+
+//鳴らす音を格納する変数
+let head;
+let rhythm;
+let click;
+
+//リズムの音の種類とヴォリュームを管理する関数
+function rhythmSoundAndVolume() {
+    //ボリュームを管理するための値を取得する
+    master_volume = Number(document.getElementById('master_volume').value) / 10;
+    //各種類の音の種類の情報を格納する
+    let head_sound = Number(document.getElementById('head_sound').value);
+    let rhythm_sound = Number(document.getElementById('rhythm_sound').value);
+    let click_sound = Number(document.getElementById('click_sound').value);
+    //各種類の音のボリュームを調整する
+    head = clickSoundArrayLead[head_sound];
+    head.volume = master_volume * SoundOnOff[0];
+    rhythm = clickSoundArray1[rhythm_sound];
+    rhythm.volume = master_volume * SoundOnOff[1];
+    click = clickSoundArray2[click_sound];
+    click.volume = master_volume * SoundOnOff[2];
+};
+
+let Numerator_value = Number(document.getElementById('TimeSignature').value);
+let NoteCharacter = Number(document.getElementById('NoteCharacter').value);
+let singleNote;
+
+//クリックのテーブルを描画する関数
+function clickCreate(clickNum) {
+    //行を一旦、分割テーブルを空にする
+    document.getElementById("click").innerHTML = ""
+    //表示するクリックの種類を決定する
+    let clickNoteCharacter = MusicalNoteArray[0][2];
+    //カウント数のテーブル要素を作成
+    clickNum = clickArray.length;
+    for (let i = 0; i < clickArray.length; i++) {
+        document.getElementById("click").
+            insertAdjacentHTML('afterbegin', `<th id="click${clickNum}">${clickNum}<br><font size="6">${clickNoteCharacter}</font></th>`);
+        clickNum--
+    };
+};
+
+//リズムのテーブルを描画する関数
+function rhythmCreate(rhythmNum, NoteCharacter) {
+    //一旦、テーブルを空にする
+    document.getElementById("rhythm_count").innerHTML = ""
+    //表示する音符と休符の種類を決定する
+    if (NoteCharacter === 2) {
+        rhythmNoteCharacter = MusicalNoteArray[0][1];
+        rhythmRestCharacter = MusicalNoteArray[1][1];
+    } else if (NoteCharacter === 4) {
+        rhythmNoteCharacter = MusicalNoteArray[0][2];
+        rhythmRestCharacter = MusicalNoteArray[1][2];
+    } else if (NoteCharacter === 8) {
+        rhythmNoteCharacter = MusicalNoteArray[0][3];
+        rhythmRestCharacter = MusicalNoteArray[1][3];
+    } else if (NoteCharacter === 16) {
+        rhythmNoteCharacter = MusicalNoteArray[0][4];
+        rhythmRestCharacter = MusicalNoteArray[1][4];
+    } else {
+        rhythmNoteCharacter = MusicalNoteArray[0][0];
+        rhythmRestCharacter = MusicalNoteArray[1][0];
+    };
+    //テーブル要素を作成
+    for (let i = 0; i < rhythmNoteArray.length; i++) {
+        if (rhythmNoteArray[rhythmNum - 1] === 0) {
+            document.getElementById("rhythm_count").
+                insertAdjacentHTML('afterbegin', `<th id="rhythm_count${rhythmNum}" onclick="rhythmNoteChange(${rhythmNum})">${rhythmNum}<br><font size="6">${rhythmNoteCharacter}</font></th>`);
+        } else if (rhythmNoteArray[rhythmNum - 1] === 1) {
+            document.getElementById("rhythm_count").
+                insertAdjacentHTML('afterbegin', `<th id="rhythm_count${rhythmNum}" onclick="rhythmNoteChange(${rhythmNum})">${rhythmNum}<br><font size="6">${rhythmRestCharacter}</font></th>`);
+        };
+        rhythmNum--
+    };
+};
+
+
+//リズムを再生する関数
+function rhythmPlayer() {
+    singleNote = (NoteCharacter / 4) * Numerator_value;
+    //クリックテーブルの色付け
+    if (mod(rhythmCountNum, NoteCharacter / 4) === 0) {
+        if (mod(clickCountNum, Numerator_value) === 0) {
+            clickCountNum = 0;
+            //クリックテーブル（拍頭）の色付け
+            document.getElementById(`click${Math.trunc(clickCountNum) + 1}`).classList.add("bg-green-300");
+            document.getElementById(`click${Numerator_value}`).classList.remove("bg-green-300");
+        } else {
+            //クリックテーブルの色付け
+            document.getElementById(`click${Math.trunc(clickCountNum) + 1}`).classList.add("bg-green-300");
+            document.getElementById(`click${Math.trunc(clickCountNum)}`).classList.remove("bg-green-300");
+        };
+        clickCountNum++
+        click.currentTime = 0;
+        click.play();
+    };
+    //（拍頭）を再生する
+    if (mod(rhythmCountNum, singleNote) === 0) {
+        //小節の先頭の音を鳴らす
+        head.currentTime = 0;
+        head.play();
+        rhythmCountNum = 0;
+        if (rhythmNoteArray[Math.trunc(Math.trunc(rhythmCountNum))] === 0) {
+            //リズムの音を鳴らす
+            rhythm.currentTime = 0;
+            rhythm.play();
+        };
+        //リズム（拍頭）の色付け
+        document.getElementById(`rhythm_count${Math.trunc(rhythmCountNum) + 1}`).classList.add("bg-red-300");
+        document.getElementById(`rhythm_count${singleNote}`).classList.remove("bg-red-300");
+    };
+    if (mod(rhythmCountNum, singleNote) !== 0) {
+        //リズムの再生する
+        if (rhythmNoteArray[Math.trunc(Math.trunc(rhythmCountNum))] === 0) {
+            //リズムの音を鳴らす
+            rhythm.currentTime = 0;
+            rhythm.play();
+        };
+        //リズムの色付け
+        document.getElementById(`rhythm_count${Math.trunc(rhythmCountNum) + 1}`).classList.add("bg-red-300");
+        document.getElementById(`rhythm_count${Math.trunc(rhythmCountNum)}`).classList.remove("bg-red-300");
+    };
+    //JavaScriptの割り算の演算結果の誤差をごまかすために、最後に「0.0001」を足す。
+    rhythmCountNum++;
+};
+
+//メトロノームの再生を開始する関数--------------------------------------
+function rhythmStart() {
+    //メトロノームの再生を停止する関数
+    rhythmStop();
+    //再生中ならreturn
+    if (startTime !== null) {
+        return;
+    };
+    //リズムの音の種類とヴォリュームを管理する関数
+    rhythmSoundAndVolume();
+
+    //BPMの値を取得
+    input_bpm = Number(document.getElementById('input_bpm').value);
+    //一拍の長さ(ms)を計算
+    beat = 60000 / input_bpm;
+    //-------------------------------------------
+    Numerator_value = Number(document.getElementById('TimeSignature').value);
+    NoteCharacter = Number(document.getElementById('NoteCharacter').value);
+    singleNote = (NoteCharacter / 4) * Numerator_value;
+    //クリックを刻む分音符の細かさを指定
+    clickNote = beat / (NoteCharacter / 4);
+    //クリックを一定間隔ごとに再生し、再生状態をタイマーIDに代入
+    timerId = setInterval(rhythmPlayer, clickNote);
+    //-------------------------------------------
+    //再生・停止ボタンを一度消す
+    document.getElementById("playerButton").innerHTML = "";
+    //ボタンを再生中(停止ボタン)に切り替える。
+    document.getElementById("playerButton").insertAdjacentHTML('afterbegin',
+        `<button id="rhythmStopBtn" class="bg-red-700 text-white py-2 px-8 rounded"
+            onclick=" rhythmStop()">
+            <span class="material-icons align-text-bottom">
+                pause
+            </span>
+        </button>`);
+    //再生のスタート時刻を取得し、変数に代入する(ページをロードしてからの現在時間を取得)
+    startTime = performance.now();
+};
+
+let rhythmCountNum = 0;
+let clickCountNum = 0;
+
+//メトロノームの再生を停止する関数--------------------------------------
+function rhythmStop() {
+    //各種パラメーターをリセットする
+    rhythmCountNum = 0;
+    clickCountNum = 0;
+    //setIntervalを停止する
+    clearInterval(timerId);
+    startTime = null;
+
+    //拍子を取得する
+    let Numerator_value = Number(document.getElementById('TimeSignature').value);
+    document.getElementById('Numerator').innerHTML = Numerator_value;
+    //テーブルを作成する
+    clickCreate(Numerator_value);
+
+    //音符の種類を取得する
+    let NoteCharacter = Number(document.getElementById('NoteCharacter').value);
+    let noteCount = (NoteCharacter / 4) * Numerator_value;
+    //テーブルを作成する
+    rhythmCreate(noteCount, NoteCharacter);
+
+    //再生・停止ボタンを一度消す
+    document.getElementById("playerButton").innerHTML = "";
+    //停止ボタンを描画する
+    document.getElementById("playerButton").insertAdjacentHTML('afterbegin',
+        `<button id="rhythmStartBtn" class="bg-blue-700 text-white py-2 px-8 rounded"
+            onclick=" rhythmStart()">
+            <span class="material-icons align-text-bottom">
+                play_arrow
+            </span>
+        </button>`);
+};
+
+
+// let elapsedTime; //正解の音を鳴らし始めた時刻を格納する変数
+// let creationTimeStamp; //リズムを打った時刻を格納する変数
+
+// let latency; //レイテンシー(遅延時間)を格納する変数
+// let judgementTime; //タイミングを判定するための値
+// let safeTime; //OK判定のタイミング
+// let result; //表示する音符を格納する変数
+
+// //キー入力の判定を行う関数--------------------------------------
+// function btnOn() {
+
+//     singleNote = (NoteCharacter / 4) * Numerator_value;
+//     //難易度の設定を取得する
+//     safeTime = (beat / 96) * 10;
+//     //レイテンシーの設定を取得する
+//     latency = Number(document.getElementById('latency').value);
+//     //リズムを叩いた時刻を取得
+//     creationTimeStamp = performance.now();
+//     //タイミングを判定するための値
+//     judgementTime = mod((creationTimeStamp - latency - startTime), beat / singleNote);
+
+//     //タイミングを判定する
+//     if (judgementTime <= safeTime) {
+//         //OK範囲内でハシっていた場合
+//         result = `OK！ +${roundToThree(judgementTime)}ms `;
+//     } else if (mod(judgementTime + safeTime, beat) <= safeTime) {
+//         //OK範囲内でモタっていた場合
+//         result = `OK！ ${roundToThree(judgementTime - beat)}ms`;
+
+//     } else if (judgementTime <= safeTime + ((beat / 96) * 48)) {
+//         //BAD範囲内でハシっていた場合
+//         result = `BAD！ +${roundToThree(judgementTime)}ms `;
+//     } else if (mod(judgementTime + (safeTime + ((beat / 96) * 48)), beat) <= safeTime) {
+//         //BAD範囲内でモタっていた場合
+//         result = `BAD！${roundToThree(judgementTime - beat)}ms`;
+//     } else {
+//         //かなりBAD
+//         result = `BAD！`;
+//     };
+
+//     if (startTime !== null) {
+//         //結果を表示する
+//         document.getElementById('result').innerHTML = result;
+//     };
+// };
+
+// //キー入力のイベントリスナー--------------------------------------
+// window.addEventListener('keydown', event => {
+//     //スペースキーでリズムのスタートとストップをする
+//     if (event.code === 'Space' && startTime !== null) {
+//         rhythmStop();
+//     } else if (event.code === 'Space') {
+//         rhythmStart();
+//     } else {
+//         btnOn();
+//     };
+//     //リズムパッドにフォーカスする
+//     document.getElementById('rhythmPad').focus();
+// });

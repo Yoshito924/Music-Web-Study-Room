@@ -5,6 +5,10 @@
   width: 200px;
 }
 
+#rhythmPad {
+  cursor: pointer;
+}
+
 body {
   font-family: "Kiwi Maru", serif;
 }
