@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="500"
+   height="500"
+   id="svg3368"
+   version="1.1"
+   inkscape:version="0.48.5 r10040"
+   sodipodi:docname="whole note.svg"
+   inkscape:export-filename="C:\Users\ema\Desktop\whole note.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
+  <defs
+     id="defs3370" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.77472527"
+     inkscape:cx="320"
+     inkscape:cy="240"
+     inkscape:current-layer="layer1"
+     inkscape:document-units="px"
+     showgrid="false"
+     inkscape:window-width="1102"
+     inkscape:window-height="765"
+     inkscape:window-x="1704"
+     inkscape:window-y="146"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata3373">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     transform="translate(0,20)">
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:none"
+       d="M 241.50269,105.31603 C 116.49447,110.17692 19.440349,170.05283 23.765139,238.9059 28.089939,307.75895 132.42902,359.54482 257.43724,354.68397 382.44209,349.8231 480.56143,289.947 476.23628,221.09394 471.91153,152.24088 366.51091,100.45518 241.50269,105.31603 z m -18.05437,16.6987 c 36.50405,2.38685 77.52861,29.8069 103.02472,72.3611 33.99597,56.73911 27.98627,118.83216 -13.8078,139.15637 -41.7941,20.32405 -103.01763,-8.94255 -137.01362,-65.68181 -33.996,-56.7391 -27.98613,-118.83216 13.80795,-139.15621 10.44845,-5.08101 21.81967,-7.4753 33.98875,-6.67945 z"
+       id="path4398"
+       inkscape:connector-curvature="0" />
+  </g>
+</svg>

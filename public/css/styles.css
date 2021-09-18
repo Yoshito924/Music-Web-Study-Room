@@ -31,6 +31,13 @@ li {
   font-size: clamp(0.6rem, 0.6rem + 1vw, 1rem);
 }
 
+.note_image {
+  padding: 5px;
+  height: clamp(2rem, 2rem + 1vw, 4rem);
+  /* 中央揃え */
+  margin: 0 auto;
+}
+
 table {
   border-collapse: collapse;
   text-align: center;

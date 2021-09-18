@@ -123,8 +123,16 @@ const clickSoundArrayLCM
 
 //音符の種類を格納した配列
 const MusicalNoteArray = [
-    ["●", "𝅗𝅥", "♩", "♪", "𝅘𝅥𝅯"],
-    ["〇", "𝄼", "𝄽", "𝄾", "𝄿"],
+    ["●",
+        `<img src="./image/note/harfNote.svg" alt="2分音符" title="2分音符 "class="note_image">`,
+        `<img src="./image/note/quarterNote.svg" alt="4分音符" title="4分音符 "class="note_image">`,
+        `<img src="./image/note/8thNote.svg" alt="8分音符" title="8分音符 "class="note_image">`,
+        `<img src="./image/note/16thNote.svg" alt="16分音符" title="16分音符 "class="note_image">`,],
+    ["●",
+        `<img src="./image/note/harfRest.svg" alt="2分休符" title="2分休符 "class="note_image">`,
+        `<img src="./image/note/quarterRest.svg" alt="4分休符" title="4分休符 "class="note_image">`,
+        `<img src="./image/note/8thRest.svg" alt="8分休符" title="8分休符 "class="note_image">`,
+        `<img src="./image/note/16thRest.svg" alt="16分休符" title="16分休符 "class="note_image">`,],
 ];
 
 //クリック音のミュートON/OFFの値を格納する変数
