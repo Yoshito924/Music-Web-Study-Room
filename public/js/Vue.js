@@ -181,7 +181,7 @@ Vue.component('copyright-text', {
         <div class="px-1 pt-1">
           <!-- noteへのシェアボタン -->
           <a href="https://note.com/intent/social_button" class="note-social-button"
-            data-url="https://readability-checker.khufrudamonotes.com/"></a>
+            data-url="https://mwsr.khufrudamonotes.com/"></a>
         </div>
         <div class="px-1 pt-1">
           <!-- Facebookへのシェアボタン -->
