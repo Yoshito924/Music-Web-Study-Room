@@ -127,12 +127,16 @@ const MusicalNoteArray = [
         `<img src="./image/note/harfNote.svg" alt="2分音符" title="2分音符 "class="note_image">`,
         `<img src="./image/note/quarterNote.svg" alt="4分音符" title="4分音符 "class="note_image">`,
         `<img src="./image/note/8thNote.svg" alt="8分音符" title="8分音符 "class="note_image">`,
-        `<img src="./image/note/16thNote.svg" alt="16分音符" title="16分音符 "class="note_image">`,],
+        `<img src="./image/note/16thNote.svg" alt="16分音符" title="16分音符 "class="note_image">`,
+        `<img src="./image/note/32ndNote.svg" alt="32分音符" title="32分音符 "class="note_image">`,
+        `<img src="./image/note/64thNote.svg" alt="64分音符" title="64分音符 "class="note_image">`,],
     ["●",
         `<img src="./image/note/harfRest.svg" alt="2分休符" title="2分休符 "class="note_image">`,
         `<img src="./image/note/quarterRest.svg" alt="4分休符" title="4分休符 "class="note_image">`,
         `<img src="./image/note/8thRest.svg" alt="8分休符" title="8分休符 "class="note_image">`,
-        `<img src="./image/note/16thRest.svg" alt="16分休符" title="16分休符 "class="note_image">`,],
+        `<img src="./image/note/16thRest.svg" alt="16分休符" title="16分休符 "class="note_image">`,
+        `<img src="./image/note/32ndRest.svg" alt="32分休符" title="32分休符 "class="note_image">`,
+        `<img src="./image/note/64thRest.svg" alt="64分休符" title="64分休符 "class="note_image">`,],
 ];
 
 //クリック音のミュートON/OFFの値を格納する変数
@@ -251,7 +255,7 @@ function metronomeStart() {
     let divisionNum = division;
 
     //連符分割クリックのテーブルを描画する関数
-    divisionCreate(divisionNum);
+    divisionCreate(divisionNum, TimeSignatureDenominator, TimeSignatureNumerator);
 
     division = division_number * TimeSignatureNumerator;
 
@@ -453,6 +457,12 @@ function countCreate(Num) {
     } else if (TimeSignatureDenominator === 16) {
         noteCharacter = MusicalNoteArray[0][4];
         restCharacter = MusicalNoteArray[1][4];
+    } else if (TimeSignatureDenominator === 32) {
+        noteCharacter = MusicalNoteArray[0][5];
+        restCharacter = MusicalNoteArray[1][5];
+    } else if (TimeSignatureDenominator === 64) {
+        noteCharacter = MusicalNoteArray[0][6];
+        restCharacter = MusicalNoteArray[1][6];
     } else {
         noteCharacter = MusicalNoteArray[0][0];
         restCharacter = MusicalNoteArray[1][0];
@@ -476,23 +486,29 @@ let divisionNoteCharacter = MusicalNoteArray[0][0];
 let divisionRestCharacter = MusicalNoteArray[1][0];
 
 //分割クリックのテーブルを描画する関数
-function divisionCreate(divisionNum) {
+function divisionCreate(divisionNum, TimeSignatureDenominator, TimeSignatureNumerator) {
     //行を一旦、分割テーブルを空にする
     document.getElementById("division_count").innerHTML = ""
 
     //表示する音符と休符の種類を決定する
-    if (divisionNum === 2) {
+    if (divisionNum * TimeSignatureDenominator / TimeSignatureNumerator === 2) {
         divisionNoteCharacter = MusicalNoteArray[0][1];
         divisionRestCharacter = MusicalNoteArray[1][1];
-    } else if (divisionNum === 4) {
+    } else if (divisionNum * TimeSignatureDenominator / TimeSignatureNumerator === 4) {
         divisionNoteCharacter = MusicalNoteArray[0][2];
         divisionRestCharacter = MusicalNoteArray[1][2];
-    } else if (divisionNum === 8) {
+    } else if (divisionNum * TimeSignatureDenominator / TimeSignatureNumerator === 8) {
         divisionNoteCharacter = MusicalNoteArray[0][3];
         divisionRestCharacter = MusicalNoteArray[1][3];
-    } else if (divisionNum === 16) {
+    } else if (divisionNum * TimeSignatureDenominator / TimeSignatureNumerator === 16) {
         divisionNoteCharacter = MusicalNoteArray[0][4];
         divisionRestCharacter = MusicalNoteArray[1][4];
+    } else if (divisionNum * TimeSignatureDenominator / TimeSignatureNumerator === 32) {
+        divisionNoteCharacter = MusicalNoteArray[0][5];
+        divisionRestCharacter = MusicalNoteArray[1][5];
+    } else if (divisionNum * TimeSignatureDenominator / TimeSignatureNumerator === 64) {
+        divisionNoteCharacter = MusicalNoteArray[0][6];
+        divisionRestCharacter = MusicalNoteArray[1][6];
     } else {
         divisionNoteCharacter = MusicalNoteArray[0][0];
         divisionRestCharacter = MusicalNoteArray[1][0];
@@ -528,7 +544,7 @@ function variableChange() {
     division = division_number * TimeSignatureNumerator;
     let divisionNum = division;
     //連符分割クリックのテーブルを描画する関数
-    divisionCreate(divisionNum);
+    divisionCreate(divisionNum, TimeSignatureDenominator, TimeSignatureNumerator);
     if (division_number === 1) {
         document.getElementById(`division_count`).classList.add("invisible");
         document.getElementById(`division_count_table`).classList.add("invisible");
@@ -874,6 +890,12 @@ function polyrhythmDetermine() {
         } else if (polyrhythm_basis_note === 16) {
             noteCharacter = MusicalNoteArray[0][4];
             restCharacter = MusicalNoteArray[1][4];
+        } else if (polyrhythm_basis_note === 32) {
+            noteCharacter = MusicalNoteArray[0][5];
+            restCharacter = MusicalNoteArray[1][5];
+        } else if (polyrhythm_basis_note === 64) {
+            noteCharacter = MusicalNoteArray[0][6];
+            restCharacter = MusicalNoteArray[1][6];
         } else {
             noteCharacter = MusicalNoteArray[0][0];
             restCharacter = MusicalNoteArray[1][0];
@@ -919,6 +941,12 @@ function lcmDetermine() {
         } else if (polyrhythm_basis_note === 16) {
             divisionNoteCharacter = MusicalNoteArray[0][4];
             divisionRestCharacter = MusicalNoteArray[1][4];
+        } else if (polyrhythm_basis_note === 32) {
+            divisionNoteCharacter = MusicalNoteArray[0][5];
+            divisionRestCharacter = MusicalNoteArray[1][5];
+        } else if (polyrhythm_basis_note === 64) {
+            divisionNoteCharacter = MusicalNoteArray[0][6];
+            divisionRestCharacter = MusicalNoteArray[1][6];
         } else {
             divisionNoteCharacter = MusicalNoteArray[0][0];
             divisionRestCharacter = MusicalNoteArray[1][0];
