@@ -179,7 +179,7 @@ function windowControl() {
 
         document.getElementById("windowButton").innerHTML = "";
         document.getElementById("windowButton").insertAdjacentHTML('afterbegin',
-            `<button id="metronomeStopBtn" class="bg-green-700 text-white py-2 px-8 rounded"
+            `<button id="metronomeStopBtn" class="bg-gray-700 text-white py-2 px-8 rounded"
             onclick=" windowControl()">
                 縮小表示
         </button>`);
@@ -194,7 +194,7 @@ function windowControl() {
         //ボタンを切り替える。
         document.getElementById("windowButton").innerHTML = "";
         document.getElementById("windowButton").insertAdjacentHTML('afterbegin',
-            `<button id="metronomeStopBtn" class="bg-green-600 text-white py-2 px-8 rounded"
+            `<button id="metronomeStopBtn" class="bg-gray-600 text-white py-2 px-8 rounded"
             onclick=" windowControl()">
                 拡大表示
         </button>`);

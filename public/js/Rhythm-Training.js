@@ -276,6 +276,28 @@ function rhythmPlayer() {
     rhythmCountNum++;
 };
 
+//ページがロードされたときに関数initを実行するイベントリスナーを設定する
+window.addEventListener('load', init, false);
+
+//変数contextを定義する
+let context;
+
+//AudioContextを作成する関数
+function init() {
+    try {
+        //webkitプレフィックスをつける。（WebKit使用のブラウザに対応するため）
+        window.AudioContext
+            = window.AudioContext || window.webkitAudioContext;
+        //AudioContextを生成する
+        context = new AudioContext();
+        console.log('init!');
+    } catch (e) {
+        //try内の処理がエラーの場合、それをユーザーに伝える。
+        alert('このブラウザではWeb Audio APIはサポートされていません。');
+    };
+};
+
+
 //メトロノームの再生を開始する関数--------------------------------------
 function rhythmStart() {
     //メトロノームの再生を停止する関数
@@ -297,25 +319,43 @@ function rhythmStart() {
     singleNote = (NoteCharacter / 4) * Numerator_value;
     //クリックを刻む分音符の細かさを指定
     clickNote = beat / (NoteCharacter / 4);
+
+    //----------------------------------------------------------------
+    // ページを開いてからの時刻-現在時刻（秒）
+    let baseTimeStamp = performance.now();
+    let gosa = 0;
     //クリックを一定間隔ごとに再生し、再生状態をタイマーIDに代入
-    timerId = setInterval(rhythmPlayer, clickNote);
+    // timerId = setInterval(rhythmPlayer, clickNote);
+    let countNum = 1;
+    // クリックを一定間隔ごとに再生し、再生状態をタイマーIDに代入
+    timerId = setTimeout(function main() {
+        // console.log(`誤差：${gosa / countNum}`);
+        // console.log(clickNote - (gosa / countNum));
+        gosa = (performance.now() - baseTimeStamp) % clickNote;
+        timerId = setTimeout(main, clickNote - (gosa / countNum));
+        countNum++
+        // メインの処理
+        rhythmPlayer();
+    }, clickNote);
+
     //-------------------------------------------
     //再生・停止ボタンを一度消す
     document.getElementById("playerButton").innerHTML = "";
     //ボタンを再生中(停止ボタン)に切り替える。
     document.getElementById("playerButton").insertAdjacentHTML('afterbegin',
-        `<button id="rhythmStopBtn" class="bg-red-700 text-white py-2 px-8 rounded"
-            onclick=" rhythmStop()">
-            <span class="material-icons align-text-bottom">
-                pause
-            </span>
-        </button>`);
+        `<button id = "rhythmStopBtn" class= "bg-red-700 text-white py-2 px-8 rounded"
+            onclick = " rhythmStop()" >
+                <span class="material-icons align-text-bottom">
+                    pause
+                </span>
+        </button> `);
     //再生のスタート時刻を取得し、変数に代入する(ページをロードしてからの現在時間を取得)
     startTime = performance.now();
 };
 
 let rhythmCountNum = 0;
 let clickCountNum = 0;
+let timeoutId;
 
 //メトロノームの再生を停止する関数--------------------------------------
 function rhythmStop() {
@@ -324,6 +364,7 @@ function rhythmStop() {
     clickCountNum = 0;
     //setIntervalを停止する
     clearInterval(timerId);
+    clearInterval(timeoutId);
     startTime = null;
 
     //拍子を取得する
@@ -342,71 +383,12 @@ function rhythmStop() {
     document.getElementById("playerButton").innerHTML = "";
     //停止ボタンを描画する
     document.getElementById("playerButton").insertAdjacentHTML('afterbegin',
-        `<button id="rhythmStartBtn" class="bg-blue-700 text-white py-2 px-8 rounded"
-            onclick=" rhythmStart()">
-            <span class="material-icons align-text-bottom">
-                play_arrow
-            </span>
-        </button>`);
+        `<button button id = "rhythmStartBtn" class= "bg-blue-700 text-white py-2 px-8 rounded"
+            onclick = " rhythmStart()" >
+                <span class="material-icons align-text-bottom">
+                    play_arrow
+                </span>
+        </button> `);
 };
 
 
-// let elapsedTime; //正解の音を鳴らし始めた時刻を格納する変数
-// let creationTimeStamp; //リズムを打った時刻を格納する変数
-
-// let latency; //レイテンシー(遅延時間)を格納する変数
-// let judgementTime; //タイミングを判定するための値
-// let safeTime; //OK判定のタイミング
-// let result; //表示する音符を格納する変数
-
-// //キー入力の判定を行う関数--------------------------------------
-// function btnOn() {
-
-//     singleNote = (NoteCharacter / 4) * Numerator_value;
-//     //難易度の設定を取得する
-//     safeTime = (beat / 96) * 10;
-//     //レイテンシーの設定を取得する
-//     latency = Number(document.getElementById('latency').value);
-//     //リズムを叩いた時刻を取得
-//     creationTimeStamp = performance.now();
-//     //タイミングを判定するための値
-//     judgementTime = mod((creationTimeStamp - latency - startTime), beat / singleNote);
-
-//     //タイミングを判定する
-//     if (judgementTime <= safeTime) {
-//         //OK範囲内でハシっていた場合
-//         result = `OK！ +${roundToThree(judgementTime)}ms `;
-//     } else if (mod(judgementTime + safeTime, beat) <= safeTime) {
-//         //OK範囲内でモタっていた場合
-//         result = `OK！ ${roundToThree(judgementTime - beat)}ms`;
-
-//     } else if (judgementTime <= safeTime + ((beat / 96) * 48)) {
-//         //BAD範囲内でハシっていた場合
-//         result = `BAD！ +${roundToThree(judgementTime)}ms `;
-//     } else if (mod(judgementTime + (safeTime + ((beat / 96) * 48)), beat) <= safeTime) {
-//         //BAD範囲内でモタっていた場合
-//         result = `BAD！${roundToThree(judgementTime - beat)}ms`;
-//     } else {
-//         //かなりBAD
-//         result = `BAD！`;
-//     };
-
-//     if (startTime !== null) {
-//         //結果を表示する
-//         document.getElementById('result').innerHTML = result;
-//     };
-// };
-
-// //キー入力のイベントリスナー--------------------------------------
-// window.addEventListener('keydown', event => {
-//     //スペースキーでリズムのスタートとストップをする
-//     if (event.code === 'Space' && startTime !== null) {
-//         rhythmStop();
-//     } else if (event.code === 'Space') {
-//         rhythmStart();
-//     } else {
-//         btnOn();
-//     };
-//     //リズムパッドにフォーカスする
-//     document.getElementById('rhythmPad').focus();
-// });
