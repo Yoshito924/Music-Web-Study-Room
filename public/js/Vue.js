@@ -71,13 +71,13 @@ Vue.component('right-column', {
 
             <lu>
               <li class="py-1">
-                <a class="linka" target="_blank" rel="noopener noreferrer" href="https://o-to.khufrudamonotes.com/o-to-chords">①コードの構成音を調べる</a>
+                <a class="linka" target="_blank" rel="noopener noreferrer" href="https://o-to.khufrudamonotes.com/o-to-chords">①コード(110種類以上)の構成音を調べる</a>
               </li>
               <li class="py-1">
-                <a class="linka" target="_blank" rel="noopener noreferrer" href="https://o-to.khufrudamonotes.com/o-to-scale">②スケールの構成音を調べる</a>
+                <a class="linka" target="_blank" rel="noopener noreferrer" href="https://o-to.khufrudamonotes.com/o-to-scale">②スケール(70種類以上)の構成音を調べる</a>
               </li>
               <li class="py-1">
-                <a class="linka" target="_blank" rel="noopener noreferrer" href="https://o-to.khufrudamonotes.com/o-to-modal-interchange">③コード・ネーム/モードを検索する</a>
+                <a class="linka" target="_blank" rel="noopener noreferrer" href="https://o-to.khufrudamonotes.com/o-to-modal-interchange">③コード・ネーム/スケール名を検索する</a>
               </li>
               <li class="py-1">
                 <a class="linka" target="_blank" rel="noopener noreferrer" href="https://o-to.khufrudamonotes.com/o-to-chord-progression">④コード進行まとめ</a>
