@@ -391,7 +391,7 @@ function clickPlayer() {
     };
     //分割クリックを再生する
     if (mod(Count, division) !== 0) {
-        if (divisionNoteArray[Math.trunc(countNum)] === 0) {
+        if (divisionNoteArray[Math.trunc(Count)] === 0) {
             //分割クリックの音を鳴らす
             click_2.currentTime = 0;
             click_2.play();
