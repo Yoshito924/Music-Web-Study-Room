@@ -217,10 +217,10 @@ function rhythmCreate(rhythmNum, NoteCharacter) {
     for (let i = 0; i < rhythmNoteArray.length; i++) {
         if (rhythmNoteArray[rhythmNum - 1] === 0) {
             document.getElementById("rhythm_count").
-                insertAdjacentHTML('afterbegin', `<th id="rhythm_count${rhythmNum}" onclick="rhythmNoteChange(${rhythmNum})">${rhythmNum}<br><font size="6">${rhythmNoteCharacter}</font></th>`);
+                insertAdjacentHTML('afterbegin', `<th id="rhythm_count${rhythmNum}" class="click_able" onclick="rhythmNoteChange(${rhythmNum})">${rhythmNum}<br><font size="6">${rhythmNoteCharacter}</font></th>`);
         } else if (rhythmNoteArray[rhythmNum - 1] === 1) {
             document.getElementById("rhythm_count").
-                insertAdjacentHTML('afterbegin', `<th id="rhythm_count${rhythmNum}" onclick="rhythmNoteChange(${rhythmNum})">${rhythmNum}<br><font size="6">${rhythmRestCharacter}</font></th>`);
+                insertAdjacentHTML('afterbegin', `<th id="rhythm_count${rhythmNum}" class="click_able" onclick="rhythmNoteChange(${rhythmNum})">${rhythmNum}<br><font size="6">${rhythmRestCharacter}</font></th>`);
         };
         rhythmNum--
     };

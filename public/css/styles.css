@@ -6,7 +6,6 @@
 }
 
 #rhythmPad {
-  cursor: pointer;
 }
 
 body {
@@ -52,7 +51,7 @@ th,
 td {
   padding: 4px;
   border: 1px solid rgb(158, 158, 158);
-  cursor: pointer;
+
   font-size: clamp(0.5rem, 0.5rem + 1vw, 1rem);
 }
 
@@ -62,6 +61,18 @@ p {
 
 a {
   font-size: clamp(0.6rem, 0.6rem + 1vw, 1rem);
+}
+
+.click_able {
+  cursor: pointer;
+}
+
+.click_able:hover {
+  background-color: #ffffe0;
+}
+
+.click_un_able {
+  cursor: not-allowed;
 }
 
 .guideText {

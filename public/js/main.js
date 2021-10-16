@@ -130,7 +130,7 @@ const MusicalNoteArray = [
         `<img src="./image/note/16thNote.svg" alt="16分音符" title="16分音符 "class="note_image">`,
         `<img src="./image/note/32ndNote.svg" alt="32分音符" title="32分音符 "class="note_image">`,
         `<img src="./image/note/64thNote.svg" alt="64分音符" title="64分音符 "class="note_image">`,],
-    ["●",
+    ["○",
         `<img src="./image/note/harfRest.svg" alt="2分休符" title="2分休符 "class="note_image">`,
         `<img src="./image/note/quarterRest.svg" alt="4分休符" title="4分休符 "class="note_image">`,
         `<img src="./image/note/8thRest.svg" alt="8分休符" title="8分休符 "class="note_image">`,
@@ -471,10 +471,10 @@ function countCreate(Num) {
     for (let i = 0; i < noteArray.length; i++) {
         if (noteArray[Num - 1] === 0) {
             document.getElementById("click_count").
-                insertAdjacentHTML('afterbegin', `<th id="click_count${Num}" onclick="noteChange(${Num})">${Num}<br><font size="6">${noteCharacter}</font></th>`);
+                insertAdjacentHTML('afterbegin', `<th id="click_count${Num}" class="click_able" onclick="noteChange(${Num})">${Num}<br><font size="6">${noteCharacter}</font></th>`);
         } else if (noteArray[Num - 1] === 1) {
             document.getElementById("click_count").
-                insertAdjacentHTML('afterbegin', `<th id="click_count${Num}" onclick="noteChange(${Num})">${Num}<br><font size="6">${restCharacter}</font></th>`);
+                insertAdjacentHTML('afterbegin', `<th id="click_count${Num}" class="click_able" onclick="noteChange(${Num})">${Num}<br><font size="6">${restCharacter}</font></th>`);
         };
         Num--
     };
@@ -517,10 +517,10 @@ function divisionCreate(divisionNum, TimeSignatureDenominator, TimeSignatureNume
     for (let i = 0; i < divisionNoteArray.length; i++) {
         if (divisionNoteArray[divisionNum - 1] === 0) {
             document.getElementById("division_count").
-                insertAdjacentHTML('afterbegin', `<th id="division_count${divisionNum}" onclick="divisionNoteChange(${divisionNum})">${divisionNum}<br><font size="2">${divisionNoteCharacter}</font></th>`);
+                insertAdjacentHTML('afterbegin', `<th id="division_count${divisionNum}" class="click_able" onclick="divisionNoteChange(${divisionNum})">${divisionNum}<br><font size="2">${divisionNoteCharacter}</font></th>`);
         } else if (divisionNoteArray[divisionNum - 1] === 1) {
             document.getElementById("division_count").
-                insertAdjacentHTML('afterbegin', `<th id="division_count${divisionNum}" onclick="divisionNoteChange(${divisionNum})">${divisionNum}<br><font size="2">${divisionRestCharacter}</font></th>`);
+                insertAdjacentHTML('afterbegin', `<th id="division_count${divisionNum}" class="click_able" onclick="divisionNoteChange(${divisionNum})">${divisionNum}<br><font size="2">${divisionRestCharacter}</font></th>`);
         };
         divisionNum--
     };
@@ -999,10 +999,10 @@ function rhythm1Create() {
     for (let i = 0; i < polyrhythm_1_NoteArray.length; i++) {
         if (polyrhythm_1_NoteArray[polyrhythm_1_Num - 1] === 0) {
             document.getElementById("polyrhythm_1_click").
-                insertAdjacentHTML('afterbegin', `<th id="polyrhythm_1_count${polyrhythm_1_Num}" onclick="polyrhythm_1_noteChange(${polyrhythm_1_Num})">${polyrhythm_1_Num}<br><font size="6">${noteCharacter}</font></th>`);
+                insertAdjacentHTML('afterbegin', `<th id="polyrhythm_1_count${polyrhythm_1_Num}" class="click_able" onclick="polyrhythm_1_noteChange(${polyrhythm_1_Num})">${polyrhythm_1_Num}<br><font size="6">${noteCharacter}</font></th>`);
         } else if (polyrhythm_1_NoteArray[polyrhythm_1_Num - 1] === 1) {
             document.getElementById("polyrhythm_1_click").
-                insertAdjacentHTML('afterbegin', `<th id="polyrhythm_1_count${polyrhythm_1_Num}" onclick="polyrhythm_1_noteChange(${polyrhythm_1_Num})">${polyrhythm_1_Num}<br><font size="6">${restCharacter}</font></th>`);
+                insertAdjacentHTML('afterbegin', `<th id="polyrhythm_1_count${polyrhythm_1_Num}" class="click_able" onclick="polyrhythm_1_noteChange(${polyrhythm_1_Num})">${polyrhythm_1_Num}<br><font size="6">${restCharacter}</font></th>`);
         };
         polyrhythm_1_Num--
     };
@@ -1018,10 +1018,10 @@ function rhythm2Create() {
     for (let i = 0; i < polyrhythm_2_NoteArray.length; i++) {
         if (polyrhythm_2_NoteArray[polyrhythm_2_Num - 1] === 0) {
             document.getElementById("polyrhythm_2_click").
-                insertAdjacentHTML('afterbegin', `<th id="polyrhythm_2_count${polyrhythm_2_Num}" onclick="polyrhythm_2_noteChange(${polyrhythm_2_Num})">${polyrhythm_2_Num}<br><font size="6">${MusicalNoteArray[0][0]}</font></th>`);
+                insertAdjacentHTML('afterbegin', `<th id="polyrhythm_2_count${polyrhythm_2_Num}" class="click_able" onclick="polyrhythm_2_noteChange(${polyrhythm_2_Num})">${polyrhythm_2_Num}<br><font size="6">${MusicalNoteArray[0][0]}</font></th>`);
         } else if (polyrhythm_2_NoteArray[polyrhythm_2_Num - 1] === 1) {
             document.getElementById("polyrhythm_2_click").
-                insertAdjacentHTML('afterbegin', `<th id="polyrhythm_2_count${polyrhythm_2_Num}" onclick="polyrhythm_2_noteChange(${polyrhythm_2_Num})">${polyrhythm_2_Num}<br><font size="6">${MusicalNoteArray[1][0]}</font></th>`);
+                insertAdjacentHTML('afterbegin', `<th id="polyrhythm_2_count${polyrhythm_2_Num}" class="click_able" onclick="polyrhythm_2_noteChange(${polyrhythm_2_Num})">${polyrhythm_2_Num}<br><font size="6">${MusicalNoteArray[1][0]}</font></th>`);
         };
         polyrhythm_2_Num--
     };
@@ -1040,10 +1040,10 @@ function lcmCreate() {
         for (let i = 0; i < polyrhythm_lcm_NoteArray.length; i++) {
             if (polyrhythm_lcm_NoteArray[polyrhythm_lcm_Num - 1] === 0) {
                 document.getElementById("polyrhythm_lcm_click").
-                    insertAdjacentHTML('afterbegin', `<th id="polyrhythm_lcm_count${polyrhythm_lcm_Num}" onclick="polyrhythm_lcm_NoteChange(${polyrhythm_lcm_Num})">${polyrhythm_lcm_Num}<br>${divisionNoteCharacter}</th > `);
+                    insertAdjacentHTML('afterbegin', `<th id="polyrhythm_lcm_count${polyrhythm_lcm_Num}" class="click_able" onclick="polyrhythm_lcm_NoteChange(${polyrhythm_lcm_Num})">${polyrhythm_lcm_Num}<br>${divisionNoteCharacter}</th > `);
             } else if (polyrhythm_lcm_NoteArray[polyrhythm_lcm_Num - 1] === 1) {
                 document.getElementById("polyrhythm_lcm_click").
-                    insertAdjacentHTML('afterbegin', `<th id = "polyrhythm_lcm_count${polyrhythm_lcm_Num}" onclick = "polyrhythm_lcm_NoteChange(${polyrhythm_lcm_Num})">${polyrhythm_lcm_Num}<br>${divisionRestCharacter}</th > `);
+                    insertAdjacentHTML('afterbegin', `<th id = "polyrhythm_lcm_count${polyrhythm_lcm_Num}" class="click_able" onclick = "polyrhythm_lcm_NoteChange(${polyrhythm_lcm_Num})">${polyrhythm_lcm_Num}<br>${divisionRestCharacter}</th > `);
             };
             polyrhythm_lcm_Num--
         };
