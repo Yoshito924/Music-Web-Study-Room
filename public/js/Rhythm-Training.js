@@ -276,27 +276,6 @@ function rhythmPlayer() {
     rhythmCountNum++;
 };
 
-//ページがロードされたときに関数initを実行するイベントリスナーを設定する
-window.addEventListener('load', init, false);
-
-//変数contextを定義する
-let context;
-
-//AudioContextを作成する関数
-function init() {
-    try {
-        //webkitプレフィックスをつける。（WebKit使用のブラウザに対応するため）
-        window.AudioContext
-            = window.AudioContext || window.webkitAudioContext;
-        //AudioContextを生成する
-        context = new AudioContext();
-        console.log('init!');
-    } catch (e) {
-        //try内の処理がエラーの場合、それをユーザーに伝える。
-        alert('このブラウザではWeb Audio APIはサポートされていません。');
-    };
-};
-
 
 //メトロノームの再生を開始する関数--------------------------------------
 function rhythmStart() {
