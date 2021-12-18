@@ -67,10 +67,6 @@ a {
   cursor: pointer;
 }
 
-.click_able:hover {
-  background-color: #ffffe0;
-}
-
 .click_un_able {
   cursor: not-allowed;
 }
@@ -170,4 +166,12 @@ a {
 
 .linka:active {
   color: #33cc00;
+}
+
+/* --------------------------------------------------------------------------------------------- */
+/* レスポンシブ対応 */
+@media only screen and (min-width: 1025px) {
+  .click_able:hover {
+    background-color: #ffffe0;
+  }
 }
