@@ -100,6 +100,9 @@ Vue.component('right-column', {
               <li class="py-1">
                 <a class="linka" target="_blank" rel="noopener noreferrer" href="https://o-to.khufrudamonotes.com/o-to-fingerboard">⑩弦楽器の指板を可視化する</a>
               </li>
+              <li class="py-1">
+                <a class="linka" target="_blank" rel="noopener noreferrer" href="https://o-to.khufrudamonotes.com/o-to-reverse-lookup-fingerboard">⑪指板からコード/スケール名を逆引き検索</a>
+              </li>
             </lu>
 
             <p class="py-2">　</p>
