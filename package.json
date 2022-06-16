@@ -14,7 +14,7 @@
     "@tailwindcss/custom-forms": "^0.2.1",
     "autoprefixer": "^10.3.4",
     "postcss-cli": "^8.3.1",
-    "tailwindcss": "^2.2.9"
+    "tailwindcss": "^1.0"
   },
   "dependencies": {
     "@material-ui/core": "^4.12.3"
